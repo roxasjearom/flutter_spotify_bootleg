@@ -6,12 +6,10 @@ final class CategoryState extends Equatable {
   const CategoryState({
     this.status = CategoryStatus.initial,
     this.categories = const <Category>[],
-    this.hasReachedMax = false,
   });
 
   final CategoryStatus status;
   final List<Category> categories;
-  final bool hasReachedMax;
 
   CategoryState copyWith({
     CategoryStatus? status,
@@ -21,10 +19,9 @@ final class CategoryState extends Equatable {
     return CategoryState(
       status: status ?? this.status,
       categories: categories ?? this.categories,
-      hasReachedMax: hasReachedMax ?? this.hasReachedMax,
     );
   }
 
   @override
-  List<Object> get props => [status, categories, hasReachedMax];
+  List<Object> get props => [status, categories];
 }

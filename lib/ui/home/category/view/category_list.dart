@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spotify_bootleg/ui/home/category/bloc/category_bloc.dart';
-import 'package:flutter_spotify_bootleg/ui/home/category/category_item.dart';
+import 'package:flutter_spotify_bootleg/ui/home/category/view/category_item.dart';
 
 import '../../../../domain/models/models.dart';
 
