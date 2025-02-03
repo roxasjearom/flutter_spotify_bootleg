@@ -6,8 +6,7 @@ import 'package:flutter_spotify_bootleg/ui/home/category/view/category_list.dart
 import '../../di/service_locator.dart';
 import 'category/bloc/category_bloc.dart';
 
-
-class HomePage extends StatelessWidget{
+class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
@@ -19,7 +18,7 @@ class HomePage extends StatelessWidget{
           create: (context) => CategoryBloc(
             homeRepository: getIt.get<HomeRepository>(),
           )..add(CategoryFetched()),
-          child: const CategoryList(),
+          child: const CategorySection(),
         ),
       ),
     );

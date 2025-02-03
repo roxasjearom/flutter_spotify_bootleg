@@ -9,15 +9,18 @@ class CategoryItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      child: Column(
-        children: [
-          Image.network(
-            category.iconUrl,
-            width: 120,
-            height: 120,
-          ),
-          Text(category.name)
-        ],
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 8),
+        child: Column(
+          children: [
+            Image.network(
+              category.iconUrl,
+              width: 120,
+              height: 120,
+            ),
+            Text(category.name)
+          ],
+        ),
       ),
     );
   }
