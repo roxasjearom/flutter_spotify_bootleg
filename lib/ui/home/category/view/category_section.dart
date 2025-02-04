@@ -25,10 +25,11 @@ class _CategorySectionState extends State<CategorySection> {
             return const Center(child: Text('No category to show'));
           }
           return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               HeaderSection(),
               SizedBox(height: 8),
-              Expanded(child: CategoryList(categories: state.categories)),
+              CategoryList(categories: state.categories),
             ],
           );
 
@@ -49,12 +50,15 @@ class CategoryList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      scrollDirection: Axis.horizontal,
-      itemBuilder: (BuildContext context, int index) {
-        return CategoryItem(category: categories[index]);
-      },
-      itemCount: categories.length,
+    return SizedBox(
+      height: 180,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemBuilder: (BuildContext context, int index) {
+          return CategoryItem(category: categories[index]);
+        },
+        itemCount: categories.length,
+      ),
     );
   }
 }

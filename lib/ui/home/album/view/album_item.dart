@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_spotify_bootleg/domain/models/category.dart';
+import 'package:flutter_spotify_bootleg/domain/models/album.dart';
 
-class CategoryItem extends StatelessWidget {
-  const CategoryItem({required this.category, super.key});
+class AlbumItem extends StatelessWidget {
+  const AlbumItem({required this.album, super.key});
 
-  final Category category;
+  final Album album;
 
   @override
   Widget build(BuildContext context) {
@@ -15,11 +15,11 @@ class CategoryItem extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Image.network(
-              category.iconUrl,
+              album.imageUrl,
               width: 120,
               height: 120,
             ),
-            Text(category.name)
+            Text(album.name)
           ],
         )
       );
