@@ -10,8 +10,8 @@ import 'artist/bloc/artist_bloc.dart';
 import 'artist/view/artist_section.dart';
 import 'category/bloc/category_bloc.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
