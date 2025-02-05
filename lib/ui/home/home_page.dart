@@ -6,6 +6,8 @@ import 'package:flutter_spotify_bootleg/ui/home/category/view/category_section.d
 import '../../di/service_locator.dart';
 import 'album/bloc/album_bloc.dart';
 import 'album/view/album_section.dart';
+import 'artist/bloc/artist_bloc.dart';
+import 'artist/view/artist_section.dart';
 import 'category/bloc/category_bloc.dart';
 
 class HomePage extends StatelessWidget {
@@ -36,6 +38,13 @@ class HomePage extends StatelessWidget {
             homeRepository: getIt.get<HomeRepository>(),
           )..add(AlbumFetched()),
           child: const AlbumSection(),
+        ),
+        SizedBox(height: 8),
+        BlocProvider(
+          create: (_) => ArtistBloc(
+            homeRepository: getIt.get<HomeRepository>(),
+          )..add(ArtistFetched()),
+          child: const ArtistSection(),
         ),
       ],
     ));

@@ -43,4 +43,28 @@ class FakeHomeRepositoryImpl implements HomeRepository {
               "https://i.scdn.co/image/ab67616d00001e02b1f18dc3658aff286fa9f351"),
     ];
   }
+
+  @override
+  List<Artist> getArtists() {
+    return [
+      Artist(
+        id: "2CIMQHirSU0MQqyYHq0eOx",
+        name: "deadmau5",
+        imageUrl:
+            "https://i.scdn.co/image/ab6761610000517489ffabe57a25cedeca3309e7",
+      ),
+      Artist(
+        id: "57dN52uHvrHOxijzpIgu3E",
+        name: "Ratatat",
+        imageUrl:
+            "https://i.scdn.co/image/dc68dd24b45b74ecce9d4ed486423673d683ced3",
+      ),
+      Artist(
+        id: "1vCWHaC5f2uS3yhpwWbIA6",
+        name: "Avicii",
+        imageUrl:
+            "https://i.scdn.co/image/ab67616100005174ae07171f989fb39736674113",
+      ),
+    ];
+  }
 }
