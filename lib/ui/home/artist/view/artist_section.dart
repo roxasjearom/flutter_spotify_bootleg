@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spotify_bootleg/domain/models/artist.dart';
+import 'package:flutter_spotify_bootleg/ui/songlist/song_list_screen.dart';
 
 import '../bloc/artist_bloc.dart';
 import 'artist_item.dart';
@@ -61,7 +62,16 @@ class ArtistList extends StatelessWidget {
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemBuilder: (BuildContext context, int index) {
-          return ArtistItem(artist: artists[index]);
+          return GestureDetector(
+              onTap: () => {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              SongListScreen(id: artists[index].id)),
+                    )
+                  },
+              child: ArtistItem(artist: artists[index]));
         },
         itemCount: artists.length,
       ),
