@@ -34,41 +34,35 @@ class AlbumInfoSection extends StatelessWidget {
         child: SizedBox(
           height: infoBoxHeight,
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
                   title,
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 28,
-                      fontWeight: FontWeight.bold),
+                  style: Theme.of(context).textTheme.headlineSmall,
                 ),
                 const SizedBox(
-                  height: 8,
+                  height: 4,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     CircleAvatar(
-                      backgroundColor: Colors.red,
+                      backgroundColor: Theme.of(context).colorScheme.primary,
                       backgroundImage: NetworkImage(imageUrl),
                     ),
                     SizedBox(width: 8),
                     Text(
                       artist,
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                      ),
+                      style: Theme.of(context).textTheme.labelLarge,
                     ),
                     const SizedBox.shrink()
                   ],
                 ),
                 const SizedBox(
-                  height: 10,
+                  height: 4,
                 ),
                 const Text(
                   "Album . 2021", //TODO add actual date
@@ -77,27 +71,27 @@ class AlbumInfoSection extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(
-                  height: 10,
+                  height: 4,
                 ),
                 Row(
                   children: [
                     IconButton(
                         onPressed: () {},
-                        icon: const Icon(
+                        icon: Icon(
                           Icons.favorite_border,
-                          color: Colors.white,
+                          color: Theme.of(context).colorScheme.secondary,
                         )),
                     IconButton(
                         onPressed: () {},
-                        icon: const Icon(
+                        icon: Icon(
                           Icons.download_outlined,
-                          color: Colors.white,
+                          color: Theme.of(context).colorScheme.secondary,
                         )),
                     IconButton(
                         onPressed: () {},
-                        icon: const Icon(
+                        icon: Icon(
                           Icons.more_vert_rounded,
-                          color: Colors.white,
+                          color: Theme.of(context).colorScheme.secondary,
                         ))
                   ],
                 )

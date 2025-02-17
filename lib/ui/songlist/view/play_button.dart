@@ -56,21 +56,18 @@ class _PlayPauseButtonState extends State<PlayPauseButton> {
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      top: getPositionFromTop,
-      right: 10,
-      child: ElevatedButton(
-        style: OutlinedButton.styleFrom(
-          backgroundColor: kPlayPauseButtonColor,
-          fixedSize:
-              Size(widget.playPauseButtonSize, widget.playPauseButtonSize),
-          shape: const CircleBorder(),
-        ),
-        onPressed: () {},
-        child: const Icon(
-          Icons.play_arrow,
-          color: Colors.black,
-        ),
-      ),
-    );
+        top: getPositionFromTop,
+        right: 10,
+        child: IconButton(
+          onPressed: () {},
+          icon: const Icon(Icons.play_arrow, size: 32, color: Colors.black),
+          style: IconButton.styleFrom(
+            backgroundColor: kPlayPauseButtonColor,
+            shape: const CircleBorder(),
+            padding: EdgeInsets.zero, // Usually not needed with IconButton
+            fixedSize:
+                Size(widget.playPauseButtonSize, widget.playPauseButtonSize),
+          ),
+        ));
   }
 }

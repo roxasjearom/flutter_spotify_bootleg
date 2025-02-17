@@ -24,20 +24,18 @@ class SongListSection extends StatelessWidget {
               tileColor: Colors.black,
               title: Text(
                 song.title,
-                style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18),
+                style: Theme.of(context).textTheme.bodyLarge,
               ),
-              subtitle: Text(song.artist,
-                  style: TextStyle(
-                    color: Colors.white,
-                  )),
+              subtitle: Text(
+                song.artist,
+                style: Theme.of(context).textTheme.bodyMedium,
+              ),
               trailing: IconButton(
                 onPressed: () {},
-                icon: const Icon(
-                  Icons.more_vert_rounded,
-                  color: Colors.white,
+                icon: Icon(
+                  Icons.favorite,
+                  color: Theme.of(context).colorScheme.primary,
+                  fill: 1.0,
                 ),
               ),
             ),

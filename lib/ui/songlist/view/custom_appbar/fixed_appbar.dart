@@ -16,19 +16,21 @@ class FixedAppBar extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.baseline,
       textBaseline: TextBaseline.ideographic,
       children: [
-        const Icon(
-          Icons.arrow_back,
-          color: Colors.white,
+        IconButton(
+          icon: Icon(Icons.arrow_back),
+          color: Theme.of(context).colorScheme.onSurface,
+          onPressed: () {
+            Navigator.pop(context);
+          },
         ),
-        const SizedBox(width: 30),
+        const SizedBox(width: 16),
         AnimatedOpacity(
           opacity: titleOpacity.clamp(0, 1),
           duration: const Duration(milliseconds: 100),
-          child: Text(title,
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 32,
-              )),
+          child: Text(
+            title,
+            style: Theme.of(context).textTheme.titleLarge,
+          ),
         ),
       ],
     );

@@ -1,7 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter_spotify_bootleg/ui/songlist/view/custom_appbar/const.dart';
 import 'package:flutter_spotify_bootleg/ui/songlist/view/custom_appbar/custom_flexible_space.dart';
 import 'package:flutter_spotify_bootleg/ui/songlist/view/custom_appbar/fixed_appbar.dart';
 import 'package:flutter_spotify_bootleg/ui/songlist/view/custom_appbar/sliver_appbar_delegate.dart';
@@ -69,12 +66,12 @@ class SliverCustomeAppBar extends StatelessWidget {
                     duration: const Duration(milliseconds: 150),
                     decoration: BoxDecoration(
                       gradient: showFixedAppBar
-                          ? const LinearGradient(
+                          ? LinearGradient(
                               begin: Alignment.topCenter,
                               end: Alignment.bottomCenter,
                               colors: [
-                                  kAppBarPrimary,
-                                  kAppBarSecondary,
+                                  Theme.of(context).colorScheme.onSecondary,
+                                  Theme.of(context).colorScheme.surface,
                                 ],
                               stops: [
                                   0,

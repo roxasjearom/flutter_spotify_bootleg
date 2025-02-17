@@ -33,7 +33,7 @@ class AlbumImage extends StatelessWidget {
             height: albumImageSize,
             width: albumImageSize,
             decoration: BoxDecoration(
-              color: Colors.deepPurpleAccent,
+              color: Theme.of(context).colorScheme.onSurface,
               image: DecorationImage(
                 image: NetworkImage(imageUrl),
                 fit: BoxFit.cover,

@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spotify_bootleg/di/service_locator.dart';
 import 'package:flutter_spotify_bootleg/domain/repository/home_repository.dart';
 import 'package:flutter_spotify_bootleg/ui/songlist/view/album_info_section.dart';
-import 'package:flutter_spotify_bootleg/ui/songlist/view/custom_appbar/const.dart';
 import 'package:flutter_spotify_bootleg/ui/songlist/view/custom_appbar/sliver_custom_appbar.dart';
 import 'package:flutter_spotify_bootleg/ui/songlist/view/play_button.dart';
 import 'package:flutter_spotify_bootleg/ui/songlist/view/song_list_section.dart';
@@ -48,22 +47,22 @@ class _SongListPageState extends State<_SongListPage> {
 
   @override
   Widget build(BuildContext context) {
-    maxAppBarHeight = MediaQuery.of(context).size.height * 0.5;
+    maxAppBarHeight = MediaQuery.of(context).size.height * 0.45;
     minAppBarHeight = MediaQuery.of(context).padding.top +
         MediaQuery.of(context).size.height * 0.1;
     playPauseButtonSize = (MediaQuery.of(context).size.width / 320) * 50 > 80
         ? 80
         : (MediaQuery.of(context).size.width / 320) * 50;
-    infoBoxHeight = 180;
+    infoBoxHeight = 160;
     return BlocBuilder<SongListBloc, SongListState>(builder: (context, state) {
       return Scaffold(
         body: DecoratedBox(
-          decoration: const BoxDecoration(
+          decoration: BoxDecoration(
             gradient: LinearGradient(
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
                 colors: [
-                  kPrimaryColor,
+                  Theme.of(context).colorScheme.surface,
                   Colors.black,
                 ],
                 stops: [
