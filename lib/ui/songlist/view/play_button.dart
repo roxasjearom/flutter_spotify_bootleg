@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_spotify_bootleg/ui/songlist/view/custom_appbar/const.dart';
 
 class PlayPauseButton extends StatefulWidget {
   const PlayPauseButton({
@@ -24,11 +23,10 @@ class PlayPauseButton extends StatefulWidget {
 class _PlayPauseButtonState extends State<PlayPauseButton> {
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
 
     widget.scrollController.addListener(() {
-      setState(() {});
+      setState(() {}); //Add initial state
     });
   }
 
@@ -39,7 +37,6 @@ class _PlayPauseButtonState extends State<PlayPauseButton> {
 
     if (widget.scrollController.hasClients) {
       double offset = widget.scrollController.offset;
-      //When adjusting position, add/subtract in addOrSubtractValue
       double addOrSubtractValue =
           widget.infoBoxHeight - widget.playPauseButtonSize - 10;
       final bool isFinalPosition =
@@ -62,9 +59,8 @@ class _PlayPauseButtonState extends State<PlayPauseButton> {
           onPressed: () {},
           icon: const Icon(Icons.play_arrow, size: 32, color: Colors.black),
           style: IconButton.styleFrom(
-            backgroundColor: kPlayPauseButtonColor,
+            backgroundColor: Theme.of(context).colorScheme.primary,
             shape: const CircleBorder(),
-            padding: EdgeInsets.zero, // Usually not needed with IconButton
             fixedSize:
                 Size(widget.playPauseButtonSize, widget.playPauseButtonSize),
           ),

@@ -49,7 +49,7 @@ class _SongListPageState extends State<_SongListPage> {
   Widget build(BuildContext context) {
     maxAppBarHeight = MediaQuery.of(context).size.height * 0.45;
     minAppBarHeight = MediaQuery.of(context).padding.top +
-        MediaQuery.of(context).size.height * 0.1;
+        MediaQuery.of(context).size.height * 0.12;
     playPauseButtonSize = (MediaQuery.of(context).size.width / 320) * 50 > 80
         ? 80
         : (MediaQuery.of(context).size.width / 320) * 50;

@@ -8,9 +8,8 @@ class AlbumItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 150,
-      margin: const EdgeInsets.symmetric(horizontal: 8),
+    return SizedBox(
+      width: 140,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
           children: [
