@@ -8,6 +8,16 @@ sealed class SongListEvent extends Equatable {
 }
 
 final class SongListFetched extends SongListEvent {
-  const SongListFetched(this.id);
   final String id;
+  const SongListFetched(this.id);
+}
+
+class FavoriteSongAdded extends SongListEvent {
+  final Song song;
+  const FavoriteSongAdded(this.song);
+}
+
+class FavoriteSongRemoved extends SongListEvent {
+  final Song song;
+  const FavoriteSongRemoved(this.song);
 }

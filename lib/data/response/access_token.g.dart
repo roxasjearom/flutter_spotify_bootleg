@@ -8,14 +8,14 @@ part of 'access_token.dart';
 
 _$AccessTokenImpl _$$AccessTokenImplFromJson(Map<String, dynamic> json) =>
     _$AccessTokenImpl(
-      accessToken: json['access_token'] as String,
-      tokenType: json['token_type'] as String,
-      expiresIn: (json['expires_in'] as num).toInt(),
+      accessToken: json['accessToken'] as String,
+      tokenType: json['tokenType'] as String,
+      expiresIn: (json['expiresIn'] as num).toInt(),
     );
 
 Map<String, dynamic> _$$AccessTokenImplToJson(_$AccessTokenImpl instance) =>
     <String, dynamic>{
-      'access_token': instance.accessToken,
-      'token_type': instance.tokenType,
-      'expires_in': instance.expiresIn,
+      'accessToken': instance.accessToken,
+      'tokenType': instance.tokenType,
+      'expiresIn': instance.expiresIn,
     };

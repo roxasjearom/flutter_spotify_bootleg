@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_spotify_bootleg/data/local/dao/favorite_song_dao.dart';
 import 'package:flutter_spotify_bootleg/di/service_locator.dart';
 import 'package:flutter_spotify_bootleg/domain/repository/home_repository.dart';
 import 'package:flutter_spotify_bootleg/ui/songlist/view/album_info_section.dart';
@@ -19,6 +20,7 @@ class SongListScreen extends StatelessWidget {
     return BlocProvider(
         create: (_) => SongListBloc(
               homeRepository: getIt.get<HomeRepository>(),
+              favoriteSongDao: getIt.get<FavoriteSongDao>(),
             )..add(SongListFetched(id)),
         child: _SongListPage());
   }

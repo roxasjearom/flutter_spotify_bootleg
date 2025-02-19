@@ -20,11 +20,8 @@ AccessToken _$AccessTokenFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$AccessToken {
-  @JsonKey(name: "access_token")
   String get accessToken => throw _privateConstructorUsedError;
-  @JsonKey(name: "token_type")
   String get tokenType => throw _privateConstructorUsedError;
-  @JsonKey(name: "expires_in")
   int get expiresIn => throw _privateConstructorUsedError;
 
   /// Serializes this AccessToken to a JSON map.
@@ -43,10 +40,7 @@ abstract class $AccessTokenCopyWith<$Res> {
           AccessToken value, $Res Function(AccessToken) then) =
       _$AccessTokenCopyWithImpl<$Res, AccessToken>;
   @useResult
-  $Res call(
-      {@JsonKey(name: "access_token") String accessToken,
-      @JsonKey(name: "token_type") String tokenType,
-      @JsonKey(name: "expires_in") int expiresIn});
+  $Res call({String accessToken, String tokenType, int expiresIn});
 }
 
 /// @nodoc
@@ -93,10 +87,7 @@ abstract class _$$AccessTokenImplCopyWith<$Res>
       __$$AccessTokenImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: "access_token") String accessToken,
-      @JsonKey(name: "token_type") String tokenType,
-      @JsonKey(name: "expires_in") int expiresIn});
+  $Res call({String accessToken, String tokenType, int expiresIn});
 }
 
 /// @nodoc
@@ -137,21 +128,18 @@ class __$$AccessTokenImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$AccessTokenImpl implements _AccessToken {
   const _$AccessTokenImpl(
-      {@JsonKey(name: "access_token") required this.accessToken,
-      @JsonKey(name: "token_type") required this.tokenType,
-      @JsonKey(name: "expires_in") required this.expiresIn});
+      {required this.accessToken,
+      required this.tokenType,
+      required this.expiresIn});
 
   factory _$AccessTokenImpl.fromJson(Map<String, dynamic> json) =>
       _$$AccessTokenImplFromJson(json);
 
   @override
-  @JsonKey(name: "access_token")
   final String accessToken;
   @override
-  @JsonKey(name: "token_type")
   final String tokenType;
   @override
-  @JsonKey(name: "expires_in")
   final int expiresIn;
 
   @override
@@ -195,22 +183,18 @@ class _$AccessTokenImpl implements _AccessToken {
 
 abstract class _AccessToken implements AccessToken {
   const factory _AccessToken(
-          {@JsonKey(name: "access_token") required final String accessToken,
-          @JsonKey(name: "token_type") required final String tokenType,
-          @JsonKey(name: "expires_in") required final int expiresIn}) =
-      _$AccessTokenImpl;
+      {required final String accessToken,
+      required final String tokenType,
+      required final int expiresIn}) = _$AccessTokenImpl;
 
   factory _AccessToken.fromJson(Map<String, dynamic> json) =
       _$AccessTokenImpl.fromJson;
 
   @override
-  @JsonKey(name: "access_token")
   String get accessToken;
   @override
-  @JsonKey(name: "token_type")
   String get tokenType;
   @override
-  @JsonKey(name: "expires_in")
   int get expiresIn;
 
   /// Create a copy of AccessToken

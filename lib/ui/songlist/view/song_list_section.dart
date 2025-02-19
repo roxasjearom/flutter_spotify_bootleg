@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spotify_bootleg/domain/models/song.dart';
+import 'package:flutter_spotify_bootleg/ui/songlist/bloc/song_list_bloc.dart';
 
 class SongListSection extends StatelessWidget {
   const SongListSection({
@@ -31,11 +33,16 @@ class SongListSection extends StatelessWidget {
                 style: Theme.of(context).textTheme.bodyMedium,
               ),
               trailing: IconButton(
-                onPressed: () {},
+                onPressed: () {
+                    if (song.isFavorite) {
+                      context.read<SongListBloc>().add(FavoriteSongRemoved(song));
+                    } else {
+                      context.read<SongListBloc>().add(FavoriteSongAdded(song));
+                    }
+                },
                 icon: Icon(
-                  Icons.favorite,
+                  song.isFavorite ? Icons.favorite : Icons.favorite_border,
                   color: Theme.of(context).colorScheme.primary,
-                  fill: 1.0,
                 ),
               ),
             ),

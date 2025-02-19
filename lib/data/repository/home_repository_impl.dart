@@ -1,8 +1,15 @@
+import 'package:flutter_spotify_bootleg/data/local/dao/favorite_song_dao.dart';
+import 'package:flutter_spotify_bootleg/data/mapper/song_mapper.dart';
 import 'package:flutter_spotify_bootleg/domain/models/models.dart';
 import 'package:flutter_spotify_bootleg/domain/models/song.dart';
 import '../../domain/repository/home_repository.dart';
 
 class FakeHomeRepositoryImpl implements HomeRepository {
+
+  FakeHomeRepositoryImpl(this._favoriteSongDao);
+
+  final FavoriteSongDao _favoriteSongDao;
+
   @override
   List<Category> getCategories() {
     return [
@@ -89,5 +96,12 @@ class FakeHomeRepositoryImpl implements HomeRepository {
         Song(id: "3Tu7uWBecS6GsLsL8UONKn", title: "Don't Stop the Party (feat. TJR)", artist: "Pitbull"),
         Song(id: "0Hf4aIJpsN4Os2f0y0VqWl", title: "Feel This Moment (feat. Christina Aguilera)", artist: "Pitbull"),
     ]);
+  }
+  
+  @override
+  Stream<List<Song>> getSongList(String id) {
+    final favoriteSongsStream = _favoriteSongDao.getAllFavorites();
+
+  return favoriteSongsStream.map((favoriteSongList) => favoriteSongList.map((favoriteSong) => favoriteSong.toSong(false)).toList());
   }
 }
