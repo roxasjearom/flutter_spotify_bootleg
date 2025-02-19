@@ -7,8 +7,8 @@ class LocalDataSource {
 
   final FavoriteSongDao _favoriteSongDao;
 
-  Stream<List<FavoriteSong>> getAllFavorites() {
-    return _favoriteSongDao.getAllFavorites();
+  Future<List<FavoriteSong>> getAllFavorites() {
+    return _favoriteSongDao.getFavorites();
   }
 
   Future<void> insertFavorite(FavoriteSong song) {

@@ -4,7 +4,10 @@ import 'package:flutter_spotify_bootleg/data/local/entity/favorite_song_entity.d
 @dao
 abstract class FavoriteSongDao {
   @Query('SELECT * FROM FavoriteSong')
-  Stream<List<FavoriteSong>> getAllFavorites();
+  Stream<List<FavoriteSong>> getAllFavorites(); //Might delete this
+
+  @Query('SELECT * FROM FavoriteSong')
+  Future<List<FavoriteSong>> getFavorites();
 
   @Query('SELECT * FROM FavoriteSong WHERE id = :id')
   Stream<FavoriteSong?> getSpecificFavorite(int id);

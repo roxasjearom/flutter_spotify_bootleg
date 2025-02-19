@@ -144,6 +144,13 @@ class _$FavoriteSongDao extends FavoriteSongDao {
   }
 
   @override
+  Future<List<FavoriteSong>> getFavorites() async {
+    return _queryAdapter.queryList('SELECT * FROM FavoriteSong',
+        mapper: (Map<String, Object?> row) => FavoriteSong(row['id'] as String,
+            row['name'] as String, row['artist'] as String));
+  }
+
+  @override
   Stream<FavoriteSong?> getSpecificFavorite(int id) {
     return _queryAdapter.queryStream('SELECT * FROM FavoriteSong WHERE id = ?1',
         mapper: (Map<String, Object?> row) => FavoriteSong(row['id'] as String,
