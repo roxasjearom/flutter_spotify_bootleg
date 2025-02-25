@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spotify_bootleg/ui/home/category/bloc/category_bloc.dart';
 import 'package:flutter_spotify_bootleg/ui/home/category/view/category_item.dart';
+import 'package:flutter_spotify_bootleg/ui/playlist/playlist_screen.dart';
 
 import '../../../../domain/models/models.dart';
 
@@ -78,7 +79,10 @@ class HeaderSection extends StatelessWidget {
             )),
         TextButton(
             onPressed: () {
-              //Redirect to Playlist list screen
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => PlaylistScreen()),
+              );
             },
             child: Text("Show all"))
       ],

@@ -14,7 +14,6 @@ final class CategoryState extends Equatable {
   CategoryState copyWith({
     CategoryStatus? status,
     List<Category>? categories,
-    bool? hasReachedMax,
   }) {
     return CategoryState(
       status: status ?? this.status,

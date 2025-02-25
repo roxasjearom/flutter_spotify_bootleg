@@ -8,4 +8,5 @@ abstract interface class HomeRepository {
   AlbumDetails getAlbumDetails(String id);
   Stream<List<Song>> getSongList(String id);
   Future<List<Song>> getFavorites();
+  List<Playlist> getPlaylists(String categoryId);
 }
