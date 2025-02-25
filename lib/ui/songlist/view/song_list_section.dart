@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spotify_bootleg/domain/models/song.dart';
-import 'package:flutter_spotify_bootleg/ui/songlist/bloc/song_list_bloc.dart';
 
 class SongListSection extends StatelessWidget {
   const SongListSection({
     super.key,
     required this.songs,
+    required this.onAddFavoriteClicked,
+    required this.onRemoveFavoriteClicked,
   });
 
   final List<Song> songs;
+  final Function(Song) onAddFavoriteClicked;
+  final Function(Song) onRemoveFavoriteClicked;
 
   @override
   Widget build(BuildContext context) {
@@ -35,9 +37,9 @@ class SongListSection extends StatelessWidget {
               trailing: IconButton(
                 onPressed: () {
                     if (song.isFavorite) {
-                      context.read<SongListBloc>().add(FavoriteSongRemoved(song));
+                      onRemoveFavoriteClicked(song);
                     } else {
-                      context.read<SongListBloc>().add(FavoriteSongAdded(song));
+                      onAddFavoriteClicked(song);
                     }
                 },
                 icon: Icon(

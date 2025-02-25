@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spotify_bootleg/domain/models/song.dart';
+import 'package:flutter_spotify_bootleg/ui/favoritelist/favorite_list_screen.dart';
 import 'package:flutter_spotify_bootleg/ui/home/favorite/bloc/favorite_bloc.dart';
 import 'package:flutter_spotify_bootleg/ui/home/favorite/view/favorite_item.dart';
-
 
 class FavoriteSection extends StatefulWidget {
   const FavoriteSection({super.key});
@@ -71,14 +71,17 @@ class HeaderSection extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text("Favorite",
+        Text("Favorites",
             style: TextStyle(
               fontSize: 24,
               fontWeight: FontWeight.bold,
             )),
         TextButton(
             onPressed: () {
-              //Redirect to Favorites screen
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => FavoriteListScreen()),
+              );
             },
             child: Text("Show all"))
       ],

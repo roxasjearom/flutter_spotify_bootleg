@@ -28,6 +28,7 @@ class HomeScreen extends StatelessWidget {
         child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        SizedBox(height: 32),
         BlocProvider(
           create: (_) => CategoryBloc(
             homeRepository: getIt.get<HomeRepository>(),

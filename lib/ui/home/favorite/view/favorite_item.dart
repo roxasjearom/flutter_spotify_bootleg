@@ -13,11 +13,12 @@ class FavoriteItem extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Image.network(
-              "https://i.scdn.co/image/ab67616100005174ae07171f989fb39736674113", //TODO temporary icon only
-              width: 120,
-              height: 120,
-            ),
+            Image.asset(
+                'assets/liked_icon.png',
+                width: 120,
+                height: 120,
+                fit: BoxFit.cover,
+              ),
             Text(favorite.title)
           ],
         )

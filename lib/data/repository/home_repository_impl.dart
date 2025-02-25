@@ -34,6 +34,11 @@ class FakeHomeRepositoryImpl implements HomeRepository {
   List<Album> getAlbums() {
     return [
       Album(
+          id: "36OmXvGRKAY2zICbVtItoa",
+          name: "Kung Alam Mo Lang",
+          imageUrl:
+              "https://i.scdn.co/image/ab67616d00001e027300c1e7edcdbd15a42e1579"),
+      Album(
           id: "382ObEPsp2rxGrnsizN5TX",
           name: "TRON: Legacy Reconfigured",
           imageUrl:
@@ -78,60 +83,60 @@ class FakeHomeRepositoryImpl implements HomeRepository {
   @override
   AlbumDetails getAlbumDetails(String id) {
     return AlbumDetails(
-        id: "292kifgxa7S78AuzA5NMpL",
-        name: "Global Warming",
-        artist: "Pitbull",
+        id: "36OmXvGRKAY2zICbVtItoa",
+        name: "Kung Alam Mo Lang",
+        artist: "Hev Abi",
         imageUrl:
-            "https://i.scdn.co/image/ab67616d0000b2732c5b24ecfa39523a75c993c4",
+            "https://i.scdn.co/image/ab67616d00001e027300c1e7edcdbd15a42e1579",
         songs: [
           Song(
-              id: "292kifgxa7S78AuzA5NMpL",
-              title: "Global Warming (feat. Sensato)",
-              artist: "Pitbull"),
+              id: "1YpgamasVsAnYTfOYJOEB5",
+              title: "Introhan Ko Lang",
+              artist: "Hev Abi"),
           Song(
-              id: "3Tu7uWBecS6GsLsL8UONKn",
-              title: "Don't Stop the Party (feat. TJR)",
-              artist: "Pitbull"),
+              id: "0o2geA4kEWYPtuik3fs9Ai",
+              title: "Binibiroksi",
+              artist: "Hev Abi"),
           Song(
-              id: "0Hf4aIJpsN4Os2f0y0VqWl",
-              title: "Feel This Moment (feat. Christina Aguilera)",
-              artist: "Pitbull"),
+              id: "57Z7lSnhwx82laEb6rdZPB",
+              title: "Alam Mo Ba Girl",
+              artist: "Hev Abi"),
           Song(
-              id: "292kifgxa7S78AuzA5NMpL",
-              title: "Global Warming (feat. Sensato)",
-              artist: "Pitbull"),
+              id: "35Vt1L1KBP2YoWfErB0FAy",
+              title: "Sumugal",
+              artist: "Hev Abi"),
           Song(
-              id: "3Tu7uWBecS6GsLsL8UONKn",
-              title: "Don't Stop the Party (feat. TJR)",
-              artist: "Pitbull"),
+              id: "0qvtcqVOqdxeR4ipNLBl77",
+              title: "From Torillo, With Love",
+              artist: "Hev Abi"),
           Song(
-              id: "0Hf4aIJpsN4Os2f0y0VqWl",
-              title: "Feel This Moment (feat. Christina Aguilera)",
-              artist: "Pitbull"),
+              id: "4wZTvLi0khNRqqz4i5XhdV",
+              title: "Walang Alam",
+              artist: "Hev Abi"),
           Song(
-              id: "292kifgxa7S78AuzA5NMpL",
-              title: "Global Warming (feat. Sensato)",
-              artist: "Pitbull"),
+              id: "6exTC7vovfqzHqh5t4oAtm",
+              title: "Still",
+              artist: "Hev Abi"),
           Song(
-              id: "3Tu7uWBecS6GsLsL8UONKn",
-              title: "Don't Stop the Party (feat. TJR)",
-              artist: "Pitbull"),
+              id: "5XErV3kyTKbyaQGovj8wwo",
+              title: "drugr4ts",
+              artist: "Hev Abi"),
           Song(
-              id: "0Hf4aIJpsN4Os2f0y0VqWl",
-              title: "Feel This Moment (feat. Christina Aguilera)",
-              artist: "Pitbull"),
+              id: "0lJxErLtFRQ8BjKI7bNbQW",
+              title: "Pasaway Mode",
+              artist: "Hev Abi"),
           Song(
-              id: "292kifgxa7S78AuzA5NMpL",
-              title: "Global Warming (feat. Sensato)",
-              artist: "Pitbull"),
+              id: "4WYfu1sbBaSj09J9zXnG7F",
+              title: "Kulay Downtown",
+              artist: "Hev Abi"),
           Song(
-              id: "3Tu7uWBecS6GsLsL8UONKn",
-              title: "Don't Stop the Party (feat. TJR)",
-              artist: "Pitbull"),
+              id: "56fQ03sPqx2TWiX2JllFjL",
+              title: "Antagonista",
+              artist: "Hev Abi"),
           Song(
-              id: "0Hf4aIJpsN4Os2f0y0VqWl",
-              title: "Feel This Moment (feat. Christina Aguilera)",
-              artist: "Pitbull"),
+              id: "7hGExswhBJ50VPifCdOjjw",
+              title: "C2 Boyz",
+              artist: "Hev Abi"),
         ]);
   }
 
