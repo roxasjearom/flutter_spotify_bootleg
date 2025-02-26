@@ -17,6 +17,7 @@ class ArtistItem extends StatelessWidget {
               artist.imageUrl,
               width: 120,
               height: 120,
+              fit: BoxFit.cover,
             ),
             Text(artist.name)
           ],

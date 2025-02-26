@@ -4,8 +4,8 @@ import 'package:flutter_spotify_bootleg/data/local/dao/favorite_song_dao.dart';
 import 'package:flutter_spotify_bootleg/di/service_locator.dart';
 import 'package:flutter_spotify_bootleg/domain/repository/home_repository.dart';
 import 'package:flutter_spotify_bootleg/ui/favoritelist/bloc/favorite_list_bloc.dart';
-import 'package:flutter_spotify_bootleg/ui/songlist/view/custom_appbar/sliver_custom_appbar.dart';
 import 'package:flutter_spotify_bootleg/ui/songlist/view/song_list_section.dart';
+import 'package:flutter_spotify_bootleg/ui/theme/colors.dart';
 
 class FavoriteListScreen extends StatelessWidget {
   const FavoriteListScreen({super.key});
@@ -68,16 +68,32 @@ class _FavoriteListPageState extends State<_FavoriteListPage> {
               CustomScrollView(
                 controller: _scrollController,
                 slivers: [
-                  SliverCustomeAppBar(
-                    title: "Favorites",
-                    imageUrl: "https://i.scdn.co/image/ab67616d0000b2732c5b24ecfa39523a75c993c4", //TODO update this
-                    maxAppBarHeight: maxAppBarHeight,
-                    minAppBarHeight: minAppBarHeight,
+                  SliverAppBar(
+                    expandedHeight: 220,
+                    pinned: true,
+                    flexibleSpace: FlexibleSpaceBar(
+                      title: Text('Favorites'),
+                      centerTitle: false,
+                      background: Container(
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            colors: [
+                              spotifyGrey,
+                              spotifyBlack,
+                            ],
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter,
+                          ),
+                        ),
+                      ),
+                    ),
                   ),
                   SongListSection(
                     songs: state.songs,
                     onAddFavoriteClicked: (song) {
-                      context.read<FavoriteListBloc>().add(FavoriteSongAdded(song));
+                      context
+                          .read<FavoriteListBloc>()
+                          .add(FavoriteSongAdded(song));
                     },
                     onRemoveFavoriteClicked: (song) {
                       context
