@@ -7,11 +7,11 @@ part 'authentication_service.g.dart';
 
 @RestApi(baseUrl: accountsUrl)
 abstract class AuthenticationService {
-  factory AuthenticationService(Dio dio, {String baseUrl}) = _AuthenticationService;
+  factory AuthenticationService(Dio dio, {String baseUrl}) =
+      _AuthenticationService;
 
   @FormUrlEncoded()
   @POST("/api/token")
   Future<AccessTokenResponse> getAccessToken(
-    @Field("grant_type") String grantType,
-  );
+      {@Field("grant_type") String grantType = "client_credentials"});
 }

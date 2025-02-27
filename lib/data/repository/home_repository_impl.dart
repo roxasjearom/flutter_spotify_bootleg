@@ -1,35 +1,24 @@
 import 'package:flutter_spotify_bootleg/data/local/dao/favorite_song_dao.dart';
+import 'package:flutter_spotify_bootleg/data/mapper/category_mapper.dart';
 import 'package:flutter_spotify_bootleg/data/mapper/song_mapper.dart';
 import 'package:flutter_spotify_bootleg/data/remote/authentication/authentication_service.dart';
+import 'package:flutter_spotify_bootleg/data/remote/spotify_service.dart';
 import 'package:flutter_spotify_bootleg/domain/models/models.dart';
 import 'package:flutter_spotify_bootleg/domain/models/song.dart';
 import '../../domain/repository/home_repository.dart';
 
-class FakeHomeRepositoryImpl implements HomeRepository {
-  FakeHomeRepositoryImpl(this._favoriteSongDao, this.authenticationService);
+class HomeRepositoryImpl implements HomeRepository {
+  HomeRepositoryImpl(this._favoriteSongDao, this.authenticationService, this.spotifyService);
 
   final AuthenticationService authenticationService;
   final FavoriteSongDao _favoriteSongDao;
+  final SpotifyService spotifyService;
 
   @override
-  List<Category> getCategories() {
-    return [
-      Category(
-          id: "0JQ5DAqbMKFQ00XGBls6ym",
-          name: "Hip-Hop",
-          iconUrl:
-              "https://t.scdn.co/images/728ed47fc1674feb95f7ac20236eb6d7.jpeg"),
-      Category(
-          id: "0JQ5DAqbMKFQ00XGBls6th",
-          name: "K-pop",
-          iconUrl:
-              "https://t.scdn.co/images/728ed47fc1674feb95f7ac20236eb6d7.jpeg"),
-      Category(
-          id: "0JQ5DAqbMKFQ00XGBls6as",
-          name: "Classical",
-          iconUrl:
-              "https://t.scdn.co/images/728ed47fc1674feb95f7ac20236eb6d7.jpeg"),
-    ];
+  Future<List<Category>> getCategories() async {
+    final categoryResponse = await spotifyService.getCategories();
+    final categoryItems = categoryResponse.categories.items;
+    return categoryItems.map((categoryItem) => categoryItem.toCategory()).toList();
   }
 
   @override
@@ -202,7 +191,7 @@ class FakeHomeRepositoryImpl implements HomeRepository {
   
   @override
   Future<String> getToken() async {
-    final token = await authenticationService.getAccessToken("client_credentials");
-    return token.accessToken;
+    final tokenResponse = await authenticationService.getAccessToken();
+    return tokenResponse.accessToken;
   }
 }

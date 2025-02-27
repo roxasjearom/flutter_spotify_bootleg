@@ -21,7 +21,7 @@ class CategoryBloc extends Bloc<CategoryEvent, CategoryState> {
     Emitter<CategoryState> emit,
   ) async {
     try {
-      final categories = _homeRepository.getCategories();
+      final categories = await _homeRepository.getCategories();
       emit(
         state.copyWith(
           status: CategoryStatus.success,

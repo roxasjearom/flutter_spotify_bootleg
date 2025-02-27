@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'authentication_service.dart';
+part of 'spotify_service.dart';
 
 // **************************************************************************
 // RetrofitGenerator
@@ -8,13 +8,13 @@ part of 'authentication_service.dart';
 
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers,unused_element,unnecessary_string_interpolations
 
-class _AuthenticationService implements AuthenticationService {
-  _AuthenticationService(
+class _SpotifyService implements SpotifyService {
+  _SpotifyService(
     this._dio, {
     this.baseUrl,
     this.errorLogger,
   }) {
-    baseUrl ??= 'https://accounts.spotify.com/';
+    baseUrl ??= 'https://api.spotify.com/';
   }
 
   final Dio _dio;
@@ -24,21 +24,19 @@ class _AuthenticationService implements AuthenticationService {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<AccessTokenResponse> getAccessToken(
-      {String grantType = "client_credentials"}) async {
+  Future<CategoriesResponse> getCategories({int limit = 8}) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'limit': limit};
     final _headers = <String, dynamic>{};
-    final _data = {'grant_type': grantType};
-    final _options = _setStreamType<AccessTokenResponse>(Options(
-      method: 'POST',
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<CategoriesResponse>(Options(
+      method: 'GET',
       headers: _headers,
       extra: _extra,
-      contentType: 'application/x-www-form-urlencoded',
     )
         .compose(
           _dio.options,
-          '/api/token',
+          'v1/browse/categories',
           queryParameters: queryParameters,
           data: _data,
         )
@@ -48,9 +46,9 @@ class _AuthenticationService implements AuthenticationService {
           baseUrl,
         )));
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late AccessTokenResponse _value;
+    late CategoriesResponse _value;
     try {
-      _value = AccessTokenResponse.fromJson(_result.data!);
+      _value = CategoriesResponse.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;
