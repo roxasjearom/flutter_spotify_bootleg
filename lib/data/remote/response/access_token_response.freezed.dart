@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'access_token.dart';
+part of 'access_token_response.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,46 +14,52 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-AccessToken _$AccessTokenFromJson(Map<String, dynamic> json) {
-  return _AccessToken.fromJson(json);
+AccessTokenResponse _$AccessTokenResponseFromJson(Map<String, dynamic> json) {
+  return _AccessTokenResponse.fromJson(json);
 }
 
 /// @nodoc
-mixin _$AccessToken {
+mixin _$AccessTokenResponse {
+  @JsonKey(name: 'access_token')
   String get accessToken => throw _privateConstructorUsedError;
+  @JsonKey(name: 'token_type')
   String get tokenType => throw _privateConstructorUsedError;
+  @JsonKey(name: 'expires_in')
   int get expiresIn => throw _privateConstructorUsedError;
 
-  /// Serializes this AccessToken to a JSON map.
+  /// Serializes this AccessTokenResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of AccessToken
+  /// Create a copy of AccessTokenResponse
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $AccessTokenCopyWith<AccessToken> get copyWith =>
+  $AccessTokenResponseCopyWith<AccessTokenResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $AccessTokenCopyWith<$Res> {
-  factory $AccessTokenCopyWith(
-          AccessToken value, $Res Function(AccessToken) then) =
-      _$AccessTokenCopyWithImpl<$Res, AccessToken>;
+abstract class $AccessTokenResponseCopyWith<$Res> {
+  factory $AccessTokenResponseCopyWith(
+          AccessTokenResponse value, $Res Function(AccessTokenResponse) then) =
+      _$AccessTokenResponseCopyWithImpl<$Res, AccessTokenResponse>;
   @useResult
-  $Res call({String accessToken, String tokenType, int expiresIn});
+  $Res call(
+      {@JsonKey(name: 'access_token') String accessToken,
+      @JsonKey(name: 'token_type') String tokenType,
+      @JsonKey(name: 'expires_in') int expiresIn});
 }
 
 /// @nodoc
-class _$AccessTokenCopyWithImpl<$Res, $Val extends AccessToken>
-    implements $AccessTokenCopyWith<$Res> {
-  _$AccessTokenCopyWithImpl(this._value, this._then);
+class _$AccessTokenResponseCopyWithImpl<$Res, $Val extends AccessTokenResponse>
+    implements $AccessTokenResponseCopyWith<$Res> {
+  _$AccessTokenResponseCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of AccessToken
+  /// Create a copy of AccessTokenResponse
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -80,25 +86,28 @@ class _$AccessTokenCopyWithImpl<$Res, $Val extends AccessToken>
 }
 
 /// @nodoc
-abstract class _$$AccessTokenImplCopyWith<$Res>
-    implements $AccessTokenCopyWith<$Res> {
-  factory _$$AccessTokenImplCopyWith(
-          _$AccessTokenImpl value, $Res Function(_$AccessTokenImpl) then) =
-      __$$AccessTokenImplCopyWithImpl<$Res>;
+abstract class _$$AccessTokenResponseImplCopyWith<$Res>
+    implements $AccessTokenResponseCopyWith<$Res> {
+  factory _$$AccessTokenResponseImplCopyWith(_$AccessTokenResponseImpl value,
+          $Res Function(_$AccessTokenResponseImpl) then) =
+      __$$AccessTokenResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String accessToken, String tokenType, int expiresIn});
+  $Res call(
+      {@JsonKey(name: 'access_token') String accessToken,
+      @JsonKey(name: 'token_type') String tokenType,
+      @JsonKey(name: 'expires_in') int expiresIn});
 }
 
 /// @nodoc
-class __$$AccessTokenImplCopyWithImpl<$Res>
-    extends _$AccessTokenCopyWithImpl<$Res, _$AccessTokenImpl>
-    implements _$$AccessTokenImplCopyWith<$Res> {
-  __$$AccessTokenImplCopyWithImpl(
-      _$AccessTokenImpl _value, $Res Function(_$AccessTokenImpl) _then)
+class __$$AccessTokenResponseImplCopyWithImpl<$Res>
+    extends _$AccessTokenResponseCopyWithImpl<$Res, _$AccessTokenResponseImpl>
+    implements _$$AccessTokenResponseImplCopyWith<$Res> {
+  __$$AccessTokenResponseImplCopyWithImpl(_$AccessTokenResponseImpl _value,
+      $Res Function(_$AccessTokenResponseImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of AccessToken
+  /// Create a copy of AccessTokenResponse
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -107,7 +116,7 @@ class __$$AccessTokenImplCopyWithImpl<$Res>
     Object? tokenType = null,
     Object? expiresIn = null,
   }) {
-    return _then(_$AccessTokenImpl(
+    return _then(_$AccessTokenResponseImpl(
       accessToken: null == accessToken
           ? _value.accessToken
           : accessToken // ignore: cast_nullable_to_non_nullable
@@ -126,32 +135,35 @@ class __$$AccessTokenImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$AccessTokenImpl implements _AccessToken {
-  const _$AccessTokenImpl(
-      {required this.accessToken,
-      required this.tokenType,
-      required this.expiresIn});
+class _$AccessTokenResponseImpl implements _AccessTokenResponse {
+  const _$AccessTokenResponseImpl(
+      {@JsonKey(name: 'access_token') required this.accessToken,
+      @JsonKey(name: 'token_type') required this.tokenType,
+      @JsonKey(name: 'expires_in') required this.expiresIn});
 
-  factory _$AccessTokenImpl.fromJson(Map<String, dynamic> json) =>
-      _$$AccessTokenImplFromJson(json);
+  factory _$AccessTokenResponseImpl.fromJson(Map<String, dynamic> json) =>
+      _$$AccessTokenResponseImplFromJson(json);
 
   @override
+  @JsonKey(name: 'access_token')
   final String accessToken;
   @override
+  @JsonKey(name: 'token_type')
   final String tokenType;
   @override
+  @JsonKey(name: 'expires_in')
   final int expiresIn;
 
   @override
   String toString() {
-    return 'AccessToken(accessToken: $accessToken, tokenType: $tokenType, expiresIn: $expiresIn)';
+    return 'AccessTokenResponse(accessToken: $accessToken, tokenType: $tokenType, expiresIn: $expiresIn)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$AccessTokenImpl &&
+            other is _$AccessTokenResponseImpl &&
             (identical(other.accessToken, accessToken) ||
                 other.accessToken == accessToken) &&
             (identical(other.tokenType, tokenType) ||
@@ -165,42 +177,47 @@ class _$AccessTokenImpl implements _AccessToken {
   int get hashCode =>
       Object.hash(runtimeType, accessToken, tokenType, expiresIn);
 
-  /// Create a copy of AccessToken
+  /// Create a copy of AccessTokenResponse
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$AccessTokenImplCopyWith<_$AccessTokenImpl> get copyWith =>
-      __$$AccessTokenImplCopyWithImpl<_$AccessTokenImpl>(this, _$identity);
+  _$$AccessTokenResponseImplCopyWith<_$AccessTokenResponseImpl> get copyWith =>
+      __$$AccessTokenResponseImplCopyWithImpl<_$AccessTokenResponseImpl>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$AccessTokenImplToJson(
+    return _$$AccessTokenResponseImplToJson(
       this,
     );
   }
 }
 
-abstract class _AccessToken implements AccessToken {
-  const factory _AccessToken(
-      {required final String accessToken,
-      required final String tokenType,
-      required final int expiresIn}) = _$AccessTokenImpl;
+abstract class _AccessTokenResponse implements AccessTokenResponse {
+  const factory _AccessTokenResponse(
+          {@JsonKey(name: 'access_token') required final String accessToken,
+          @JsonKey(name: 'token_type') required final String tokenType,
+          @JsonKey(name: 'expires_in') required final int expiresIn}) =
+      _$AccessTokenResponseImpl;
 
-  factory _AccessToken.fromJson(Map<String, dynamic> json) =
-      _$AccessTokenImpl.fromJson;
+  factory _AccessTokenResponse.fromJson(Map<String, dynamic> json) =
+      _$AccessTokenResponseImpl.fromJson;
 
   @override
+  @JsonKey(name: 'access_token')
   String get accessToken;
   @override
+  @JsonKey(name: 'token_type')
   String get tokenType;
   @override
+  @JsonKey(name: 'expires_in')
   int get expiresIn;
 
-  /// Create a copy of AccessToken
+  /// Create a copy of AccessTokenResponse
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$AccessTokenImplCopyWith<_$AccessTokenImpl> get copyWith =>
+  _$$AccessTokenResponseImplCopyWith<_$AccessTokenResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

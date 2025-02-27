@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'rest_client.dart';
+part of 'authentication_service.dart';
 
 // **************************************************************************
 // RetrofitGenerator
@@ -8,18 +8,54 @@ part of 'rest_client.dart';
 
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers,unused_element,unnecessary_string_interpolations
 
-class _RestClient implements RestClient {
-  _RestClient(
+class _AuthenticationService implements AuthenticationService {
+  _AuthenticationService(
     this._dio, {
     this.baseUrl,
     this.errorLogger,
-  });
+  }) {
+    baseUrl ??= 'https://accounts.spotify.com';
+  }
 
   final Dio _dio;
 
   String? baseUrl;
 
   final ParseErrorLogger? errorLogger;
+
+  @override
+  Future<AccessTokenResponse> getAccessToken(String grantType) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = {'grant_type': grantType};
+    final _options = _setStreamType<AccessTokenResponse>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+      contentType: 'application/x-www-form-urlencoded',
+    )
+        .compose(
+          _dio.options,
+          'api/token',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late AccessTokenResponse _value;
+    try {
+      _value = AccessTokenResponse.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
+  }
 
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {
     if (T != dynamic &&

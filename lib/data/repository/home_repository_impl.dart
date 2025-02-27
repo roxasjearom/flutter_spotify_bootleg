@@ -1,12 +1,14 @@
 import 'package:flutter_spotify_bootleg/data/local/dao/favorite_song_dao.dart';
 import 'package:flutter_spotify_bootleg/data/mapper/song_mapper.dart';
+import 'package:flutter_spotify_bootleg/data/remote/authentication/authentication_service.dart';
 import 'package:flutter_spotify_bootleg/domain/models/models.dart';
 import 'package:flutter_spotify_bootleg/domain/models/song.dart';
 import '../../domain/repository/home_repository.dart';
 
 class FakeHomeRepositoryImpl implements HomeRepository {
-  FakeHomeRepositoryImpl(this._favoriteSongDao);
+  FakeHomeRepositoryImpl(this._favoriteSongDao, this.authenticationService);
 
+  final AuthenticationService authenticationService;
   final FavoriteSongDao _favoriteSongDao;
 
   @override
@@ -196,5 +198,11 @@ class FakeHomeRepositoryImpl implements HomeRepository {
           imageUrl:
               "https://image-cdn-ak.spotifycdn.com/image/ab67706c0000da8463ceedc3bd8e08d6af00a8db"),
     ];
+  }
+  
+  @override
+  Future<String> getToken() async {
+    final token = await authenticationService.getAccessToken("client_credentials");
+    return token.accessToken;
   }
 }

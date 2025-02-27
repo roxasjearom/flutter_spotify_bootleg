@@ -9,4 +9,5 @@ abstract interface class HomeRepository {
   Stream<List<Song>> getSongList(String id);
   Future<List<Song>> getFavorites();
   List<Playlist> getPlaylists(String categoryId);
+  Future<String> getToken();
 }

@@ -1,10 +1,18 @@
+import 'dart:convert';
+
+import 'package:dio/dio.dart';
 import 'package:flutter_spotify_bootleg/data/local/dao/favorite_song_dao.dart';
 import 'package:flutter_spotify_bootleg/data/local/database.dart';
+import 'package:flutter_spotify_bootleg/data/remote/authentication/authentication_service.dart';
 import 'package:flutter_spotify_bootleg/data/repository/home_repository_impl.dart';
 import 'package:flutter_spotify_bootleg/domain/repository/home_repository.dart';
 import 'package:get_it/get_it.dart';
 
 GetIt getIt = GetIt.instance;
+
+const accountsUrl = "https://accounts.spotify.com/";
+const clientId = "CLIENT_ID";
+const clientSecret = "CLIENT_SECRET";
 
 Future<void> initLocator() async {
   //Local Database
@@ -16,5 +24,26 @@ Future<void> initLocator() async {
       () => getIt<AppDatabase>().favoriteSongDao,
       dependsOn: [AppDatabase]);
 
-  getIt.registerSingletonWithDependencies<HomeRepository>(() => FakeHomeRepositoryImpl(getIt.get<FavoriteSongDao>()), dependsOn: [FavoriteSongDao]);
+  //Authentication Service
+  getIt.registerSingletonAsync<AuthenticationService>(() async {
+    final dio = Dio();
+
+    dio.interceptors.add(InterceptorsWrapper(
+      onRequest: (options, handler) {
+        final credentials = "$clientId:$clientSecret";
+        final base64Credentials = base64.encode(utf8.encode(credentials));
+
+        options.headers["Content-Type"] = "application/x-www-form-urlencoded";
+        options.headers["Authorization"] = "Basic $base64Credentials";
+
+        return handler.next(options);
+      },
+    ));
+    return AuthenticationService(dio, baseUrl: accountsUrl);
+  });
+
+  getIt.registerSingletonWithDependencies<HomeRepository>(
+      () => FakeHomeRepositoryImpl(
+          getIt.get<FavoriteSongDao>(), getIt.get<AuthenticationService>()),
+      dependsOn: [FavoriteSongDao, AuthenticationService]);
 }
