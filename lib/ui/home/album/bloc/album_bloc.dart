@@ -21,7 +21,7 @@ class AlbumBloc extends Bloc<AlbumEvent, AlbumState> {
     Emitter<AlbumState> emit,
   ) async {
     try {
-      final albums = _homeRepository.getAlbums();
+      final albums = await _homeRepository.getAlbums();
       emit(
         state.copyWith(
           status: AlbumStatus.success,

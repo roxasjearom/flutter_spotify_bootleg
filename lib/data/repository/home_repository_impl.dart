@@ -1,4 +1,5 @@
 import 'package:flutter_spotify_bootleg/data/local/dao/favorite_song_dao.dart';
+import 'package:flutter_spotify_bootleg/data/mapper/album_mapper.dart';
 import 'package:flutter_spotify_bootleg/data/mapper/category_mapper.dart';
 import 'package:flutter_spotify_bootleg/data/mapper/song_mapper.dart';
 import 'package:flutter_spotify_bootleg/data/remote/authentication/authentication_service.dart';
@@ -8,7 +9,8 @@ import 'package:flutter_spotify_bootleg/domain/models/song.dart';
 import '../../domain/repository/home_repository.dart';
 
 class HomeRepositoryImpl implements HomeRepository {
-  HomeRepositoryImpl(this._favoriteSongDao, this.authenticationService, this.spotifyService);
+  HomeRepositoryImpl(
+      this._favoriteSongDao, this.authenticationService, this.spotifyService);
 
   final AuthenticationService authenticationService;
   final FavoriteSongDao _favoriteSongDao;
@@ -18,33 +20,17 @@ class HomeRepositoryImpl implements HomeRepository {
   Future<List<Category>> getCategories() async {
     final categoryResponse = await spotifyService.getCategories();
     final categoryItems = categoryResponse.categories.items;
-    return categoryItems.map((categoryItem) => categoryItem.toCategory()).toList();
+    return categoryItems
+        .map((categoryItem) => categoryItem.toCategory())
+        .toList();
   }
 
   @override
-  List<Album> getAlbums() {
-    return [
-      Album(
-          id: "36OmXvGRKAY2zICbVtItoa",
-          name: "Kung Alam Mo Lang",
-          imageUrl:
-              "https://i.scdn.co/image/ab67616d00001e027300c1e7edcdbd15a42e1579"),
-      Album(
-          id: "382ObEPsp2rxGrnsizN5TX",
-          name: "TRON: Legacy Reconfigured",
-          imageUrl:
-              "https://i.scdn.co/image/ab67616d00001e0226597c053b38c9cf93f8f3a9"),
-      Album(
-          id: "1A2GTWGtFfWp7KSQTwWOyo",
-          name: "Human After All",
-          imageUrl:
-              "https://i.scdn.co/image/ab67616d00001e02d8601e15fa1b4351fe1fc6ae"),
-      Album(
-          id: "2noRn2Aes5aoNVsU6iWThc",
-          name: "Discovery",
-          imageUrl:
-              "https://i.scdn.co/image/ab67616d00001e02b1f18dc3658aff286fa9f351"),
-    ];
+  Future<List<Album>> getAlbums() async {
+    final albumResponse = await spotifyService.getAlbums(
+        "36OmXvGRKAY2zICbVtItoa,5MgFxCKMfta2fQequyHHrt,5AEDGbliTTfjOB8TSm1sxt,0hvT3yIEysuuvkK73vgdcW");
+    final albumItems = albumResponse.albums;
+    return albumItems.map((albumItem) => albumItem.toAlbum()).toList();
   }
 
   @override
@@ -188,7 +174,7 @@ class HomeRepositoryImpl implements HomeRepository {
               "https://image-cdn-ak.spotifycdn.com/image/ab67706c0000da8463ceedc3bd8e08d6af00a8db"),
     ];
   }
-  
+
   @override
   Future<String> getToken() async {
     final tokenResponse = await authenticationService.getAccessToken();
