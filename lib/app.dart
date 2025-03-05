@@ -17,7 +17,7 @@ class App extends StatelessWidget {
               if (snapshot.hasData) {
                 return HomeScreen();
               } else {
-                return CircularProgressIndicator();
+                return Center(child: CircularProgressIndicator());
               }
             }),
     );

@@ -150,6 +150,9 @@ _$ArtistDtoImpl _$$ArtistDtoImplFromJson(Map<String, dynamic> json) =>
       name: json['name'] as String,
       type: json['type'] as String,
       uri: json['uri'] as String,
+      images: (json['images'] as List<dynamic>?)
+          ?.map((e) => Image.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$$ArtistDtoImplToJson(_$ArtistDtoImpl instance) =>
@@ -159,4 +162,5 @@ Map<String, dynamic> _$$ArtistDtoImplToJson(_$ArtistDtoImpl instance) =>
       'name': instance.name,
       'type': instance.type,
       'uri': instance.uri,
+      'images': instance.images,
     };

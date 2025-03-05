@@ -21,4 +21,9 @@ abstract class SpotifyService {
   Future<AlbumResponse> getAlbums(
     @Query("ids") String ids,
   );
+
+  @GET("$apiVersion/albums/{id}")
+  Future<AlbumDto> getAlbumDetails(
+    @Path("id") String id,
+  );
 }

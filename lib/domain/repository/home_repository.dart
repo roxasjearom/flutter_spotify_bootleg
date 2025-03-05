@@ -5,7 +5,7 @@ abstract interface class HomeRepository {
   Future<List<Category>> getCategories();
   Future<List<Album>> getAlbums();
   List<Artist> getArtists();
-  AlbumDetails getAlbumDetails(String id);
+  Future<AlbumDetails> getAlbumDetails(String id);
   Stream<List<Song>> getSongList(String id);
   Future<List<Song>> getFavorites();
   List<Playlist> getPlaylists(String categoryId);

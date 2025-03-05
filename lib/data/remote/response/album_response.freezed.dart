@@ -1722,6 +1722,7 @@ mixin _$ArtistDto {
   String get name => throw _privateConstructorUsedError;
   String get type => throw _privateConstructorUsedError;
   String get uri => throw _privateConstructorUsedError;
+  List<Image>? get images => throw _privateConstructorUsedError;
 
   /// Serializes this ArtistDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -1738,7 +1739,13 @@ abstract class $ArtistDtoCopyWith<$Res> {
   factory $ArtistDtoCopyWith(ArtistDto value, $Res Function(ArtistDto) then) =
       _$ArtistDtoCopyWithImpl<$Res, ArtistDto>;
   @useResult
-  $Res call({String href, String id, String name, String type, String uri});
+  $Res call(
+      {String href,
+      String id,
+      String name,
+      String type,
+      String uri,
+      List<Image>? images});
 }
 
 /// @nodoc
@@ -1761,6 +1768,7 @@ class _$ArtistDtoCopyWithImpl<$Res, $Val extends ArtistDto>
     Object? name = null,
     Object? type = null,
     Object? uri = null,
+    Object? images = freezed,
   }) {
     return _then(_value.copyWith(
       href: null == href
@@ -1783,6 +1791,10 @@ class _$ArtistDtoCopyWithImpl<$Res, $Val extends ArtistDto>
           ? _value.uri
           : uri // ignore: cast_nullable_to_non_nullable
               as String,
+      images: freezed == images
+          ? _value.images
+          : images // ignore: cast_nullable_to_non_nullable
+              as List<Image>?,
     ) as $Val);
   }
 }
@@ -1795,7 +1807,13 @@ abstract class _$$ArtistDtoImplCopyWith<$Res>
       __$$ArtistDtoImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String href, String id, String name, String type, String uri});
+  $Res call(
+      {String href,
+      String id,
+      String name,
+      String type,
+      String uri,
+      List<Image>? images});
 }
 
 /// @nodoc
@@ -1816,6 +1834,7 @@ class __$$ArtistDtoImplCopyWithImpl<$Res>
     Object? name = null,
     Object? type = null,
     Object? uri = null,
+    Object? images = freezed,
   }) {
     return _then(_$ArtistDtoImpl(
       href: null == href
@@ -1838,6 +1857,10 @@ class __$$ArtistDtoImplCopyWithImpl<$Res>
           ? _value.uri
           : uri // ignore: cast_nullable_to_non_nullable
               as String,
+      images: freezed == images
+          ? _value._images
+          : images // ignore: cast_nullable_to_non_nullable
+              as List<Image>?,
     ));
   }
 }
@@ -1850,7 +1873,9 @@ class _$ArtistDtoImpl implements _ArtistDto {
       required this.id,
       required this.name,
       required this.type,
-      required this.uri});
+      required this.uri,
+      required final List<Image>? images})
+      : _images = images;
 
   factory _$ArtistDtoImpl.fromJson(Map<String, dynamic> json) =>
       _$$ArtistDtoImplFromJson(json);
@@ -1865,10 +1890,19 @@ class _$ArtistDtoImpl implements _ArtistDto {
   final String type;
   @override
   final String uri;
+  final List<Image>? _images;
+  @override
+  List<Image>? get images {
+    final value = _images;
+    if (value == null) return null;
+    if (_images is EqualUnmodifiableListView) return _images;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
   String toString() {
-    return 'ArtistDto(href: $href, id: $id, name: $name, type: $type, uri: $uri)';
+    return 'ArtistDto(href: $href, id: $id, name: $name, type: $type, uri: $uri, images: $images)';
   }
 
   @override
@@ -1880,12 +1914,14 @@ class _$ArtistDtoImpl implements _ArtistDto {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.type, type) || other.type == type) &&
-            (identical(other.uri, uri) || other.uri == uri));
+            (identical(other.uri, uri) || other.uri == uri) &&
+            const DeepCollectionEquality().equals(other._images, _images));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, href, id, name, type, uri);
+  int get hashCode => Object.hash(runtimeType, href, id, name, type, uri,
+      const DeepCollectionEquality().hash(_images));
 
   /// Create a copy of ArtistDto
   /// with the given fields replaced by the non-null parameter values.
@@ -1909,7 +1945,8 @@ abstract class _ArtistDto implements ArtistDto {
       required final String id,
       required final String name,
       required final String type,
-      required final String uri}) = _$ArtistDtoImpl;
+      required final String uri,
+      required final List<Image>? images}) = _$ArtistDtoImpl;
 
   factory _ArtistDto.fromJson(Map<String, dynamic> json) =
       _$ArtistDtoImpl.fromJson;
@@ -1924,6 +1961,8 @@ abstract class _ArtistDto implements ArtistDto {
   String get type;
   @override
   String get uri;
+  @override
+  List<Image>? get images;
 
   /// Create a copy of ArtistDto
   /// with the given fields replaced by the non-null parameter values.

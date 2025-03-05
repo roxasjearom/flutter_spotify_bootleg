@@ -103,6 +103,7 @@ class ArtistDto with _$ArtistDto {
     required String name,
     required String type,
     required String uri,
+    required List<Image>? images,
   }) = _ArtistDto;
 
   factory ArtistDto.fromJson(Map<String, dynamic> json) =>

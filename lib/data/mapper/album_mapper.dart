@@ -1,12 +1,23 @@
+import 'package:flutter_spotify_bootleg/data/mapper/artist_mapper.dart';
+import 'package:flutter_spotify_bootleg/data/mapper/song_mapper.dart';
 import 'package:flutter_spotify_bootleg/data/remote/response/album_response.dart';
 import 'package:flutter_spotify_bootleg/domain/models/album.dart';
+import 'package:flutter_spotify_bootleg/domain/models/album_details.dart';
 
-extension AlbumDtoToAlbum on AlbumDto {
+extension AlbumMapper on AlbumDto {
   Album toAlbum() {
     return Album(
       id: id,
       name: name,
       imageUrl: images.firstOrNull?.url ?? "",
+    );
+  }
+
+  AlbumDetails toAlbumDetails() {
+    return AlbumDetails(id: id, name: name, 
+    artist: artists.map((artist) => artist.toArtist().name).join(', '), 
+    imageUrl: images.firstOrNull?.url ?? "", 
+    songs: tracks.items.map((track) => track.toSong(false)).toList(),
     );
   }
 }

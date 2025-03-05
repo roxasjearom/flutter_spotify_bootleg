@@ -30,7 +30,7 @@ class SongListBloc extends Bloc<SongListEvent, SongListState> {
     Emitter<SongListState> emit,
   ) async {
     try {
-      final albumDetails = _homeRepository.getAlbumDetails(event.id);
+      final albumDetails = await _homeRepository.getAlbumDetails(event.id);
       emit(
         state.copyWith(
           status: SongListStatus.success,

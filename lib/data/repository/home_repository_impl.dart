@@ -58,60 +58,9 @@ class HomeRepositoryImpl implements HomeRepository {
   }
 
   @override
-  AlbumDetails getAlbumDetails(String id) {
-    return AlbumDetails(
-        id: "36OmXvGRKAY2zICbVtItoa",
-        name: "Kung Alam Mo Lang",
-        artist: "Hev Abi",
-        imageUrl:
-            "https://i.scdn.co/image/ab67616d00001e027300c1e7edcdbd15a42e1579",
-        songs: [
-          Song(
-              id: "1YpgamasVsAnYTfOYJOEB5",
-              title: "Introhan Ko Lang",
-              artist: "Hev Abi"),
-          Song(
-              id: "0o2geA4kEWYPtuik3fs9Ai",
-              title: "Binibiroksi",
-              artist: "Hev Abi"),
-          Song(
-              id: "57Z7lSnhwx82laEb6rdZPB",
-              title: "Alam Mo Ba Girl",
-              artist: "Hev Abi"),
-          Song(
-              id: "35Vt1L1KBP2YoWfErB0FAy",
-              title: "Sumugal",
-              artist: "Hev Abi"),
-          Song(
-              id: "0qvtcqVOqdxeR4ipNLBl77",
-              title: "From Torillo, With Love",
-              artist: "Hev Abi"),
-          Song(
-              id: "4wZTvLi0khNRqqz4i5XhdV",
-              title: "Walang Alam",
-              artist: "Hev Abi"),
-          Song(id: "6exTC7vovfqzHqh5t4oAtm", title: "Still", artist: "Hev Abi"),
-          Song(
-              id: "5XErV3kyTKbyaQGovj8wwo",
-              title: "drugr4ts",
-              artist: "Hev Abi"),
-          Song(
-              id: "0lJxErLtFRQ8BjKI7bNbQW",
-              title: "Pasaway Mode",
-              artist: "Hev Abi"),
-          Song(
-              id: "4WYfu1sbBaSj09J9zXnG7F",
-              title: "Kulay Downtown",
-              artist: "Hev Abi"),
-          Song(
-              id: "56fQ03sPqx2TWiX2JllFjL",
-              title: "Antagonista",
-              artist: "Hev Abi"),
-          Song(
-              id: "7hGExswhBJ50VPifCdOjjw",
-              title: "C2 Boyz",
-              artist: "Hev Abi"),
-        ]);
+  Future<AlbumDetails> getAlbumDetails(String id) async {
+    final albumDetailsResponse = await spotifyService.getAlbumDetails(id);
+    return albumDetailsResponse.toAlbumDetails();
   }
 
   @override
