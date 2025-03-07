@@ -1,13 +1,13 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import 'package:flutter_spotify_bootleg/data/local/dao/favorite_song_dao.dart';
-import 'package:flutter_spotify_bootleg/data/local/database.dart';
-import 'package:flutter_spotify_bootleg/data/remote/authentication/authentication_service.dart';
-import 'package:flutter_spotify_bootleg/data/remote/authentication/token_interceptor.dart';
-import 'package:flutter_spotify_bootleg/data/remote/authentication/token_manager.dart';
-import 'package:flutter_spotify_bootleg/data/remote/spotify_service.dart';
-import 'package:flutter_spotify_bootleg/data/repository/home_repository_impl.dart';
+import 'package:flutter_spotify_bootleg/infrastructure/local/dao/favorite_song_dao.dart';
+import 'package:flutter_spotify_bootleg/infrastructure/local/database.dart';
+import 'package:flutter_spotify_bootleg/infrastructure/remote/authentication/authentication_service.dart';
+import 'package:flutter_spotify_bootleg/infrastructure/remote/authentication/token_interceptor.dart';
+import 'package:flutter_spotify_bootleg/infrastructure/remote/authentication/token_manager.dart';
+import 'package:flutter_spotify_bootleg/infrastructure/remote/spotify_service.dart';
+import 'package:flutter_spotify_bootleg/infrastructure/repository/home_repository_impl.dart';
 import 'package:flutter_spotify_bootleg/domain/repository/home_repository.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
