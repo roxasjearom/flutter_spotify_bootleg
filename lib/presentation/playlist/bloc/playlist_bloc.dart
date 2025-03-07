@@ -1,21 +1,21 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spotify_bootleg/domain/models/playlist.dart';
-import 'package:flutter_spotify_bootleg/domain/repository/home_repository.dart';
+import 'package:flutter_spotify_bootleg/domain/repository/spotify_repository.dart';
 
 part 'playlist_event.dart';
 part 'playlist_state.dart';
 
 class PlaylistBloc extends Bloc<PlaylistEvent, PlaylistState> {
   PlaylistBloc({
-    required HomeRepository homeRepository,
+    required SpotifyRepository homeRepository,
   })  : _homeRepository = homeRepository,
         super(const PlaylistState()) {
     on<PlaylistFetched>(_onFetched);
     on<ToggleViewMode>(_onToggleViewMode);
   }
 
-  final HomeRepository _homeRepository;
+  final SpotifyRepository _homeRepository;
 
   Future<void> _onFetched(
     PlaylistFetched event,

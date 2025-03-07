@@ -7,8 +7,8 @@ import 'package:flutter_spotify_bootleg/infrastructure/remote/authentication/aut
 import 'package:flutter_spotify_bootleg/infrastructure/remote/authentication/token_interceptor.dart';
 import 'package:flutter_spotify_bootleg/infrastructure/remote/authentication/token_manager.dart';
 import 'package:flutter_spotify_bootleg/infrastructure/remote/spotify_service.dart';
-import 'package:flutter_spotify_bootleg/infrastructure/repository/home_repository_impl.dart';
-import 'package:flutter_spotify_bootleg/domain/repository/home_repository.dart';
+import 'package:flutter_spotify_bootleg/infrastructure/repository/spotify_repository_impl.dart';
+import 'package:flutter_spotify_bootleg/domain/repository/spotify_repository.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -64,10 +64,9 @@ Future<void> initLocator() async {
   },
   dependsOn: [SharedPreferences, AuthenticationService]);
 
-  getIt.registerSingletonWithDependencies<HomeRepository>(
-      () => HomeRepositoryImpl(
+  getIt.registerSingletonWithDependencies<SpotifyRepository>(
+      () => SpotifyRepositoryImpl(
           getIt.get<FavoriteSongDao>(), 
-          getIt.get<AuthenticationService>(),
           getIt.get<SpotifyService>(),
           ),
       dependsOn: [FavoriteSongDao, AuthenticationService, SpotifyService]);

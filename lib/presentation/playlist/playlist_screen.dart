@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spotify_bootleg/di/service_locator.dart';
 import 'package:flutter_spotify_bootleg/domain/models/playlist.dart';
-import 'package:flutter_spotify_bootleg/domain/repository/home_repository.dart';
+import 'package:flutter_spotify_bootleg/domain/repository/spotify_repository.dart';
 import 'package:flutter_spotify_bootleg/presentation/playlist/bloc/playlist_bloc.dart';
 import 'package:flutter_spotify_bootleg/presentation/playlist/view/playlist_item.dart';
 
@@ -12,7 +12,7 @@ class PlaylistScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => PlaylistBloc(homeRepository: getIt.get<HomeRepository>())..add(PlaylistFetched()),
+      create: (context) => PlaylistBloc(homeRepository: getIt.get<SpotifyRepository>())..add(PlaylistFetched()),
       child: Scaffold(
         appBar: AppBar(
           title: Text('Playlists'),

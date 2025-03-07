@@ -1,20 +1,20 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spotify_bootleg/domain/models/models.dart';
-import 'package:flutter_spotify_bootleg/domain/repository/home_repository.dart';
+import 'package:flutter_spotify_bootleg/domain/repository/spotify_repository.dart';
 
 part 'album_event.dart';
 part 'album_state.dart';
 
 class AlbumBloc extends Bloc<AlbumEvent, AlbumState> {
   AlbumBloc({
-    required HomeRepository homeRepository,
+    required SpotifyRepository homeRepository,
   })  : _homeRepository = homeRepository,
         super(const AlbumState()) {
     on<AlbumFetched>(_onFetched);
   }
 
-  final HomeRepository _homeRepository;
+  final SpotifyRepository _homeRepository;
 
   Future<void> _onFetched(
     AlbumFetched event,

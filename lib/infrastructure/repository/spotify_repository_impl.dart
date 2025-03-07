@@ -2,17 +2,15 @@ import 'package:flutter_spotify_bootleg/infrastructure/local/dao/favorite_song_d
 import 'package:flutter_spotify_bootleg/infrastructure/mapper/album_mapper.dart';
 import 'package:flutter_spotify_bootleg/infrastructure/mapper/category_mapper.dart';
 import 'package:flutter_spotify_bootleg/infrastructure/mapper/song_mapper.dart';
-import 'package:flutter_spotify_bootleg/infrastructure/remote/authentication/authentication_service.dart';
 import 'package:flutter_spotify_bootleg/infrastructure/remote/spotify_service.dart';
 import 'package:flutter_spotify_bootleg/domain/models/models.dart';
 import 'package:flutter_spotify_bootleg/domain/models/song.dart';
-import '../../domain/repository/home_repository.dart';
+import '../../domain/repository/spotify_repository.dart';
 
-class HomeRepositoryImpl implements HomeRepository {
-  HomeRepositoryImpl(
-      this._favoriteSongDao, this.authenticationService, this.spotifyService);
+class SpotifyRepositoryImpl implements SpotifyRepository {
+  SpotifyRepositoryImpl(
+      this._favoriteSongDao, this.spotifyService);
 
-  final AuthenticationService authenticationService;
   final FavoriteSongDao _favoriteSongDao;
   final SpotifyService spotifyService;
 
@@ -124,9 +122,4 @@ class HomeRepositoryImpl implements HomeRepository {
     ];
   }
 
-  @override
-  Future<String> getToken() async {
-    final tokenResponse = await authenticationService.getAccessToken();
-    return tokenResponse.accessToken;
-  }
 }
