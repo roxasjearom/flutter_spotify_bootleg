@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
+import 'package:flutter_spotify_bootleg/env/env.dart';
 import 'package:flutter_spotify_bootleg/infrastructure/local/dao/favorite_song_dao.dart';
 import 'package:flutter_spotify_bootleg/infrastructure/local/database.dart';
 import 'package:flutter_spotify_bootleg/infrastructure/remote/service/authentication_service.dart';
@@ -16,8 +17,8 @@ GetIt getIt = GetIt.instance;
 
 const spotifyUrl = "https://api.spotify.com/";
 const accountsUrl = "https://accounts.spotify.com/";
-const clientId = "CLIENT_ID";
-const clientSecret = "CLIENT_SECRET";
+const clientId = Env.clientId;
+const clientSecret = Env.clientSecret;
 
 Future<void> initLocator() async {
   //Local Database
