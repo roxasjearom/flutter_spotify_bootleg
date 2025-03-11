@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:flutter_spotify_bootleg/infrastructure/remote/authentication/authentication_service.dart';
+import 'package:flutter_spotify_bootleg/infrastructure/remote/service/authentication_service.dart';
 import 'package:flutter_spotify_bootleg/infrastructure/remote/authentication/token_manager.dart';
 import 'package:flutter_spotify_bootleg/infrastructure/remote/response/access_token_response.dart';
 

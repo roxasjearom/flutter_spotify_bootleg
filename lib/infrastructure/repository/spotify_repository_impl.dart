@@ -5,7 +5,7 @@ import 'package:flutter_spotify_bootleg/infrastructure/local/dao/favorite_song_d
 import 'package:flutter_spotify_bootleg/infrastructure/mapper/album_mapper.dart';
 import 'package:flutter_spotify_bootleg/infrastructure/mapper/category_mapper.dart';
 import 'package:flutter_spotify_bootleg/infrastructure/mapper/song_mapper.dart';
-import 'package:flutter_spotify_bootleg/infrastructure/remote/spotify_service.dart';
+import 'package:flutter_spotify_bootleg/infrastructure/remote/service/spotify_service.dart';
 import 'package:flutter_spotify_bootleg/domain/models/models.dart';
 import 'package:flutter_spotify_bootleg/domain/models/song.dart';
 import '../../domain/repository/spotify_repository.dart';
