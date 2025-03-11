@@ -21,6 +21,7 @@ dependencies:
   floor: ^1.4.2
   sqflite: ^2.4.1
   shared_preferences: ^2.5.2
+  dartz: ^0.10.1
 
 dev_dependencies:
   flutter_test:

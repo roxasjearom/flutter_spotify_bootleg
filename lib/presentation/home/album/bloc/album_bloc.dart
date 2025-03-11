@@ -20,16 +20,14 @@ class AlbumBloc extends Bloc<AlbumEvent, AlbumState> {
     AlbumFetched event,
     Emitter<AlbumState> emit,
   ) async {
-    try {
-      final albums = await _homeRepository.getAlbums();
-      emit(
-        state.copyWith(
-          status: AlbumStatus.success,
-          albums: [...state.albums, ...albums],
-        ),
-      );
-    } catch (_) {
-      emit(state.copyWith(status: AlbumStatus.failure));
-    }
+    final albumsResult = await _homeRepository.getAlbums();
+    albumsResult.fold(
+        (failure) => emit(state.copyWith(status: AlbumStatus.failure)),
+        (albums) => emit(
+              state.copyWith(
+                status: AlbumStatus.success,
+                albums: [...state.albums, ...albums],
+              ),
+            ));
   }
 }

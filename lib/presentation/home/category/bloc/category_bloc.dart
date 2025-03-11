@@ -9,8 +9,8 @@ part 'category_state.dart';
 class CategoryBloc extends Bloc<CategoryEvent, CategoryState> {
   CategoryBloc({
     required SpotifyRepository homeRepository,
-  }) : _homeRepository = homeRepository,
-  super(const CategoryState()) {
+  })  : _homeRepository = homeRepository,
+        super(const CategoryState()) {
     on<CategoryFetched>(_onFetched);
   }
 
@@ -20,18 +20,14 @@ class CategoryBloc extends Bloc<CategoryEvent, CategoryState> {
     CategoryFetched event,
     Emitter<CategoryState> emit,
   ) async {
-    try {
-      final categories = await _homeRepository.getCategories();
-      emit(
-        state.copyWith(
-          status: CategoryStatus.success,
-          categories: [...state.categories, ...categories],
-        ),
-      );
-
-    } catch (_) {
-      emit(state.copyWith(status: CategoryStatus.failure));
-    }
+    final categoriesResult = await _homeRepository.getCategories();
+    categoriesResult.fold(
+        (failure) => emit(state.copyWith(status: CategoryStatus.failure)),
+        (categories) => emit(
+              state.copyWith(
+                status: CategoryStatus.success,
+                categories: [...state.categories, ...categories],
+              ),
+            ));
   }
-
 }

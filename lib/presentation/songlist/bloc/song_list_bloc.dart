@@ -29,20 +29,19 @@ class SongListBloc extends Bloc<SongListEvent, SongListState> {
     SongListFetched event,
     Emitter<SongListState> emit,
   ) async {
-    try {
-      final albumDetails = await _homeRepository.getAlbumDetails(event.id);
-      emit(
-        state.copyWith(
-          status: SongListStatus.success,
-          name: albumDetails.name,
-          artist: albumDetails.artist,
-          imageUrl: albumDetails.imageUrl,
-          songs: [...state.songs, ...albumDetails.songs],
-        ),
-      );
-    } catch (_) {
-      emit(state.copyWith(status: SongListStatus.failure));
-    }
+    final albumDetailsResponse =
+        await _homeRepository.getAlbumDetails(event.id);
+    albumDetailsResponse.fold(
+        (failure) => emit(state.copyWith(status: SongListStatus.failure)),
+        (albumDetails) => emit(
+              state.copyWith(
+                status: SongListStatus.success,
+                name: albumDetails.name,
+                artist: albumDetails.artist,
+                imageUrl: albumDetails.imageUrl,
+                songs: [...state.songs, ...albumDetails.songs],
+              ),
+            ));
   }
 
   Future<void> _onFavoriteSongAdded(

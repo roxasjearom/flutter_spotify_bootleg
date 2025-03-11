@@ -1,3 +1,6 @@
+import 'package:dartz/dartz.dart';
+import 'package:dio/dio.dart';
+import 'package:flutter_spotify_bootleg/domain/models/api_failure.dart';
 import 'package:flutter_spotify_bootleg/infrastructure/local/dao/favorite_song_dao.dart';
 import 'package:flutter_spotify_bootleg/infrastructure/mapper/album_mapper.dart';
 import 'package:flutter_spotify_bootleg/infrastructure/mapper/category_mapper.dart';
@@ -8,27 +11,38 @@ import 'package:flutter_spotify_bootleg/domain/models/song.dart';
 import '../../domain/repository/spotify_repository.dart';
 
 class SpotifyRepositoryImpl implements SpotifyRepository {
-  SpotifyRepositoryImpl(
-      this._favoriteSongDao, this.spotifyService);
+  SpotifyRepositoryImpl(this._favoriteSongDao, this.spotifyService);
 
   final FavoriteSongDao _favoriteSongDao;
   final SpotifyService spotifyService;
 
   @override
-  Future<List<Category>> getCategories() async {
-    final categoryResponse = await spotifyService.getCategories();
-    final categoryItems = categoryResponse.categories.items;
-    return categoryItems
-        .map((categoryItem) => categoryItem.toCategory())
-        .toList();
+  Future<Either<ApiFailure, List<Category>>> getCategories() async {
+    try {
+      final categoryResponse = await spotifyService.getCategories();
+      final categoryItems = categoryResponse.categories.items;
+      return Right(categoryItems
+          .map((categoryItem) => categoryItem.toCategory())
+          .toList());
+    } on DioException catch (e) {
+      return Left(ApiFailure(e.message ?? 'Unknown error'));
+    } catch (e) {
+      return Left(ApiFailure(e.toString()));
+    }
   }
 
   @override
-  Future<List<Album>> getAlbums() async {
-    final albumResponse = await spotifyService.getAlbums(
-        "36OmXvGRKAY2zICbVtItoa,5MgFxCKMfta2fQequyHHrt,5AEDGbliTTfjOB8TSm1sxt,0hvT3yIEysuuvkK73vgdcW");
-    final albumItems = albumResponse.albums;
-    return albumItems.map((albumItem) => albumItem.toAlbum()).toList();
+  Future<Either<ApiFailure, List<Album>>> getAlbums() async {
+    try {
+      final albumResponse = await spotifyService.getAlbums(
+          "36OmXvGRKAY2zICbVtItoa,5MgFxCKMfta2fQequyHHrt,5AEDGbliTTfjOB8TSm1sxt,0hvT3yIEysuuvkK73vgdcW");
+      final albumItems = albumResponse.albums;
+      return Right(albumItems.map((albumItem) => albumItem.toAlbum()).toList());
+    } on DioException catch (e) {
+      return Left(ApiFailure(e.message ?? 'Unknown error'));
+    } catch (e) {
+      return Left(ApiFailure(e.toString()));
+    }
   }
 
   @override
@@ -56,14 +70,20 @@ class SpotifyRepositoryImpl implements SpotifyRepository {
   }
 
   @override
-  Future<AlbumDetails> getAlbumDetails(String id) async {
-    final albumDetailsResponse = await spotifyService.getAlbumDetails(id);
-    return albumDetailsResponse.toAlbumDetails();
+  Future<Either<ApiFailure, AlbumDetails>> getAlbumDetails(String id) async {
+    try {
+      final albumDetailsResponse = await spotifyService.getAlbumDetails(id);
+      return Right(albumDetailsResponse.toAlbumDetails());
+    } on DioException catch (e) {
+      return Left(ApiFailure(e.message ?? 'Unknown error'));
+    } catch (e) {
+      return Left(ApiFailure(e.toString()));
+    }
   }
 
   @override
-  Stream<List<Song>> getSongList(String id) {
-    final favoriteSongsStream = _favoriteSongDao.getAllFavorites();
+  Stream<List<Song>> getFavoritesStream() {
+    final favoriteSongsStream = _favoriteSongDao.getAllFavoritesStream();
 
     return favoriteSongsStream.map((favoriteSongList) => favoriteSongList
         .map((favoriteSong) => favoriteSong.toSong(false))
@@ -121,5 +141,4 @@ class SpotifyRepositoryImpl implements SpotifyRepository {
               "https://image-cdn-ak.spotifycdn.com/image/ab67706c0000da8463ceedc3bd8e08d6af00a8db"),
     ];
   }
-
 }

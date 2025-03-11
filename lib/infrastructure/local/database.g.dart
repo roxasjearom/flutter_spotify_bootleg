@@ -135,7 +135,7 @@ class _$FavoriteSongDao extends FavoriteSongDao {
   final InsertionAdapter<FavoriteSong> _favoriteSongInsertionAdapter;
 
   @override
-  Stream<List<FavoriteSong>> getAllFavorites() {
+  Stream<List<FavoriteSong>> getAllFavoritesStream() {
     return _queryAdapter.queryListStream('SELECT * FROM FavoriteSong',
         mapper: (Map<String, Object?> row) => FavoriteSong(row['id'] as String,
             row['name'] as String, row['artist'] as String),
