@@ -5,7 +5,7 @@ import 'package:flutter_spotify_bootleg/di/service_locator.dart';
 import 'package:flutter_spotify_bootleg/domain/repository/spotify_repository.dart';
 import 'package:flutter_spotify_bootleg/presentation/songlist/view/album_info_section.dart';
 import 'package:flutter_spotify_bootleg/presentation/songlist/view/custom_appbar/sliver_custom_appbar.dart';
-import 'package:flutter_spotify_bootleg/presentation/songlist/view/play_button.dart';
+import 'package:flutter_spotify_bootleg/presentation/songlist/view/play_pause_button.dart';
 import 'package:flutter_spotify_bootleg/presentation/songlist/view/song_list_section.dart';
 
 import 'bloc/song_list_bloc.dart';

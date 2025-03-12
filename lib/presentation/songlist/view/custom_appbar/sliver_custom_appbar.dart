@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_spotify_bootleg/presentation/songlist/view/custom_appbar/custom_flexible_space.dart';
+import 'package:flutter_spotify_bootleg/presentation/songlist/view/custom_appbar/album_image.dart';
 import 'package:flutter_spotify_bootleg/presentation/songlist/view/custom_appbar/fixed_appbar.dart';
 import 'package:flutter_spotify_bootleg/presentation/songlist/view/custom_appbar/sliver_appbar_delegate.dart';
 
