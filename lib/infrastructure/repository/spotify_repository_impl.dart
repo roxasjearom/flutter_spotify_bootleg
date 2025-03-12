@@ -3,6 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_spotify_bootleg/domain/models/api_failure.dart';
 import 'package:flutter_spotify_bootleg/infrastructure/local/dao/favorite_song_dao.dart';
 import 'package:flutter_spotify_bootleg/infrastructure/mapper/album_mapper.dart';
+import 'package:flutter_spotify_bootleg/infrastructure/mapper/artist_mapper.dart';
 import 'package:flutter_spotify_bootleg/infrastructure/mapper/category_mapper.dart';
 import 'package:flutter_spotify_bootleg/infrastructure/mapper/song_mapper.dart';
 import 'package:flutter_spotify_bootleg/infrastructure/remote/service/spotify_service.dart';
@@ -46,27 +47,17 @@ class SpotifyRepositoryImpl implements SpotifyRepository {
   }
 
   @override
-  List<Artist> getArtists() {
-    return [
-      Artist(
-        id: "2CIMQHirSU0MQqyYHq0eOx",
-        name: "deadmau5",
-        imageUrl:
-            "https://i.scdn.co/image/ab6761610000517489ffabe57a25cedeca3309e7",
-      ),
-      Artist(
-        id: "57dN52uHvrHOxijzpIgu3E",
-        name: "Ratatat",
-        imageUrl:
-            "https://i.scdn.co/image/dc68dd24b45b74ecce9d4ed486423673d683ced3",
-      ),
-      Artist(
-        id: "1vCWHaC5f2uS3yhpwWbIA6",
-        name: "Avicii",
-        imageUrl:
-            "https://i.scdn.co/image/ab67616100005174ae07171f989fb39736674113",
-      ),
-    ];
+  Future<Either<ApiFailure,List<Artist>>> getArtists() async {
+    try {
+      final artistsResponse = await spotifyService.getArtists(
+          "4zpGxqF6oI1h3f6Md2v42T,6gcteR920pLEynlHzjSRYd,6HvZYsbFfjnjFrWF950C9d,2YZyLoL8N0Wb9xBt1NhZWg");
+      final artistItems = artistsResponse.artists;
+      return Right(artistItems.map((artistItem) => artistItem.toArtist()).toList());
+    } on DioException catch (e) {
+      return Left(ApiFailure(e.message ?? 'Unknown error'));
+    } catch (e) {
+      return Left(ApiFailure(e.toString()));
+    }
   }
 
   @override

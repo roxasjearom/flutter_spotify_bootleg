@@ -1,5 +1,5 @@
-import 'package:flutter_spotify_bootleg/infrastructure/remote/response/album_response.dart';
 import 'package:flutter_spotify_bootleg/domain/models/artist.dart';
+import 'package:flutter_spotify_bootleg/infrastructure/remote/response/artists_response.dart';
 
 extension ArtistMapper on ArtistDto {
   Artist toArtist() {

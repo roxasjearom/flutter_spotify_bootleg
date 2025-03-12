@@ -1,3 +1,4 @@
+import 'package:flutter_spotify_bootleg/infrastructure/remote/response/artists_response.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'album_response.freezed.dart';
@@ -82,30 +83,4 @@ class Copyright with _$Copyright {
 
   factory Copyright.fromJson(Map<String, dynamic> json) =>
       _$CopyrightFromJson(json);
-}
-
-@freezed
-class Image with _$Image {
-  factory Image({
-    required int height,
-    required String url,
-    required int width,
-  }) = _Image;
-
-  factory Image.fromJson(Map<String, dynamic> json) => _$ImageFromJson(json);
-}
-
-@freezed
-class ArtistDto with _$ArtistDto {
-  factory ArtistDto({
-    required String href,
-    required String id,
-    required String name,
-    required String type,
-    required String uri,
-    required List<Image>? images,
-  }) = _ArtistDto;
-
-  factory ArtistDto.fromJson(Map<String, dynamic> json) =>
-      _$ArtistDtoFromJson(json);
 }

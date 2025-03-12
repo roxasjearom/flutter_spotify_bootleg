@@ -21,16 +21,14 @@ class ArtistBloc extends Bloc<ArtistEvent, ArtistState> {
     ArtistFetched event,
     Emitter<ArtistState> emit,
   ) async {
-    try {
-      final artists = _homeRepository.getArtists();
-      emit(
-        state.copyWith(
-          status: ArtistStatus.success,
-          artists: [...state.artists, ...artists],
-        ),
-      );
-    } catch (_) {
-      emit(state.copyWith(status: ArtistStatus.failure));
-    }
+    final artistsResult = await _homeRepository.getArtists();
+    artistsResult.fold(
+        (failure) => emit(state.copyWith(status: ArtistStatus.failure)),
+        (artists) => emit(
+              state.copyWith(
+                status: ArtistStatus.success,
+                artists: [...state.artists, ...artists],
+              ),
+            ));
   }
 }

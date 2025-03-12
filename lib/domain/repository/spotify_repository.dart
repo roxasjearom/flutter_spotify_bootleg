@@ -6,7 +6,7 @@ import 'package:dartz/dartz.dart';
 abstract interface class SpotifyRepository {
   Future<Either<ApiFailure, List<Category>>> getCategories();
   Future<Either<ApiFailure, List<Album>>> getAlbums();
-  List<Artist> getArtists();
+  Future<Either<ApiFailure,List<Artist>>> getArtists();
   Future<Either<ApiFailure,AlbumDetails>> getAlbumDetails(String id);
   Stream<List<Song>> getFavoritesStream();
   Future<List<Song>> getFavorites();
