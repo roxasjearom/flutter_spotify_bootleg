@@ -14,10 +14,12 @@ extension AlbumMapper on AlbumDto {
   }
 
   AlbumDetails toAlbumDetails() {
-    return AlbumDetails(id: id, name: name, 
-    artist: artists.map((artist) => artist.toArtist().name).join(', '), 
-    imageUrl: images.firstOrNull?.url ?? "", 
-    songs: tracks.items.map((track) => track.toSong(false)).toList(),
+    return AlbumDetails(
+      id: id,
+      name: name,
+      artist: artists.map((artist) => artist.toArtist().name).join(', '),
+      imageUrl: images.firstOrNull?.url ?? "",
+      songs: tracks.items.map((track) => track.toSong(false)).toList(),
     );
   }
 }

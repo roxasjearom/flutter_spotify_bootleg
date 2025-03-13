@@ -6,6 +6,8 @@ import 'package:flutter_spotify_bootleg/infrastructure/mapper/album_mapper.dart'
 import 'package:flutter_spotify_bootleg/infrastructure/mapper/artist_mapper.dart';
 import 'package:flutter_spotify_bootleg/infrastructure/mapper/category_mapper.dart';
 import 'package:flutter_spotify_bootleg/infrastructure/mapper/song_mapper.dart';
+import 'package:flutter_spotify_bootleg/infrastructure/remote/response/artist_tracks_response.dart';
+import 'package:flutter_spotify_bootleg/infrastructure/remote/response/artists_response.dart';
 import 'package:flutter_spotify_bootleg/infrastructure/remote/service/spotify_service.dart';
 import 'package:flutter_spotify_bootleg/domain/models/models.dart';
 import 'package:flutter_spotify_bootleg/domain/models/song.dart';
@@ -47,12 +49,13 @@ class SpotifyRepositoryImpl implements SpotifyRepository {
   }
 
   @override
-  Future<Either<ApiFailure,List<Artist>>> getArtists() async {
+  Future<Either<ApiFailure, List<Artist>>> getArtists() async {
     try {
       final artistsResponse = await spotifyService.getArtists(
           "4zpGxqF6oI1h3f6Md2v42T,6gcteR920pLEynlHzjSRYd,6HvZYsbFfjnjFrWF950C9d,2YZyLoL8N0Wb9xBt1NhZWg");
       final artistItems = artistsResponse.artists;
-      return Right(artistItems.map((artistItem) => artistItem.toArtist()).toList());
+      return Right(
+          artistItems.map((artistItem) => artistItem.toArtist()).toList());
     } on DioException catch (e) {
       return Left(ApiFailure(e.message ?? 'Unknown error'));
     } catch (e) {
@@ -131,5 +134,33 @@ class SpotifyRepositoryImpl implements SpotifyRepository {
           imageUrl:
               "https://image-cdn-ak.spotifycdn.com/image/ab67706c0000da8463ceedc3bd8e08d6af00a8db"),
     ];
+  }
+
+  @override
+  Future<Either<ApiFailure, AlbumDetails>> getArtistTopTracks(String id) async {
+    try {
+      final results = await Future.wait([
+        spotifyService.getArtistDetails(id),
+        spotifyService.getArtistTopTracks(id),
+      ]);
+
+      final artistDetails = results[0] as ArtistDto;
+      final artistTopTracks = results[1] as ArtistTracksResponse;
+
+      final songs =
+          artistTopTracks.tracks.map((track) => track.toSong(false)).toList();
+
+      return Right(AlbumDetails(
+        id: id,
+        name: artistDetails.name,
+        artist: artistDetails.name,
+        imageUrl: artistDetails.images?.firstOrNull?.url ?? "",
+        songs: songs,
+      ));
+    } on DioException catch (e) {
+      return Left(ApiFailure(e.message ?? 'Unknown error'));
+    } catch (e) {
+      return Left(ApiFailure(e.toString()));
+    }
   }
 }

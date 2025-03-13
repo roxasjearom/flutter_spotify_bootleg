@@ -3,6 +3,7 @@ import 'package:flutter_spotify_bootleg/infrastructure/remote/response/album_res
 import 'package:flutter_spotify_bootleg/infrastructure/remote/response/artists_response.dart';
 import 'package:flutter_spotify_bootleg/infrastructure/remote/response/categories_response.dart';
 import 'package:flutter_spotify_bootleg/di/service_locator.dart';
+import 'package:flutter_spotify_bootleg/infrastructure/remote/response/artist_tracks_response.dart';
 import 'package:retrofit/retrofit.dart';
 
 part 'spotify_service.g.dart';
@@ -32,4 +33,15 @@ abstract class SpotifyService {
   Future<ArtistsResponse> getArtists(
     @Query("ids") String ids,
   );
+
+  @GET("$apiVersion/artists/{id}/top-tracks")
+  Future<ArtistTracksResponse> getArtistTopTracks(
+    @Path("id") String id,
+  );
+
+  @GET("$apiVersion/artists/{id}")
+  Future<ArtistDto> getArtistDetails(
+    @Path("id") String id,
+  );
+
 }

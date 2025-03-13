@@ -11,9 +11,10 @@ import 'package:flutter_spotify_bootleg/presentation/songlist/view/song_list_sec
 import 'bloc/song_list_bloc.dart';
 
 class SongListScreen extends StatelessWidget {
-  const SongListScreen({super.key, required this.id});
+  const SongListScreen({super.key, required this.id, required this.sourceType});
 
   final String id;
+  final SourceType sourceType;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +22,7 @@ class SongListScreen extends StatelessWidget {
         create: (_) => SongListBloc(
               homeRepository: getIt.get<SpotifyRepository>(),
               favoriteSongDao: getIt.get<FavoriteSongDao>(),
-            )..add(SongListFetched(id)),
+            )..add(SongListFetched(id, sourceType)),
         child: _SongListPage());
   }
 }
@@ -57,61 +58,76 @@ class _SongListPageState extends State<_SongListPage> {
         : (MediaQuery.of(context).size.width / 320) * 50;
     infoBoxHeight = 160;
     return BlocBuilder<SongListBloc, SongListState>(builder: (context, state) {
-      return Scaffold(
-        body: DecoratedBox(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [
-                  Theme.of(context).colorScheme.surface,
-                  Colors.black,
-                ],
-                stops: [
-                  0,
-                  0.7
-                ]),
-          ),
-          child: Stack(
-            children: [
-              CustomScrollView(
-                controller: _scrollController,
-                slivers: [
-                  SliverCustomeAppBar(
-                    title: state.name,
-                    imageUrl: state.imageUrl,
+      switch (state.status) {
+        case SongListStatus.initial:
+          return const Center(child: CircularProgressIndicator());
+
+        case SongListStatus.success:
+          return Scaffold(
+            body: DecoratedBox(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                      Theme.of(context).colorScheme.surface,
+                      Colors.black,
+                    ],
+                    stops: [
+                      0,
+                      0.7
+                    ]),
+              ),
+              child: Stack(
+                children: [
+                  CustomScrollView(
+                    controller: _scrollController,
+                    slivers: [
+                      SliverCustomeAppBar(
+                        title: state.name,
+                        imageUrl: state.imageUrl,
+                        maxAppBarHeight: maxAppBarHeight,
+                        minAppBarHeight: minAppBarHeight,
+                      ),
+                      AlbumInfoSection(
+                          title: state.name,
+                          imageUrl: state.imageUrl,
+                          artist: state.artist,
+                          infoBoxHeight: infoBoxHeight),
+                      SongListSection(
+                        songs: state.songs,
+                        onAddFavoriteClicked: (song) {
+                          context
+                              .read<SongListBloc>()
+                              .add(FavoriteSongAdded(song));
+                        },
+                        onRemoveFavoriteClicked: (song) {
+                          context
+                              .read<SongListBloc>()
+                              .add(FavoriteSongRemoved(song));
+                        },
+                      ),
+                    ],
+                  ),
+                  PlayPauseButton(
+                    scrollController: _scrollController,
                     maxAppBarHeight: maxAppBarHeight,
                     minAppBarHeight: minAppBarHeight,
-                  ),
-                  AlbumInfoSection(
-                      title: state.name,
-                      imageUrl: state.imageUrl,
-                      artist: state.artist,
-                      infoBoxHeight: infoBoxHeight),
-                  SongListSection(
-                    songs: state.songs,
-                    onAddFavoriteClicked: (song) {
-                      context.read<SongListBloc>().add(FavoriteSongAdded(song));
-                    },
-                    onRemoveFavoriteClicked: (song) {
-                      context
-                          .read<SongListBloc>()
-                          .add(FavoriteSongRemoved(song));
-                    },
+                    playPauseButtonSize: playPauseButtonSize,
+                    infoBoxHeight: infoBoxHeight,
                   ),
                 ],
               ),
-              PlayPauseButton(
-                scrollController: _scrollController,
-                maxAppBarHeight: maxAppBarHeight,
-                minAppBarHeight: minAppBarHeight,
-                playPauseButtonSize: playPauseButtonSize,
-                infoBoxHeight: infoBoxHeight,
-              ),
-            ],
-          ),
-        ),
-      );
+            ),
+          );
+
+        case SongListStatus.failure:
+          return Center(
+              child: Text(
+            'Failed to fetch details',
+            style: Theme.of(context).textTheme.bodyLarge,
+          ));
+      }
     });
   }
 }

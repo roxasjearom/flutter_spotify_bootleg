@@ -2,6 +2,8 @@ part of 'song_list_bloc.dart';
 
 enum SongListStatus { initial, success, failure }
 
+enum SourceType { category, artist, album }
+
 final class SongListState extends Equatable {
   const SongListState({
     this.id = "",
@@ -9,6 +11,7 @@ final class SongListState extends Equatable {
     this.artist = "",
     this.imageUrl = "",
     this.status = SongListStatus.initial,
+    this.sourceType = SourceType.album,
     this.songs = const <Song>[],
   });
 
@@ -17,6 +20,7 @@ final class SongListState extends Equatable {
   final String artist;
   final String imageUrl;
   final SongListStatus status;
+  final SourceType sourceType;
   final List<Song> songs;
 
   SongListState copyWith({
@@ -25,6 +29,7 @@ final class SongListState extends Equatable {
     String? artist,
     String? imageUrl,
     SongListStatus? status,
+    SourceType? sourceType,
     List<Song>? songs,
   }) {
     return SongListState(
@@ -33,6 +38,7 @@ final class SongListState extends Equatable {
       artist: artist ?? this.artist,
       imageUrl: imageUrl ?? this.imageUrl,
       status: status ?? this.status,
+      sourceType: sourceType ?? this.sourceType,
       songs: songs ?? this.songs,
     );
   }

@@ -1,5 +1,8 @@
+import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_spotify_bootleg/domain/models/album_details.dart';
+import 'package:flutter_spotify_bootleg/domain/models/api_failure.dart';
 import 'package:flutter_spotify_bootleg/infrastructure/local/dao/favorite_song_dao.dart';
 import 'package:flutter_spotify_bootleg/infrastructure/local/entity/favorite_song_entity.dart';
 import 'package:flutter_spotify_bootleg/domain/models/song.dart';
@@ -29,10 +32,22 @@ class SongListBloc extends Bloc<SongListEvent, SongListState> {
     SongListFetched event,
     Emitter<SongListState> emit,
   ) async {
-    final albumDetailsResponse =
-        await _homeRepository.getAlbumDetails(event.id);
+    Either<ApiFailure, AlbumDetails> albumDetailsResponse;
+    switch(event.sourceType) {
+      
+      case SourceType.category:
+      // TODO: Update this case.
+        albumDetailsResponse = await _homeRepository.getAlbumDetails(event.id);
+      case SourceType.artist:
+        albumDetailsResponse = await _homeRepository.getArtistTopTracks(event.id);
+      case SourceType.album:
+        albumDetailsResponse = await _homeRepository.getAlbumDetails(event.id);
+    }
+
     albumDetailsResponse.fold(
-        (failure) => emit(state.copyWith(status: SongListStatus.failure)),
+        (failure) {
+          emit(state.copyWith(status: SongListStatus.failure));
+          },
         (albumDetails) => emit(
               state.copyWith(
                 status: SongListStatus.success,
