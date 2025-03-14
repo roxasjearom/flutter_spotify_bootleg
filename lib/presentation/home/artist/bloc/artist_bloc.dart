@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_spotify_bootleg/env/env.dart';
 
 import '../../../../domain/models/artist.dart';
 import '../../../../domain/repository/spotify_repository.dart';
@@ -21,7 +22,7 @@ class ArtistBloc extends Bloc<ArtistEvent, ArtistState> {
     ArtistFetched event,
     Emitter<ArtistState> emit,
   ) async {
-    final artistsResult = await _homeRepository.getArtists();
+    final artistsResult = await _homeRepository.getSeveralArtists(Env.artistIds);
     artistsResult.fold(
         (failure) => emit(state.copyWith(status: ArtistStatus.failure)),
         (artists) => emit(

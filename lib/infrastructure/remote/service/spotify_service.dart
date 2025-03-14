@@ -15,9 +15,9 @@ abstract class SpotifyService {
   factory SpotifyService(Dio dio, {String baseUrl}) = _SpotifyService;
 
   @GET("$apiVersion/browse/categories")
-  Future<CategoriesResponse> getCategories({
-    @Query("limit") int limit = 8,
-  });
+  Future<CategoriesResponse> getCategories(
+    @Query("limit") int limit,
+  );
 
   @GET("$apiVersion/albums")
   Future<AlbumResponse> getAlbums(

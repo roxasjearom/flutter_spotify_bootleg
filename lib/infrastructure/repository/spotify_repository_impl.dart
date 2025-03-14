@@ -20,9 +20,9 @@ class SpotifyRepositoryImpl implements SpotifyRepository {
   final SpotifyService spotifyService;
 
   @override
-  Future<Either<ApiFailure, List<Category>>> getCategories() async {
+  Future<Either<ApiFailure, List<Category>>> getSeveralCategories(int limit) async {
     try {
-      final categoryResponse = await spotifyService.getCategories();
+      final categoryResponse = await spotifyService.getCategories(limit);
       final categoryItems = categoryResponse.categories.items;
       return Right(categoryItems
           .map((categoryItem) => categoryItem.toCategory())
@@ -35,10 +35,9 @@ class SpotifyRepositoryImpl implements SpotifyRepository {
   }
 
   @override
-  Future<Either<ApiFailure, List<Album>>> getAlbums() async {
+  Future<Either<ApiFailure, List<Album>>> getSeveralAlbums(String ids) async {
     try {
-      final albumResponse = await spotifyService.getAlbums(
-          "36OmXvGRKAY2zICbVtItoa,5MgFxCKMfta2fQequyHHrt,5AEDGbliTTfjOB8TSm1sxt,0hvT3yIEysuuvkK73vgdcW");
+      final albumResponse = await spotifyService.getAlbums(ids);
       final albumItems = albumResponse.albums;
       return Right(albumItems.map((albumItem) => albumItem.toAlbum()).toList());
     } on DioException catch (e) {
@@ -49,10 +48,9 @@ class SpotifyRepositoryImpl implements SpotifyRepository {
   }
 
   @override
-  Future<Either<ApiFailure, List<Artist>>> getArtists() async {
+  Future<Either<ApiFailure, List<Artist>>> getSeveralArtists(String ids) async {
     try {
-      final artistsResponse = await spotifyService.getArtists(
-          "4zpGxqF6oI1h3f6Md2v42T,6gcteR920pLEynlHzjSRYd,6HvZYsbFfjnjFrWF950C9d,2YZyLoL8N0Wb9xBt1NhZWg");
+      final artistsResponse = await spotifyService.getArtists(ids);
       final artistItems = artistsResponse.artists;
       return Right(
           artistItems.map((artistItem) => artistItem.toArtist()).toList());

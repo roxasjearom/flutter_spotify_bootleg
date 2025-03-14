@@ -24,7 +24,7 @@ class _SpotifyService implements SpotifyService {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<CategoriesResponse> getCategories({int limit = 8}) async {
+  Future<CategoriesResponse> getCategories(int limit) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{r'limit': limit};
     final _headers = <String, dynamic>{};

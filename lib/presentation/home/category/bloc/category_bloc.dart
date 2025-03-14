@@ -20,7 +20,7 @@ class CategoryBloc extends Bloc<CategoryEvent, CategoryState> {
     CategoryFetched event,
     Emitter<CategoryState> emit,
   ) async {
-    final categoriesResult = await _homeRepository.getCategories();
+    final categoriesResult = await _homeRepository.getSeveralCategories(8);
     categoriesResult.fold(
         (failure) => emit(state.copyWith(status: CategoryStatus.failure)),
         (categories) => emit(

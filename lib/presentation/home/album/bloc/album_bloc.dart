@@ -2,6 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spotify_bootleg/domain/models/models.dart';
 import 'package:flutter_spotify_bootleg/domain/repository/spotify_repository.dart';
+import 'package:flutter_spotify_bootleg/env/env.dart';
 
 part 'album_event.dart';
 part 'album_state.dart';
@@ -20,7 +21,7 @@ class AlbumBloc extends Bloc<AlbumEvent, AlbumState> {
     AlbumFetched event,
     Emitter<AlbumState> emit,
   ) async {
-    final albumsResult = await _homeRepository.getAlbums();
+    final albumsResult = await _homeRepository.getSeveralAlbums(Env.albumIds);
     albumsResult.fold(
         (failure) => emit(state.copyWith(status: AlbumStatus.failure)),
         (albums) => emit(
