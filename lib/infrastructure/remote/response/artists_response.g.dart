@@ -29,11 +29,11 @@ _$ArtistDtoImpl _$$ArtistDtoImplFromJson(Map<String, dynamic> json) =>
       uri: json['uri'] as String,
       followers: json['followers'] == null
           ? null
-          : Followers.fromJson(json['followers'] as Map<String, dynamic>),
+          : FollowersDto.fromJson(json['followers'] as Map<String, dynamic>),
       genres:
           (json['genres'] as List<dynamic>?)?.map((e) => e as String).toList(),
       images: (json['images'] as List<dynamic>?)
-          ?.map((e) => Image.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => ImageDto.fromJson(e as Map<String, dynamic>))
           .toList(),
       popularity: (json['popularity'] as num?)?.toInt(),
     );

@@ -29,21 +29,21 @@ class Categories with _$Categories {
 }
 
 @freezed
-class Icon with _$Icon {
-  factory Icon({
+class IconDto with _$IconDto {
+  factory IconDto({
     required int height,
     required String url,
     required int width,
   }) = _Icon;
 
-  factory Icon.fromJson(Map<String, dynamic> json) => _$IconFromJson(json);
+  factory IconDto.fromJson(Map<String, dynamic> json) => _$IconDtoFromJson(json);
 }
 
 @freezed
 class CategoryDto with _$CategoryDto {
   factory CategoryDto({
     required String href,
-    required List<Icon> icons,
+    required List<IconDto> icons,
     required String id,
     required String name,
   }) = _CategoryDto;

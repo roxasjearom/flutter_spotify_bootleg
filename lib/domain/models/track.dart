@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 
-final class Song extends Equatable {
-  const Song(
+final class Track extends Equatable {
+  const Track(
       {required this.id,
       required this.title,
       required this.artist,

@@ -1,8 +1,8 @@
 import 'package:floor/floor.dart';
 
 @entity
-class FavoriteSong {
-  FavoriteSong(this.id, this.name, this.artist);
+class FavoriteTrack {
+  FavoriteTrack(this.id, this.name, this.artist);
 
   @primaryKey
   final String id;

@@ -7,16 +7,16 @@ part 'artist_tracks_response.g.dart';
 @freezed
 class ArtistTracksResponse with _$ArtistTracksResponse {
   const factory ArtistTracksResponse({
-    required List<Track> tracks,
-  }) = _TrackResponse;
+    required List<TrackDto> tracks,
+  }) = _ArtistTracksResponse;
 
   factory ArtistTracksResponse.fromJson(Map<String, Object?> json) =>
       _$ArtistTracksResponseFromJson(json);
 }
 
 @freezed
-class Track with _$Track {
-  const factory Track({
+class TrackDto with _$TrackDto {
+  const factory TrackDto({
     required List<ArtistDto> artists,
     @JsonKey(name: 'disc_number') required int discNumber,
     @JsonKey(name: 'duration_ms') required int durationMs,
@@ -32,5 +32,5 @@ class Track with _$Track {
     @JsonKey(name: 'is_local') required bool isLocal,
   }) = _Track;
 
-  factory Track.fromJson(Map<String, Object?> json) => _$TrackFromJson(json);
+  factory TrackDto.fromJson(Map<String, Object?> json) => _$TrackDtoFromJson(json);
 }

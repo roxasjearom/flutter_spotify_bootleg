@@ -25,7 +25,7 @@ _$AlbumDtoImpl _$$AlbumDtoImplFromJson(Map<String, dynamic> json) =>
       href: json['href'] as String,
       id: json['id'] as String,
       images: (json['images'] as List<dynamic>)
-          .map((e) => Image.fromJson(e as Map<String, dynamic>))
+          .map((e) => ImageDto.fromJson(e as Map<String, dynamic>))
           .toList(),
       name: json['name'] as String,
       releaseDate: json['release_date'] as String,
@@ -35,7 +35,7 @@ _$AlbumDtoImpl _$$AlbumDtoImplFromJson(Map<String, dynamic> json) =>
       artists: (json['artists'] as List<dynamic>)
           .map((e) => ArtistDto.fromJson(e as Map<String, dynamic>))
           .toList(),
-      tracks: Tracks.fromJson(json['tracks'] as Map<String, dynamic>),
+      tracks: AlbumTracksDto.fromJson(json['tracks'] as Map<String, dynamic>),
       copyrights: (json['copyrights'] as List<dynamic>)
           .map((e) => Copyright.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -70,7 +70,7 @@ _$TracksImpl _$$TracksImplFromJson(Map<String, dynamic> json) => _$TracksImpl(
       previous: json['previous'],
       total: (json['total'] as num).toInt(),
       items: (json['items'] as List<dynamic>)
-          .map((e) => Item.fromJson(e as Map<String, dynamic>))
+          .map((e) => ItemDto.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 

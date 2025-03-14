@@ -6,14 +6,16 @@ part of 'artist_tracks_response.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$TrackResponseImpl _$$TrackResponseImplFromJson(Map<String, dynamic> json) =>
-    _$TrackResponseImpl(
+_$ArtistTracksResponseImpl _$$ArtistTracksResponseImplFromJson(
+        Map<String, dynamic> json) =>
+    _$ArtistTracksResponseImpl(
       tracks: (json['tracks'] as List<dynamic>)
-          .map((e) => Track.fromJson(e as Map<String, dynamic>))
+          .map((e) => TrackDto.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
-Map<String, dynamic> _$$TrackResponseImplToJson(_$TrackResponseImpl instance) =>
+Map<String, dynamic> _$$ArtistTracksResponseImplToJson(
+        _$ArtistTracksResponseImpl instance) =>
     <String, dynamic>{
       'tracks': instance.tracks,
     };

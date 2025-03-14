@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_spotify_bootleg/infrastructure/local/dao/favorite_song_dao.dart';
+import 'package:flutter_spotify_bootleg/infrastructure/local/dao/favorite_track_dao.dart';
 import 'package:flutter_spotify_bootleg/di/service_locator.dart';
 import 'package:flutter_spotify_bootleg/domain/repository/spotify_repository.dart';
-import 'package:flutter_spotify_bootleg/presentation/songlist/view/album_info_section.dart';
-import 'package:flutter_spotify_bootleg/presentation/songlist/view/custom_appbar/sliver_custom_appbar.dart';
-import 'package:flutter_spotify_bootleg/presentation/songlist/view/play_pause_button.dart';
-import 'package:flutter_spotify_bootleg/presentation/songlist/view/song_list_section.dart';
+import 'package:flutter_spotify_bootleg/presentation/tracklist/view/album_info_section.dart';
+import 'package:flutter_spotify_bootleg/presentation/tracklist/view/custom_appbar/sliver_custom_appbar.dart';
+import 'package:flutter_spotify_bootleg/presentation/tracklist/view/play_pause_button.dart';
+import 'package:flutter_spotify_bootleg/presentation/tracklist/view/track_list_section.dart';
 
-import 'bloc/song_list_bloc.dart';
+import 'bloc/track_list_bloc.dart';
 
-class SongListScreen extends StatelessWidget {
-  const SongListScreen({super.key, required this.id, required this.sourceType});
+class TrackListScreen extends StatelessWidget {
+  const TrackListScreen({super.key, required this.id, required this.sourceType});
 
   final String id;
   final SourceType sourceType;
@@ -19,22 +19,22 @@ class SongListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-        create: (_) => SongListBloc(
-              homeRepository: getIt.get<SpotifyRepository>(),
-              favoriteSongDao: getIt.get<FavoriteSongDao>(),
-            )..add(SongListFetched(id, sourceType)),
-        child: _SongListPage());
+        create: (_) => TrackListBloc(
+              spotifyRepository: getIt.get<SpotifyRepository>(),
+              favoriteSongDao: getIt.get<FavoriteTrackDao>(),
+            )..add(TrackListFetched(id, sourceType)),
+        child: _TrackListPage());
   }
 }
 
-class _SongListPage extends StatefulWidget {
-  const _SongListPage();
+class _TrackListPage extends StatefulWidget {
+  const _TrackListPage();
 
   @override
-  State<StatefulWidget> createState() => _SongListPageState();
+  State<StatefulWidget> createState() => _TrackListPageState();
 }
 
-class _SongListPageState extends State<_SongListPage> {
+class _TrackListPageState extends State<_TrackListPage> {
   late ScrollController _scrollController;
 
   late double maxAppBarHeight;
@@ -57,12 +57,12 @@ class _SongListPageState extends State<_SongListPage> {
         ? 80
         : (MediaQuery.of(context).size.width / 320) * 50;
     infoBoxHeight = 160;
-    return BlocBuilder<SongListBloc, SongListState>(builder: (context, state) {
+    return BlocBuilder<TrackListBloc, SongListState>(builder: (context, state) {
       switch (state.status) {
-        case SongListStatus.initial:
+        case TrackListStatus.initial:
           return const Center(child: CircularProgressIndicator());
 
-        case SongListStatus.success:
+        case TrackListStatus.success:
           return Scaffold(
             body: DecoratedBox(
               decoration: BoxDecoration(
@@ -94,17 +94,17 @@ class _SongListPageState extends State<_SongListPage> {
                           imageUrl: state.imageUrl,
                           artist: state.artist,
                           infoBoxHeight: infoBoxHeight),
-                      SongListSection(
-                        songs: state.songs,
+                      TrackListSection(
+                        tracks: state.songs,
                         onAddFavoriteClicked: (song) {
                           context
-                              .read<SongListBloc>()
-                              .add(FavoriteSongAdded(song));
+                              .read<TrackListBloc>()
+                              .add(FavoriteTrackAdded(song));
                         },
                         onRemoveFavoriteClicked: (song) {
                           context
-                              .read<SongListBloc>()
-                              .add(FavoriteSongRemoved(song));
+                              .read<TrackListBloc>()
+                              .add(FavoriteTrackRemoved(song));
                         },
                       ),
                     ],
@@ -121,7 +121,7 @@ class _SongListPageState extends State<_SongListPage> {
             ),
           );
 
-        case SongListStatus.failure:
+        case TrackListStatus.failure:
           return Center(
               child: Text(
             'Failed to fetch details',

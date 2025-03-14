@@ -58,7 +58,7 @@ _$CategoryDtoImpl _$$CategoryDtoImplFromJson(Map<String, dynamic> json) =>
     _$CategoryDtoImpl(
       href: json['href'] as String,
       icons: (json['icons'] as List<dynamic>)
-          .map((e) => Icon.fromJson(e as Map<String, dynamic>))
+          .map((e) => IconDto.fromJson(e as Map<String, dynamic>))
           .toList(),
       id: json['id'] as String,
       name: json['name'] as String,

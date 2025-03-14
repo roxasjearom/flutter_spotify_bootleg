@@ -442,44 +442,44 @@ abstract class _Categories implements Categories {
       throw _privateConstructorUsedError;
 }
 
-Icon _$IconFromJson(Map<String, dynamic> json) {
+IconDto _$IconDtoFromJson(Map<String, dynamic> json) {
   return _Icon.fromJson(json);
 }
 
 /// @nodoc
-mixin _$Icon {
+mixin _$IconDto {
   int get height => throw _privateConstructorUsedError;
   String get url => throw _privateConstructorUsedError;
   int get width => throw _privateConstructorUsedError;
 
-  /// Serializes this Icon to a JSON map.
+  /// Serializes this IconDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of Icon
+  /// Create a copy of IconDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $IconCopyWith<Icon> get copyWith => throw _privateConstructorUsedError;
+  $IconDtoCopyWith<IconDto> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $IconCopyWith<$Res> {
-  factory $IconCopyWith(Icon value, $Res Function(Icon) then) =
-      _$IconCopyWithImpl<$Res, Icon>;
+abstract class $IconDtoCopyWith<$Res> {
+  factory $IconDtoCopyWith(IconDto value, $Res Function(IconDto) then) =
+      _$IconDtoCopyWithImpl<$Res, IconDto>;
   @useResult
   $Res call({int height, String url, int width});
 }
 
 /// @nodoc
-class _$IconCopyWithImpl<$Res, $Val extends Icon>
-    implements $IconCopyWith<$Res> {
-  _$IconCopyWithImpl(this._value, this._then);
+class _$IconDtoCopyWithImpl<$Res, $Val extends IconDto>
+    implements $IconDtoCopyWith<$Res> {
+  _$IconDtoCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of Icon
+  /// Create a copy of IconDto
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -506,7 +506,7 @@ class _$IconCopyWithImpl<$Res, $Val extends Icon>
 }
 
 /// @nodoc
-abstract class _$$IconImplCopyWith<$Res> implements $IconCopyWith<$Res> {
+abstract class _$$IconImplCopyWith<$Res> implements $IconDtoCopyWith<$Res> {
   factory _$$IconImplCopyWith(
           _$IconImpl value, $Res Function(_$IconImpl) then) =
       __$$IconImplCopyWithImpl<$Res>;
@@ -517,12 +517,12 @@ abstract class _$$IconImplCopyWith<$Res> implements $IconCopyWith<$Res> {
 
 /// @nodoc
 class __$$IconImplCopyWithImpl<$Res>
-    extends _$IconCopyWithImpl<$Res, _$IconImpl>
+    extends _$IconDtoCopyWithImpl<$Res, _$IconImpl>
     implements _$$IconImplCopyWith<$Res> {
   __$$IconImplCopyWithImpl(_$IconImpl _value, $Res Function(_$IconImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of Icon
+  /// Create a copy of IconDto
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -565,7 +565,7 @@ class _$IconImpl implements _Icon {
 
   @override
   String toString() {
-    return 'Icon(height: $height, url: $url, width: $width)';
+    return 'IconDto(height: $height, url: $url, width: $width)';
   }
 
   @override
@@ -582,7 +582,7 @@ class _$IconImpl implements _Icon {
   @override
   int get hashCode => Object.hash(runtimeType, height, url, width);
 
-  /// Create a copy of Icon
+  /// Create a copy of IconDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
@@ -598,7 +598,7 @@ class _$IconImpl implements _Icon {
   }
 }
 
-abstract class _Icon implements Icon {
+abstract class _Icon implements IconDto {
   factory _Icon(
       {required final int height,
       required final String url,
@@ -613,7 +613,7 @@ abstract class _Icon implements Icon {
   @override
   int get width;
 
-  /// Create a copy of Icon
+  /// Create a copy of IconDto
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -628,7 +628,7 @@ CategoryDto _$CategoryDtoFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$CategoryDto {
   String get href => throw _privateConstructorUsedError;
-  List<Icon> get icons => throw _privateConstructorUsedError;
+  List<IconDto> get icons => throw _privateConstructorUsedError;
   String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
 
@@ -648,7 +648,7 @@ abstract class $CategoryDtoCopyWith<$Res> {
           CategoryDto value, $Res Function(CategoryDto) then) =
       _$CategoryDtoCopyWithImpl<$Res, CategoryDto>;
   @useResult
-  $Res call({String href, List<Icon> icons, String id, String name});
+  $Res call({String href, List<IconDto> icons, String id, String name});
 }
 
 /// @nodoc
@@ -679,7 +679,7 @@ class _$CategoryDtoCopyWithImpl<$Res, $Val extends CategoryDto>
       icons: null == icons
           ? _value.icons
           : icons // ignore: cast_nullable_to_non_nullable
-              as List<Icon>,
+              as List<IconDto>,
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -700,7 +700,7 @@ abstract class _$$CategoryDtoImplCopyWith<$Res>
       __$$CategoryDtoImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String href, List<Icon> icons, String id, String name});
+  $Res call({String href, List<IconDto> icons, String id, String name});
 }
 
 /// @nodoc
@@ -729,7 +729,7 @@ class __$$CategoryDtoImplCopyWithImpl<$Res>
       icons: null == icons
           ? _value._icons
           : icons // ignore: cast_nullable_to_non_nullable
-              as List<Icon>,
+              as List<IconDto>,
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -747,7 +747,7 @@ class __$$CategoryDtoImplCopyWithImpl<$Res>
 class _$CategoryDtoImpl implements _CategoryDto {
   _$CategoryDtoImpl(
       {required this.href,
-      required final List<Icon> icons,
+      required final List<IconDto> icons,
       required this.id,
       required this.name})
       : _icons = icons;
@@ -757,9 +757,9 @@ class _$CategoryDtoImpl implements _CategoryDto {
 
   @override
   final String href;
-  final List<Icon> _icons;
+  final List<IconDto> _icons;
   @override
-  List<Icon> get icons {
+  List<IconDto> get icons {
     if (_icons is EqualUnmodifiableListView) return _icons;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_icons);
@@ -810,7 +810,7 @@ class _$CategoryDtoImpl implements _CategoryDto {
 abstract class _CategoryDto implements CategoryDto {
   factory _CategoryDto(
       {required final String href,
-      required final List<Icon> icons,
+      required final List<IconDto> icons,
       required final String id,
       required final String name}) = _$CategoryDtoImpl;
 
@@ -820,7 +820,7 @@ abstract class _CategoryDto implements CategoryDto {
   @override
   String get href;
   @override
-  List<Icon> get icons;
+  List<IconDto> get icons;
   @override
   String get id;
   @override

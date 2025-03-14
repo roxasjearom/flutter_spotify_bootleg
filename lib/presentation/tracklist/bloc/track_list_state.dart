@@ -1,6 +1,6 @@
-part of 'song_list_bloc.dart';
+part of 'track_list_bloc.dart';
 
-enum SongListStatus { initial, success, failure }
+enum TrackListStatus { initial, success, failure }
 
 enum SourceType { category, artist, album }
 
@@ -10,27 +10,27 @@ final class SongListState extends Equatable {
     this.name = "",
     this.artist = "",
     this.imageUrl = "",
-    this.status = SongListStatus.initial,
+    this.status = TrackListStatus.initial,
     this.sourceType = SourceType.album,
-    this.songs = const <Song>[],
+    this.songs = const <Track>[],
   });
 
   final String id;
   final String name;
   final String artist;
   final String imageUrl;
-  final SongListStatus status;
+  final TrackListStatus status;
   final SourceType sourceType;
-  final List<Song> songs;
+  final List<Track> songs;
 
   SongListState copyWith({
     String? id,
     String? name,
     String? artist,
     String? imageUrl,
-    SongListStatus? status,
+    TrackListStatus? status,
     SourceType? sourceType,
-    List<Song>? songs,
+    List<Track>? songs,
   }) {
     return SongListState(
       id: id ?? this.id,

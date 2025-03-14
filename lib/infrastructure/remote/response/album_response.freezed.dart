@@ -183,7 +183,7 @@ mixin _$AlbumDto {
   int get totalTracks => throw _privateConstructorUsedError;
   String get href => throw _privateConstructorUsedError;
   String get id => throw _privateConstructorUsedError;
-  List<Image> get images => throw _privateConstructorUsedError;
+  List<ImageDto> get images => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   @JsonKey(name: 'release_date')
   String get releaseDate => throw _privateConstructorUsedError;
@@ -192,7 +192,7 @@ mixin _$AlbumDto {
   String get type => throw _privateConstructorUsedError;
   String get uri => throw _privateConstructorUsedError;
   List<ArtistDto> get artists => throw _privateConstructorUsedError;
-  Tracks get tracks => throw _privateConstructorUsedError;
+  AlbumTracksDto get tracks => throw _privateConstructorUsedError;
   List<Copyright> get copyrights => throw _privateConstructorUsedError;
   String get label => throw _privateConstructorUsedError;
   int get popularity => throw _privateConstructorUsedError;
@@ -217,19 +217,19 @@ abstract class $AlbumDtoCopyWith<$Res> {
       @JsonKey(name: 'total_tracks') int totalTracks,
       String href,
       String id,
-      List<Image> images,
+      List<ImageDto> images,
       String name,
       @JsonKey(name: 'release_date') String releaseDate,
       @JsonKey(name: 'release_date_precision') String releaseDatePrecision,
       String type,
       String uri,
       List<ArtistDto> artists,
-      Tracks tracks,
+      AlbumTracksDto tracks,
       List<Copyright> copyrights,
       String label,
       int popularity});
 
-  $TracksCopyWith<$Res> get tracks;
+  $AlbumTracksDtoCopyWith<$Res> get tracks;
 }
 
 /// @nodoc
@@ -283,7 +283,7 @@ class _$AlbumDtoCopyWithImpl<$Res, $Val extends AlbumDto>
       images: null == images
           ? _value.images
           : images // ignore: cast_nullable_to_non_nullable
-              as List<Image>,
+              as List<ImageDto>,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -311,7 +311,7 @@ class _$AlbumDtoCopyWithImpl<$Res, $Val extends AlbumDto>
       tracks: null == tracks
           ? _value.tracks
           : tracks // ignore: cast_nullable_to_non_nullable
-              as Tracks,
+              as AlbumTracksDto,
       copyrights: null == copyrights
           ? _value.copyrights
           : copyrights // ignore: cast_nullable_to_non_nullable
@@ -331,8 +331,8 @@ class _$AlbumDtoCopyWithImpl<$Res, $Val extends AlbumDto>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $TracksCopyWith<$Res> get tracks {
-    return $TracksCopyWith<$Res>(_value.tracks, (value) {
+  $AlbumTracksDtoCopyWith<$Res> get tracks {
+    return $AlbumTracksDtoCopyWith<$Res>(_value.tracks, (value) {
       return _then(_value.copyWith(tracks: value) as $Val);
     });
   }
@@ -351,20 +351,20 @@ abstract class _$$AlbumDtoImplCopyWith<$Res>
       @JsonKey(name: 'total_tracks') int totalTracks,
       String href,
       String id,
-      List<Image> images,
+      List<ImageDto> images,
       String name,
       @JsonKey(name: 'release_date') String releaseDate,
       @JsonKey(name: 'release_date_precision') String releaseDatePrecision,
       String type,
       String uri,
       List<ArtistDto> artists,
-      Tracks tracks,
+      AlbumTracksDto tracks,
       List<Copyright> copyrights,
       String label,
       int popularity});
 
   @override
-  $TracksCopyWith<$Res> get tracks;
+  $AlbumTracksDtoCopyWith<$Res> get tracks;
 }
 
 /// @nodoc
@@ -416,7 +416,7 @@ class __$$AlbumDtoImplCopyWithImpl<$Res>
       images: null == images
           ? _value._images
           : images // ignore: cast_nullable_to_non_nullable
-              as List<Image>,
+              as List<ImageDto>,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -444,7 +444,7 @@ class __$$AlbumDtoImplCopyWithImpl<$Res>
       tracks: null == tracks
           ? _value.tracks
           : tracks // ignore: cast_nullable_to_non_nullable
-              as Tracks,
+              as AlbumTracksDto,
       copyrights: null == copyrights
           ? _value._copyrights
           : copyrights // ignore: cast_nullable_to_non_nullable
@@ -469,7 +469,7 @@ class _$AlbumDtoImpl implements _AlbumDto {
       @JsonKey(name: 'total_tracks') required this.totalTracks,
       required this.href,
       required this.id,
-      required final List<Image> images,
+      required final List<ImageDto> images,
       required this.name,
       @JsonKey(name: 'release_date') required this.releaseDate,
       @JsonKey(name: 'release_date_precision')
@@ -498,9 +498,9 @@ class _$AlbumDtoImpl implements _AlbumDto {
   final String href;
   @override
   final String id;
-  final List<Image> _images;
+  final List<ImageDto> _images;
   @override
-  List<Image> get images {
+  List<ImageDto> get images {
     if (_images is EqualUnmodifiableListView) return _images;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_images);
@@ -527,7 +527,7 @@ class _$AlbumDtoImpl implements _AlbumDto {
   }
 
   @override
-  final Tracks tracks;
+  final AlbumTracksDto tracks;
   final List<Copyright> _copyrights;
   @override
   List<Copyright> get copyrights {
@@ -616,7 +616,7 @@ abstract class _AlbumDto implements AlbumDto {
       @JsonKey(name: 'total_tracks') required final int totalTracks,
       required final String href,
       required final String id,
-      required final List<Image> images,
+      required final List<ImageDto> images,
       required final String name,
       @JsonKey(name: 'release_date') required final String releaseDate,
       @JsonKey(name: 'release_date_precision')
@@ -624,7 +624,7 @@ abstract class _AlbumDto implements AlbumDto {
       required final String type,
       required final String uri,
       required final List<ArtistDto> artists,
-      required final Tracks tracks,
+      required final AlbumTracksDto tracks,
       required final List<Copyright> copyrights,
       required final String label,
       required final int popularity}) = _$AlbumDtoImpl;
@@ -643,7 +643,7 @@ abstract class _AlbumDto implements AlbumDto {
   @override
   String get id;
   @override
-  List<Image> get images;
+  List<ImageDto> get images;
   @override
   String get name;
   @override
@@ -659,7 +659,7 @@ abstract class _AlbumDto implements AlbumDto {
   @override
   List<ArtistDto> get artists;
   @override
-  Tracks get tracks;
+  AlbumTracksDto get tracks;
   @override
   List<Copyright> get copyrights;
   @override
@@ -675,33 +675,35 @@ abstract class _AlbumDto implements AlbumDto {
       throw _privateConstructorUsedError;
 }
 
-Tracks _$TracksFromJson(Map<String, dynamic> json) {
+AlbumTracksDto _$AlbumTracksDtoFromJson(Map<String, dynamic> json) {
   return _Tracks.fromJson(json);
 }
 
 /// @nodoc
-mixin _$Tracks {
+mixin _$AlbumTracksDto {
   String get href => throw _privateConstructorUsedError;
   int get limit => throw _privateConstructorUsedError;
   dynamic get next => throw _privateConstructorUsedError;
   int get offset => throw _privateConstructorUsedError;
   dynamic get previous => throw _privateConstructorUsedError;
   int get total => throw _privateConstructorUsedError;
-  List<Item> get items => throw _privateConstructorUsedError;
+  List<ItemDto> get items => throw _privateConstructorUsedError;
 
-  /// Serializes this Tracks to a JSON map.
+  /// Serializes this AlbumTracksDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of Tracks
+  /// Create a copy of AlbumTracksDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $TracksCopyWith<Tracks> get copyWith => throw _privateConstructorUsedError;
+  $AlbumTracksDtoCopyWith<AlbumTracksDto> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $TracksCopyWith<$Res> {
-  factory $TracksCopyWith(Tracks value, $Res Function(Tracks) then) =
-      _$TracksCopyWithImpl<$Res, Tracks>;
+abstract class $AlbumTracksDtoCopyWith<$Res> {
+  factory $AlbumTracksDtoCopyWith(
+          AlbumTracksDto value, $Res Function(AlbumTracksDto) then) =
+      _$AlbumTracksDtoCopyWithImpl<$Res, AlbumTracksDto>;
   @useResult
   $Res call(
       {String href,
@@ -710,20 +712,20 @@ abstract class $TracksCopyWith<$Res> {
       int offset,
       dynamic previous,
       int total,
-      List<Item> items});
+      List<ItemDto> items});
 }
 
 /// @nodoc
-class _$TracksCopyWithImpl<$Res, $Val extends Tracks>
-    implements $TracksCopyWith<$Res> {
-  _$TracksCopyWithImpl(this._value, this._then);
+class _$AlbumTracksDtoCopyWithImpl<$Res, $Val extends AlbumTracksDto>
+    implements $AlbumTracksDtoCopyWith<$Res> {
+  _$AlbumTracksDtoCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of Tracks
+  /// Create a copy of AlbumTracksDto
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -764,13 +766,14 @@ class _$TracksCopyWithImpl<$Res, $Val extends Tracks>
       items: null == items
           ? _value.items
           : items // ignore: cast_nullable_to_non_nullable
-              as List<Item>,
+              as List<ItemDto>,
     ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$TracksImplCopyWith<$Res> implements $TracksCopyWith<$Res> {
+abstract class _$$TracksImplCopyWith<$Res>
+    implements $AlbumTracksDtoCopyWith<$Res> {
   factory _$$TracksImplCopyWith(
           _$TracksImpl value, $Res Function(_$TracksImpl) then) =
       __$$TracksImplCopyWithImpl<$Res>;
@@ -783,18 +786,18 @@ abstract class _$$TracksImplCopyWith<$Res> implements $TracksCopyWith<$Res> {
       int offset,
       dynamic previous,
       int total,
-      List<Item> items});
+      List<ItemDto> items});
 }
 
 /// @nodoc
 class __$$TracksImplCopyWithImpl<$Res>
-    extends _$TracksCopyWithImpl<$Res, _$TracksImpl>
+    extends _$AlbumTracksDtoCopyWithImpl<$Res, _$TracksImpl>
     implements _$$TracksImplCopyWith<$Res> {
   __$$TracksImplCopyWithImpl(
       _$TracksImpl _value, $Res Function(_$TracksImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of Tracks
+  /// Create a copy of AlbumTracksDto
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -835,7 +838,7 @@ class __$$TracksImplCopyWithImpl<$Res>
       items: null == items
           ? _value._items
           : items // ignore: cast_nullable_to_non_nullable
-              as List<Item>,
+              as List<ItemDto>,
     ));
   }
 }
@@ -850,7 +853,7 @@ class _$TracksImpl implements _Tracks {
       required this.offset,
       this.previous,
       required this.total,
-      required final List<Item> items})
+      required final List<ItemDto> items})
       : _items = items;
 
   factory _$TracksImpl.fromJson(Map<String, dynamic> json) =>
@@ -868,9 +871,9 @@ class _$TracksImpl implements _Tracks {
   final dynamic previous;
   @override
   final int total;
-  final List<Item> _items;
+  final List<ItemDto> _items;
   @override
-  List<Item> get items {
+  List<ItemDto> get items {
     if (_items is EqualUnmodifiableListView) return _items;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_items);
@@ -878,7 +881,7 @@ class _$TracksImpl implements _Tracks {
 
   @override
   String toString() {
-    return 'Tracks(href: $href, limit: $limit, next: $next, offset: $offset, previous: $previous, total: $total, items: $items)';
+    return 'AlbumTracksDto(href: $href, limit: $limit, next: $next, offset: $offset, previous: $previous, total: $total, items: $items)';
   }
 
   @override
@@ -907,7 +910,7 @@ class _$TracksImpl implements _Tracks {
       total,
       const DeepCollectionEquality().hash(_items));
 
-  /// Create a copy of Tracks
+  /// Create a copy of AlbumTracksDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
@@ -923,7 +926,7 @@ class _$TracksImpl implements _Tracks {
   }
 }
 
-abstract class _Tracks implements Tracks {
+abstract class _Tracks implements AlbumTracksDto {
   factory _Tracks(
       {required final String href,
       required final int limit,
@@ -931,7 +934,7 @@ abstract class _Tracks implements Tracks {
       required final int offset,
       final dynamic previous,
       required final int total,
-      required final List<Item> items}) = _$TracksImpl;
+      required final List<ItemDto> items}) = _$TracksImpl;
 
   factory _Tracks.fromJson(Map<String, dynamic> json) = _$TracksImpl.fromJson;
 
@@ -948,9 +951,9 @@ abstract class _Tracks implements Tracks {
   @override
   int get total;
   @override
-  List<Item> get items;
+  List<ItemDto> get items;
 
-  /// Create a copy of Tracks
+  /// Create a copy of AlbumTracksDto
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -958,12 +961,12 @@ abstract class _Tracks implements Tracks {
       throw _privateConstructorUsedError;
 }
 
-Item _$ItemFromJson(Map<String, dynamic> json) {
+ItemDto _$ItemDtoFromJson(Map<String, dynamic> json) {
   return _Item.fromJson(json);
 }
 
 /// @nodoc
-mixin _$Item {
+mixin _$ItemDto {
   List<ArtistDto> get artists => throw _privateConstructorUsedError;
   @JsonKey(name: 'disc_number')
   int get discNumber => throw _privateConstructorUsedError;
@@ -982,19 +985,19 @@ mixin _$Item {
   @JsonKey(name: 'is_local')
   bool get isLocal => throw _privateConstructorUsedError;
 
-  /// Serializes this Item to a JSON map.
+  /// Serializes this ItemDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of Item
+  /// Create a copy of ItemDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $ItemCopyWith<Item> get copyWith => throw _privateConstructorUsedError;
+  $ItemDtoCopyWith<ItemDto> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ItemCopyWith<$Res> {
-  factory $ItemCopyWith(Item value, $Res Function(Item) then) =
-      _$ItemCopyWithImpl<$Res, Item>;
+abstract class $ItemDtoCopyWith<$Res> {
+  factory $ItemDtoCopyWith(ItemDto value, $Res Function(ItemDto) then) =
+      _$ItemDtoCopyWithImpl<$Res, ItemDto>;
   @useResult
   $Res call(
       {List<ArtistDto> artists,
@@ -1012,16 +1015,16 @@ abstract class $ItemCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ItemCopyWithImpl<$Res, $Val extends Item>
-    implements $ItemCopyWith<$Res> {
-  _$ItemCopyWithImpl(this._value, this._then);
+class _$ItemDtoCopyWithImpl<$Res, $Val extends ItemDto>
+    implements $ItemDtoCopyWith<$Res> {
+  _$ItemDtoCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of Item
+  /// Create a copy of ItemDto
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -1093,7 +1096,7 @@ class _$ItemCopyWithImpl<$Res, $Val extends Item>
 }
 
 /// @nodoc
-abstract class _$$ItemImplCopyWith<$Res> implements $ItemCopyWith<$Res> {
+abstract class _$$ItemImplCopyWith<$Res> implements $ItemDtoCopyWith<$Res> {
   factory _$$ItemImplCopyWith(
           _$ItemImpl value, $Res Function(_$ItemImpl) then) =
       __$$ItemImplCopyWithImpl<$Res>;
@@ -1116,12 +1119,12 @@ abstract class _$$ItemImplCopyWith<$Res> implements $ItemCopyWith<$Res> {
 
 /// @nodoc
 class __$$ItemImplCopyWithImpl<$Res>
-    extends _$ItemCopyWithImpl<$Res, _$ItemImpl>
+    extends _$ItemDtoCopyWithImpl<$Res, _$ItemImpl>
     implements _$$ItemImplCopyWith<$Res> {
   __$$ItemImplCopyWithImpl(_$ItemImpl _value, $Res Function(_$ItemImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of Item
+  /// Create a copy of ItemDto
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -1251,7 +1254,7 @@ class _$ItemImpl implements _Item {
 
   @override
   String toString() {
-    return 'Item(artists: $artists, discNumber: $discNumber, durationMs: $durationMs, explicit: $explicit, href: $href, id: $id, name: $name, previewUrl: $previewUrl, trackNumber: $trackNumber, type: $type, uri: $uri, isLocal: $isLocal)';
+    return 'ItemDto(artists: $artists, discNumber: $discNumber, durationMs: $durationMs, explicit: $explicit, href: $href, id: $id, name: $name, previewUrl: $previewUrl, trackNumber: $trackNumber, type: $type, uri: $uri, isLocal: $isLocal)';
   }
 
   @override
@@ -1295,7 +1298,7 @@ class _$ItemImpl implements _Item {
       uri,
       isLocal);
 
-  /// Create a copy of Item
+  /// Create a copy of ItemDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
@@ -1311,7 +1314,7 @@ class _$ItemImpl implements _Item {
   }
 }
 
-abstract class _Item implements Item {
+abstract class _Item implements ItemDto {
   factory _Item(
       {required final List<ArtistDto> artists,
       @JsonKey(name: 'disc_number') required final int discNumber,
@@ -1358,7 +1361,7 @@ abstract class _Item implements Item {
   @JsonKey(name: 'is_local')
   bool get isLocal;
 
-  /// Create a copy of Item
+  /// Create a copy of ItemDto
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)

@@ -24,7 +24,7 @@ class _SpotifyService implements SpotifyService {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<CategoriesResponse> getCategories(int limit) async {
+  Future<CategoriesResponse> getSeveralCategories(int limit) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{r'limit': limit};
     final _headers = <String, dynamic>{};
@@ -57,7 +57,7 @@ class _SpotifyService implements SpotifyService {
   }
 
   @override
-  Future<AlbumResponse> getAlbums(String ids) async {
+  Future<AlbumResponse> getSeveralAlbums(String ids) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{r'ids': ids};
     final _headers = <String, dynamic>{};
@@ -123,7 +123,7 @@ class _SpotifyService implements SpotifyService {
   }
 
   @override
-  Future<ArtistsResponse> getArtists(String ids) async {
+  Future<ArtistsResponse> getSeveralArtists(String ids) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{r'ids': ids};
     final _headers = <String, dynamic>{};

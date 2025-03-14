@@ -21,9 +21,9 @@ class ArtistDto with _$ArtistDto {
     required String name,
     required String type,
     required String uri,
-    Followers? followers,
+    FollowersDto? followers,
     List<String>? genres,
-    List<Image>? images,
+    List<ImageDto>? images,
     int? popularity,
   }) = _ArtistDto;
 
@@ -32,22 +32,22 @@ class ArtistDto with _$ArtistDto {
 }
 
 @freezed
-class Followers with _$Followers {
-  factory Followers({
+class FollowersDto with _$FollowersDto {
+  factory FollowersDto({
     required int total,
   }) = _Followers;
 
-  factory Followers.fromJson(Map<String, Object?> json) =>
-      _$FollowersFromJson(json);
+  factory FollowersDto.fromJson(Map<String, Object?> json) =>
+      _$FollowersDtoFromJson(json);
 }
 
 @freezed
-class Image with _$Image {
-  factory Image({
+class ImageDto with _$ImageDto {
+  factory ImageDto({
     required String url,
     required int height,
     required int width,
   }) = _Image;
 
-  factory Image.fromJson(Map<String, Object?> json) => _$ImageFromJson(json);
+  factory ImageDto.fromJson(Map<String, Object?> json) => _$ImageDtoFromJson(json);
 }

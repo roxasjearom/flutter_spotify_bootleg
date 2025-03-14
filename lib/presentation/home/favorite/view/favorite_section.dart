@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_spotify_bootleg/domain/models/song.dart';
+import 'package:flutter_spotify_bootleg/domain/models/track.dart';
 import 'package:flutter_spotify_bootleg/presentation/favoritelist/favorite_list_screen.dart';
 import 'package:flutter_spotify_bootleg/presentation/home/favorite/bloc/favorite_bloc.dart';
 import 'package:flutter_spotify_bootleg/presentation/home/favorite/view/favorite_item.dart';
@@ -46,7 +46,7 @@ class FavoriteList extends StatelessWidget {
     required this.favorites,
   });
 
-  final List<Song> favorites;
+  final List<Track> favorites;
 
   @override
   Widget build(BuildContext context) {

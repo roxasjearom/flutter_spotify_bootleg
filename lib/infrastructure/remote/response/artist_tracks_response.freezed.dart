@@ -15,12 +15,12 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 ArtistTracksResponse _$ArtistTracksResponseFromJson(Map<String, dynamic> json) {
-  return _TrackResponse.fromJson(json);
+  return _ArtistTracksResponse.fromJson(json);
 }
 
 /// @nodoc
 mixin _$ArtistTracksResponse {
-  List<Track> get tracks => throw _privateConstructorUsedError;
+  List<TrackDto> get tracks => throw _privateConstructorUsedError;
 
   /// Serializes this ArtistTracksResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -38,7 +38,7 @@ abstract class $ArtistTracksResponseCopyWith<$Res> {
           $Res Function(ArtistTracksResponse) then) =
       _$ArtistTracksResponseCopyWithImpl<$Res, ArtistTracksResponse>;
   @useResult
-  $Res call({List<Track> tracks});
+  $Res call({List<TrackDto> tracks});
 }
 
 /// @nodoc
@@ -63,28 +63,28 @@ class _$ArtistTracksResponseCopyWithImpl<$Res,
       tracks: null == tracks
           ? _value.tracks
           : tracks // ignore: cast_nullable_to_non_nullable
-              as List<Track>,
+              as List<TrackDto>,
     ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$TrackResponseImplCopyWith<$Res>
+abstract class _$$ArtistTracksResponseImplCopyWith<$Res>
     implements $ArtistTracksResponseCopyWith<$Res> {
-  factory _$$TrackResponseImplCopyWith(
-          _$TrackResponseImpl value, $Res Function(_$TrackResponseImpl) then) =
-      __$$TrackResponseImplCopyWithImpl<$Res>;
+  factory _$$ArtistTracksResponseImplCopyWith(_$ArtistTracksResponseImpl value,
+          $Res Function(_$ArtistTracksResponseImpl) then) =
+      __$$ArtistTracksResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<Track> tracks});
+  $Res call({List<TrackDto> tracks});
 }
 
 /// @nodoc
-class __$$TrackResponseImplCopyWithImpl<$Res>
-    extends _$ArtistTracksResponseCopyWithImpl<$Res, _$TrackResponseImpl>
-    implements _$$TrackResponseImplCopyWith<$Res> {
-  __$$TrackResponseImplCopyWithImpl(
-      _$TrackResponseImpl _value, $Res Function(_$TrackResponseImpl) _then)
+class __$$ArtistTracksResponseImplCopyWithImpl<$Res>
+    extends _$ArtistTracksResponseCopyWithImpl<$Res, _$ArtistTracksResponseImpl>
+    implements _$$ArtistTracksResponseImplCopyWith<$Res> {
+  __$$ArtistTracksResponseImplCopyWithImpl(_$ArtistTracksResponseImpl _value,
+      $Res Function(_$ArtistTracksResponseImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of ArtistTracksResponse
@@ -94,27 +94,27 @@ class __$$TrackResponseImplCopyWithImpl<$Res>
   $Res call({
     Object? tracks = null,
   }) {
-    return _then(_$TrackResponseImpl(
+    return _then(_$ArtistTracksResponseImpl(
       tracks: null == tracks
           ? _value._tracks
           : tracks // ignore: cast_nullable_to_non_nullable
-              as List<Track>,
+              as List<TrackDto>,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$TrackResponseImpl implements _TrackResponse {
-  const _$TrackResponseImpl({required final List<Track> tracks})
+class _$ArtistTracksResponseImpl implements _ArtistTracksResponse {
+  const _$ArtistTracksResponseImpl({required final List<TrackDto> tracks})
       : _tracks = tracks;
 
-  factory _$TrackResponseImpl.fromJson(Map<String, dynamic> json) =>
-      _$$TrackResponseImplFromJson(json);
+  factory _$ArtistTracksResponseImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ArtistTracksResponseImplFromJson(json);
 
-  final List<Track> _tracks;
+  final List<TrackDto> _tracks;
   @override
-  List<Track> get tracks {
+  List<TrackDto> get tracks {
     if (_tracks is EqualUnmodifiableListView) return _tracks;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_tracks);
@@ -129,7 +129,7 @@ class _$TrackResponseImpl implements _TrackResponse {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$TrackResponseImpl &&
+            other is _$ArtistTracksResponseImpl &&
             const DeepCollectionEquality().equals(other._tracks, _tracks));
   }
 
@@ -143,41 +143,43 @@ class _$TrackResponseImpl implements _TrackResponse {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$TrackResponseImplCopyWith<_$TrackResponseImpl> get copyWith =>
-      __$$TrackResponseImplCopyWithImpl<_$TrackResponseImpl>(this, _$identity);
+  _$$ArtistTracksResponseImplCopyWith<_$ArtistTracksResponseImpl>
+      get copyWith =>
+          __$$ArtistTracksResponseImplCopyWithImpl<_$ArtistTracksResponseImpl>(
+              this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$TrackResponseImplToJson(
+    return _$$ArtistTracksResponseImplToJson(
       this,
     );
   }
 }
 
-abstract class _TrackResponse implements ArtistTracksResponse {
-  const factory _TrackResponse({required final List<Track> tracks}) =
-      _$TrackResponseImpl;
+abstract class _ArtistTracksResponse implements ArtistTracksResponse {
+  const factory _ArtistTracksResponse({required final List<TrackDto> tracks}) =
+      _$ArtistTracksResponseImpl;
 
-  factory _TrackResponse.fromJson(Map<String, dynamic> json) =
-      _$TrackResponseImpl.fromJson;
+  factory _ArtistTracksResponse.fromJson(Map<String, dynamic> json) =
+      _$ArtistTracksResponseImpl.fromJson;
 
   @override
-  List<Track> get tracks;
+  List<TrackDto> get tracks;
 
   /// Create a copy of ArtistTracksResponse
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$TrackResponseImplCopyWith<_$TrackResponseImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$ArtistTracksResponseImplCopyWith<_$ArtistTracksResponseImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
-Track _$TrackFromJson(Map<String, dynamic> json) {
+TrackDto _$TrackDtoFromJson(Map<String, dynamic> json) {
   return _Track.fromJson(json);
 }
 
 /// @nodoc
-mixin _$Track {
+mixin _$TrackDto {
   List<ArtistDto> get artists => throw _privateConstructorUsedError;
   @JsonKey(name: 'disc_number')
   int get discNumber => throw _privateConstructorUsedError;
@@ -197,19 +199,20 @@ mixin _$Track {
   @JsonKey(name: 'is_local')
   bool get isLocal => throw _privateConstructorUsedError;
 
-  /// Serializes this Track to a JSON map.
+  /// Serializes this TrackDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of Track
+  /// Create a copy of TrackDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $TrackCopyWith<Track> get copyWith => throw _privateConstructorUsedError;
+  $TrackDtoCopyWith<TrackDto> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $TrackCopyWith<$Res> {
-  factory $TrackCopyWith(Track value, $Res Function(Track) then) =
-      _$TrackCopyWithImpl<$Res, Track>;
+abstract class $TrackDtoCopyWith<$Res> {
+  factory $TrackDtoCopyWith(TrackDto value, $Res Function(TrackDto) then) =
+      _$TrackDtoCopyWithImpl<$Res, TrackDto>;
   @useResult
   $Res call(
       {List<ArtistDto> artists,
@@ -228,16 +231,16 @@ abstract class $TrackCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$TrackCopyWithImpl<$Res, $Val extends Track>
-    implements $TrackCopyWith<$Res> {
-  _$TrackCopyWithImpl(this._value, this._then);
+class _$TrackDtoCopyWithImpl<$Res, $Val extends TrackDto>
+    implements $TrackDtoCopyWith<$Res> {
+  _$TrackDtoCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of Track
+  /// Create a copy of TrackDto
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -314,7 +317,7 @@ class _$TrackCopyWithImpl<$Res, $Val extends Track>
 }
 
 /// @nodoc
-abstract class _$$TrackImplCopyWith<$Res> implements $TrackCopyWith<$Res> {
+abstract class _$$TrackImplCopyWith<$Res> implements $TrackDtoCopyWith<$Res> {
   factory _$$TrackImplCopyWith(
           _$TrackImpl value, $Res Function(_$TrackImpl) then) =
       __$$TrackImplCopyWithImpl<$Res>;
@@ -338,13 +341,13 @@ abstract class _$$TrackImplCopyWith<$Res> implements $TrackCopyWith<$Res> {
 
 /// @nodoc
 class __$$TrackImplCopyWithImpl<$Res>
-    extends _$TrackCopyWithImpl<$Res, _$TrackImpl>
+    extends _$TrackDtoCopyWithImpl<$Res, _$TrackImpl>
     implements _$$TrackImplCopyWith<$Res> {
   __$$TrackImplCopyWithImpl(
       _$TrackImpl _value, $Res Function(_$TrackImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of Track
+  /// Create a copy of TrackDto
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -482,7 +485,7 @@ class _$TrackImpl implements _Track {
 
   @override
   String toString() {
-    return 'Track(artists: $artists, discNumber: $discNumber, durationMs: $durationMs, explicit: $explicit, href: $href, id: $id, isplayable: $isplayable, name: $name, popularity: $popularity, trackNumber: $trackNumber, type: $type, uri: $uri, isLocal: $isLocal)';
+    return 'TrackDto(artists: $artists, discNumber: $discNumber, durationMs: $durationMs, explicit: $explicit, href: $href, id: $id, isplayable: $isplayable, name: $name, popularity: $popularity, trackNumber: $trackNumber, type: $type, uri: $uri, isLocal: $isLocal)';
   }
 
   @override
@@ -529,7 +532,7 @@ class _$TrackImpl implements _Track {
       uri,
       isLocal);
 
-  /// Create a copy of Track
+  /// Create a copy of TrackDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
@@ -545,7 +548,7 @@ class _$TrackImpl implements _Track {
   }
 }
 
-abstract class _Track implements Track {
+abstract class _Track implements TrackDto {
   const factory _Track(
       {required final List<ArtistDto> artists,
       @JsonKey(name: 'disc_number') required final int discNumber,
@@ -595,7 +598,7 @@ abstract class _Track implements Track {
   @JsonKey(name: 'is_local')
   bool get isLocal;
 
-  /// Create a copy of Track
+  /// Create a copy of TrackDto
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)

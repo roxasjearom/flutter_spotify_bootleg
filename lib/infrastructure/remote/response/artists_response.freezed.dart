@@ -183,9 +183,9 @@ mixin _$ArtistDto {
   String get name => throw _privateConstructorUsedError;
   String get type => throw _privateConstructorUsedError;
   String get uri => throw _privateConstructorUsedError;
-  Followers? get followers => throw _privateConstructorUsedError;
+  FollowersDto? get followers => throw _privateConstructorUsedError;
   List<String>? get genres => throw _privateConstructorUsedError;
-  List<Image>? get images => throw _privateConstructorUsedError;
+  List<ImageDto>? get images => throw _privateConstructorUsedError;
   int? get popularity => throw _privateConstructorUsedError;
 
   /// Serializes this ArtistDto to a JSON map.
@@ -209,12 +209,12 @@ abstract class $ArtistDtoCopyWith<$Res> {
       String name,
       String type,
       String uri,
-      Followers? followers,
+      FollowersDto? followers,
       List<String>? genres,
-      List<Image>? images,
+      List<ImageDto>? images,
       int? popularity});
 
-  $FollowersCopyWith<$Res>? get followers;
+  $FollowersDtoCopyWith<$Res>? get followers;
 }
 
 /// @nodoc
@@ -266,7 +266,7 @@ class _$ArtistDtoCopyWithImpl<$Res, $Val extends ArtistDto>
       followers: freezed == followers
           ? _value.followers
           : followers // ignore: cast_nullable_to_non_nullable
-              as Followers?,
+              as FollowersDto?,
       genres: freezed == genres
           ? _value.genres
           : genres // ignore: cast_nullable_to_non_nullable
@@ -274,7 +274,7 @@ class _$ArtistDtoCopyWithImpl<$Res, $Val extends ArtistDto>
       images: freezed == images
           ? _value.images
           : images // ignore: cast_nullable_to_non_nullable
-              as List<Image>?,
+              as List<ImageDto>?,
       popularity: freezed == popularity
           ? _value.popularity
           : popularity // ignore: cast_nullable_to_non_nullable
@@ -286,12 +286,12 @@ class _$ArtistDtoCopyWithImpl<$Res, $Val extends ArtistDto>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $FollowersCopyWith<$Res>? get followers {
+  $FollowersDtoCopyWith<$Res>? get followers {
     if (_value.followers == null) {
       return null;
     }
 
-    return $FollowersCopyWith<$Res>(_value.followers!, (value) {
+    return $FollowersDtoCopyWith<$Res>(_value.followers!, (value) {
       return _then(_value.copyWith(followers: value) as $Val);
     });
   }
@@ -311,13 +311,13 @@ abstract class _$$ArtistDtoImplCopyWith<$Res>
       String name,
       String type,
       String uri,
-      Followers? followers,
+      FollowersDto? followers,
       List<String>? genres,
-      List<Image>? images,
+      List<ImageDto>? images,
       int? popularity});
 
   @override
-  $FollowersCopyWith<$Res>? get followers;
+  $FollowersDtoCopyWith<$Res>? get followers;
 }
 
 /// @nodoc
@@ -367,7 +367,7 @@ class __$$ArtistDtoImplCopyWithImpl<$Res>
       followers: freezed == followers
           ? _value.followers
           : followers // ignore: cast_nullable_to_non_nullable
-              as Followers?,
+              as FollowersDto?,
       genres: freezed == genres
           ? _value._genres
           : genres // ignore: cast_nullable_to_non_nullable
@@ -375,7 +375,7 @@ class __$$ArtistDtoImplCopyWithImpl<$Res>
       images: freezed == images
           ? _value._images
           : images // ignore: cast_nullable_to_non_nullable
-              as List<Image>?,
+              as List<ImageDto>?,
       popularity: freezed == popularity
           ? _value.popularity
           : popularity // ignore: cast_nullable_to_non_nullable
@@ -395,7 +395,7 @@ class _$ArtistDtoImpl implements _ArtistDto {
       required this.uri,
       this.followers,
       final List<String>? genres,
-      final List<Image>? images,
+      final List<ImageDto>? images,
       this.popularity})
       : _genres = genres,
         _images = images;
@@ -414,7 +414,7 @@ class _$ArtistDtoImpl implements _ArtistDto {
   @override
   final String uri;
   @override
-  final Followers? followers;
+  final FollowersDto? followers;
   final List<String>? _genres;
   @override
   List<String>? get genres {
@@ -425,9 +425,9 @@ class _$ArtistDtoImpl implements _ArtistDto {
     return EqualUnmodifiableListView(value);
   }
 
-  final List<Image>? _images;
+  final List<ImageDto>? _images;
   @override
-  List<Image>? get images {
+  List<ImageDto>? get images {
     final value = _images;
     if (value == null) return null;
     if (_images is EqualUnmodifiableListView) return _images;
@@ -498,9 +498,9 @@ abstract class _ArtistDto implements ArtistDto {
       required final String name,
       required final String type,
       required final String uri,
-      final Followers? followers,
+      final FollowersDto? followers,
       final List<String>? genres,
-      final List<Image>? images,
+      final List<ImageDto>? images,
       final int? popularity}) = _$ArtistDtoImpl;
 
   factory _ArtistDto.fromJson(Map<String, dynamic> json) =
@@ -517,11 +517,11 @@ abstract class _ArtistDto implements ArtistDto {
   @override
   String get uri;
   @override
-  Followers? get followers;
+  FollowersDto? get followers;
   @override
   List<String>? get genres;
   @override
-  List<Image>? get images;
+  List<ImageDto>? get images;
   @override
   int? get popularity;
 
@@ -533,43 +533,44 @@ abstract class _ArtistDto implements ArtistDto {
       throw _privateConstructorUsedError;
 }
 
-Followers _$FollowersFromJson(Map<String, dynamic> json) {
+FollowersDto _$FollowersDtoFromJson(Map<String, dynamic> json) {
   return _Followers.fromJson(json);
 }
 
 /// @nodoc
-mixin _$Followers {
+mixin _$FollowersDto {
   int get total => throw _privateConstructorUsedError;
 
-  /// Serializes this Followers to a JSON map.
+  /// Serializes this FollowersDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of Followers
+  /// Create a copy of FollowersDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $FollowersCopyWith<Followers> get copyWith =>
+  $FollowersDtoCopyWith<FollowersDto> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $FollowersCopyWith<$Res> {
-  factory $FollowersCopyWith(Followers value, $Res Function(Followers) then) =
-      _$FollowersCopyWithImpl<$Res, Followers>;
+abstract class $FollowersDtoCopyWith<$Res> {
+  factory $FollowersDtoCopyWith(
+          FollowersDto value, $Res Function(FollowersDto) then) =
+      _$FollowersDtoCopyWithImpl<$Res, FollowersDto>;
   @useResult
   $Res call({int total});
 }
 
 /// @nodoc
-class _$FollowersCopyWithImpl<$Res, $Val extends Followers>
-    implements $FollowersCopyWith<$Res> {
-  _$FollowersCopyWithImpl(this._value, this._then);
+class _$FollowersDtoCopyWithImpl<$Res, $Val extends FollowersDto>
+    implements $FollowersDtoCopyWith<$Res> {
+  _$FollowersDtoCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of Followers
+  /// Create a copy of FollowersDto
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -587,7 +588,7 @@ class _$FollowersCopyWithImpl<$Res, $Val extends Followers>
 
 /// @nodoc
 abstract class _$$FollowersImplCopyWith<$Res>
-    implements $FollowersCopyWith<$Res> {
+    implements $FollowersDtoCopyWith<$Res> {
   factory _$$FollowersImplCopyWith(
           _$FollowersImpl value, $Res Function(_$FollowersImpl) then) =
       __$$FollowersImplCopyWithImpl<$Res>;
@@ -598,13 +599,13 @@ abstract class _$$FollowersImplCopyWith<$Res>
 
 /// @nodoc
 class __$$FollowersImplCopyWithImpl<$Res>
-    extends _$FollowersCopyWithImpl<$Res, _$FollowersImpl>
+    extends _$FollowersDtoCopyWithImpl<$Res, _$FollowersImpl>
     implements _$$FollowersImplCopyWith<$Res> {
   __$$FollowersImplCopyWithImpl(
       _$FollowersImpl _value, $Res Function(_$FollowersImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of Followers
+  /// Create a copy of FollowersDto
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -633,7 +634,7 @@ class _$FollowersImpl implements _Followers {
 
   @override
   String toString() {
-    return 'Followers(total: $total)';
+    return 'FollowersDto(total: $total)';
   }
 
   @override
@@ -648,7 +649,7 @@ class _$FollowersImpl implements _Followers {
   @override
   int get hashCode => Object.hash(runtimeType, total);
 
-  /// Create a copy of Followers
+  /// Create a copy of FollowersDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
@@ -664,7 +665,7 @@ class _$FollowersImpl implements _Followers {
   }
 }
 
-abstract class _Followers implements Followers {
+abstract class _Followers implements FollowersDto {
   factory _Followers({required final int total}) = _$FollowersImpl;
 
   factory _Followers.fromJson(Map<String, dynamic> json) =
@@ -673,7 +674,7 @@ abstract class _Followers implements Followers {
   @override
   int get total;
 
-  /// Create a copy of Followers
+  /// Create a copy of FollowersDto
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -681,44 +682,45 @@ abstract class _Followers implements Followers {
       throw _privateConstructorUsedError;
 }
 
-Image _$ImageFromJson(Map<String, dynamic> json) {
+ImageDto _$ImageDtoFromJson(Map<String, dynamic> json) {
   return _Image.fromJson(json);
 }
 
 /// @nodoc
-mixin _$Image {
+mixin _$ImageDto {
   String get url => throw _privateConstructorUsedError;
   int get height => throw _privateConstructorUsedError;
   int get width => throw _privateConstructorUsedError;
 
-  /// Serializes this Image to a JSON map.
+  /// Serializes this ImageDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of Image
+  /// Create a copy of ImageDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $ImageCopyWith<Image> get copyWith => throw _privateConstructorUsedError;
+  $ImageDtoCopyWith<ImageDto> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ImageCopyWith<$Res> {
-  factory $ImageCopyWith(Image value, $Res Function(Image) then) =
-      _$ImageCopyWithImpl<$Res, Image>;
+abstract class $ImageDtoCopyWith<$Res> {
+  factory $ImageDtoCopyWith(ImageDto value, $Res Function(ImageDto) then) =
+      _$ImageDtoCopyWithImpl<$Res, ImageDto>;
   @useResult
   $Res call({String url, int height, int width});
 }
 
 /// @nodoc
-class _$ImageCopyWithImpl<$Res, $Val extends Image>
-    implements $ImageCopyWith<$Res> {
-  _$ImageCopyWithImpl(this._value, this._then);
+class _$ImageDtoCopyWithImpl<$Res, $Val extends ImageDto>
+    implements $ImageDtoCopyWith<$Res> {
+  _$ImageDtoCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of Image
+  /// Create a copy of ImageDto
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -745,7 +747,7 @@ class _$ImageCopyWithImpl<$Res, $Val extends Image>
 }
 
 /// @nodoc
-abstract class _$$ImageImplCopyWith<$Res> implements $ImageCopyWith<$Res> {
+abstract class _$$ImageImplCopyWith<$Res> implements $ImageDtoCopyWith<$Res> {
   factory _$$ImageImplCopyWith(
           _$ImageImpl value, $Res Function(_$ImageImpl) then) =
       __$$ImageImplCopyWithImpl<$Res>;
@@ -756,13 +758,13 @@ abstract class _$$ImageImplCopyWith<$Res> implements $ImageCopyWith<$Res> {
 
 /// @nodoc
 class __$$ImageImplCopyWithImpl<$Res>
-    extends _$ImageCopyWithImpl<$Res, _$ImageImpl>
+    extends _$ImageDtoCopyWithImpl<$Res, _$ImageImpl>
     implements _$$ImageImplCopyWith<$Res> {
   __$$ImageImplCopyWithImpl(
       _$ImageImpl _value, $Res Function(_$ImageImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of Image
+  /// Create a copy of ImageDto
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -805,7 +807,7 @@ class _$ImageImpl implements _Image {
 
   @override
   String toString() {
-    return 'Image(url: $url, height: $height, width: $width)';
+    return 'ImageDto(url: $url, height: $height, width: $width)';
   }
 
   @override
@@ -822,7 +824,7 @@ class _$ImageImpl implements _Image {
   @override
   int get hashCode => Object.hash(runtimeType, url, height, width);
 
-  /// Create a copy of Image
+  /// Create a copy of ImageDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
@@ -838,7 +840,7 @@ class _$ImageImpl implements _Image {
   }
 }
 
-abstract class _Image implements Image {
+abstract class _Image implements ImageDto {
   factory _Image(
       {required final String url,
       required final int height,
@@ -853,7 +855,7 @@ abstract class _Image implements Image {
   @override
   int get width;
 
-  /// Create a copy of Image
+  /// Create a copy of ImageDto
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)

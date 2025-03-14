@@ -9,12 +9,12 @@ sealed class FavoriteListEvent extends Equatable {
 
 final class FavoriteListFetched extends FavoriteListEvent {}
 
-class FavoriteSongAdded extends FavoriteListEvent {
-  final Song song;
-  const FavoriteSongAdded(this.song);
+class FavoriteTrackAdded extends FavoriteListEvent {
+  final Track track;
+  const FavoriteTrackAdded(this.track);
 }
 
-class FavoriteSongRemoved extends FavoriteListEvent {
-  final Song song;
-  const FavoriteSongRemoved(this.song);
+class FavoriteTrackRemoved extends FavoriteListEvent {
+  final Track track;
+  const FavoriteTrackRemoved(this.track);
 }

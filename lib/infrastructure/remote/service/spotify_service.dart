@@ -15,12 +15,12 @@ abstract class SpotifyService {
   factory SpotifyService(Dio dio, {String baseUrl}) = _SpotifyService;
 
   @GET("$apiVersion/browse/categories")
-  Future<CategoriesResponse> getCategories(
+  Future<CategoriesResponse> getSeveralCategories(
     @Query("limit") int limit,
   );
 
   @GET("$apiVersion/albums")
-  Future<AlbumResponse> getAlbums(
+  Future<AlbumResponse> getSeveralAlbums(
     @Query("ids") String ids,
   );
 
@@ -30,7 +30,7 @@ abstract class SpotifyService {
   );
 
   @GET("$apiVersion/artists")
-  Future<ArtistsResponse> getArtists(
+  Future<ArtistsResponse> getSeveralArtists(
     @Query("ids") String ids,
   );
 

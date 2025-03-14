@@ -1,6 +1,6 @@
 import 'package:flutter_spotify_bootleg/domain/models/api_failure.dart';
 import 'package:flutter_spotify_bootleg/domain/models/models.dart';
-import 'package:flutter_spotify_bootleg/domain/models/song.dart';
+import 'package:flutter_spotify_bootleg/domain/models/track.dart';
 import 'package:dartz/dartz.dart';
 
 abstract interface class SpotifyRepository {
@@ -9,7 +9,7 @@ abstract interface class SpotifyRepository {
   Future<Either<ApiFailure,List<Artist>>> getSeveralArtists(String ids);
   Future<Either<ApiFailure,AlbumDetails>> getAlbumDetails(String id);
   Future<Either<ApiFailure, AlbumDetails>> getArtistTopTracks(String id);
-  Stream<List<Song>> getFavoritesStream();
-  Future<List<Song>> getFavorites();
+  Stream<List<Track>> getFavoritesStream();
+  Future<List<Track>> getFavorites();
   List<Playlist> getPlaylists(String categoryId);
 }

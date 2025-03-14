@@ -1,12 +1,12 @@
-import 'package:flutter_spotify_bootleg/infrastructure/local/entity/favorite_song_entity.dart';
+import 'package:flutter_spotify_bootleg/infrastructure/local/entity/favorite_track_entity.dart';
 import 'package:flutter_spotify_bootleg/infrastructure/mapper/artist_mapper.dart';
 import 'package:flutter_spotify_bootleg/infrastructure/remote/response/album_response.dart';
-import 'package:flutter_spotify_bootleg/domain/models/song.dart';
+import 'package:flutter_spotify_bootleg/domain/models/track.dart';
 import 'package:flutter_spotify_bootleg/infrastructure/remote/response/artist_tracks_response.dart';
 
-extension SongMapper on Item {
-  Song toSong(bool isFavorite) {
-    return Song(
+extension ItemDtoMapper on ItemDto {
+  Track toTrack(bool isFavorite) {
+    return Track(
       id: id,
       title: name,
       artist: artists.map((artist) => artist.toArtist().name).toList().join(', '),
@@ -15,9 +15,9 @@ extension SongMapper on Item {
   }
 }
 
-extension SongToFavoriteSong on Song {
-  FavoriteSong toFavoriteSong() {
-    return FavoriteSong(
+extension TrackMapper on Track {
+  FavoriteTrack toFavoriteTrack() {
+    return FavoriteTrack(
       id,
       title,
       artist,
@@ -25,9 +25,9 @@ extension SongToFavoriteSong on Song {
   }
 }
 
-extension FavoriteSongToSong on FavoriteSong {
-  Song toSong(bool isFavorite) {
-    return Song(
+extension FavoriteTrackMapper on FavoriteTrack {
+  Track toTrack(bool isFavorite) {
+    return Track(
       id: id,
       title: name,
       artist: artist,
@@ -36,9 +36,9 @@ extension FavoriteSongToSong on FavoriteSong {
   }
 }
 
-extension TrackMapper on Track {
-  Song toSong(bool isFavorite) {
-    return Song(
+extension TrackDtoMapper on TrackDto {
+  Track toTrack(bool isFavorite) {
+    return Track(
       id: id,
       title: name,
       artist: artists.map((artist) => artist.toArtist().name).toList().join(', '),

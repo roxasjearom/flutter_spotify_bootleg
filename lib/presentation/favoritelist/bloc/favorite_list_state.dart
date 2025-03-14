@@ -5,15 +5,15 @@ enum FavoriteListStatus { initial, success, failure }
 final class FavoriteListState extends Equatable {
   const FavoriteListState({
     this.status = FavoriteListStatus.initial,
-    this.songs = const <Song>[],
+    this.songs = const <Track>[],
   });
 
   final FavoriteListStatus status;
-  final List<Song> songs;
+  final List<Track> songs;
 
   FavoriteListState copyWith({
     FavoriteListStatus? status,
-    List<Song>? songs,
+    List<Track>? songs,
   }) {
     return FavoriteListState(
       status: status ?? this.status,

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_spotify_bootleg/domain/models/song.dart';
+import 'package:flutter_spotify_bootleg/domain/models/track.dart';
 
 class FavoriteItem extends StatelessWidget {
   const FavoriteItem({required this.favorite, super.key});
 
-  final Song favorite;
+  final Track favorite;
 
   @override
   Widget build(BuildContext context) {

@@ -21,7 +21,7 @@ class AlbumDto with _$AlbumDto {
     @JsonKey(name: 'total_tracks') required int totalTracks,
     required String href,
     required String id,
-    required List<Image> images,
+    required List<ImageDto> images,
     required String name,
     @JsonKey(name: 'release_date') required String releaseDate,
     @JsonKey(name: 'release_date_precision')
@@ -29,7 +29,7 @@ class AlbumDto with _$AlbumDto {
     required String type,
     required String uri,
     required List<ArtistDto> artists,
-    required Tracks tracks,
+    required AlbumTracksDto tracks,
     required List<Copyright> copyrights,
     required String label,
     required int popularity,
@@ -40,23 +40,23 @@ class AlbumDto with _$AlbumDto {
 }
 
 @freezed
-class Tracks with _$Tracks {
-  factory Tracks({
+class AlbumTracksDto with _$AlbumTracksDto {
+  factory AlbumTracksDto({
     required String href,
     required int limit,
     dynamic next,
     required int offset,
     dynamic previous,
     required int total,
-    required List<Item> items,
+    required List<ItemDto> items,
   }) = _Tracks;
 
-  factory Tracks.fromJson(Map<String, dynamic> json) => _$TracksFromJson(json);
+  factory AlbumTracksDto.fromJson(Map<String, dynamic> json) => _$AlbumTracksDtoFromJson(json);
 }
 
 @freezed
-class Item with _$Item {
-  factory Item({
+class ItemDto with _$ItemDto {
+  factory ItemDto({
     required List<ArtistDto> artists,
     @JsonKey(name: 'disc_number') required int discNumber,
     @JsonKey(name: 'duration_ms') required int durationMs,
@@ -71,7 +71,7 @@ class Item with _$Item {
     @JsonKey(name: 'is_local') required bool isLocal,
   }) = _Item;
 
-  factory Item.fromJson(Map<String, dynamic> json) => _$ItemFromJson(json);
+  factory ItemDto.fromJson(Map<String, dynamic> json) => _$ItemDtoFromJson(json);
 }
 
 @freezed

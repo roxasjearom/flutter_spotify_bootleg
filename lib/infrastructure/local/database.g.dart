@@ -72,7 +72,7 @@ class _$AppDatabase extends AppDatabase {
     changeListener = listener ?? StreamController<String>.broadcast();
   }
 
-  FavoriteSongDao? _favoriteSongDaoInstance;
+  FavoriteTrackDao? _favoriteSongDaoInstance;
 
   Future<sqflite.Database> open(
     String path,
@@ -96,7 +96,7 @@ class _$AppDatabase extends AppDatabase {
       },
       onCreate: (database, version) async {
         await database.execute(
-            'CREATE TABLE IF NOT EXISTS `FavoriteSong` (`id` TEXT NOT NULL, `name` TEXT NOT NULL, `artist` TEXT NOT NULL, PRIMARY KEY (`id`))');
+            'CREATE TABLE IF NOT EXISTS `FavoriteTrack` (`id` TEXT NOT NULL, `name` TEXT NOT NULL, `artist` TEXT NOT NULL, PRIMARY KEY (`id`))');
 
         await callback?.onCreate?.call(database, version);
       },
@@ -105,21 +105,21 @@ class _$AppDatabase extends AppDatabase {
   }
 
   @override
-  FavoriteSongDao get favoriteSongDao {
+  FavoriteTrackDao get favoriteSongDao {
     return _favoriteSongDaoInstance ??=
-        _$FavoriteSongDao(database, changeListener);
+        _$FavoriteTrackDao(database, changeListener);
   }
 }
 
-class _$FavoriteSongDao extends FavoriteSongDao {
-  _$FavoriteSongDao(
+class _$FavoriteTrackDao extends FavoriteTrackDao {
+  _$FavoriteTrackDao(
     this.database,
     this.changeListener,
   )   : _queryAdapter = QueryAdapter(database, changeListener),
-        _favoriteSongInsertionAdapter = InsertionAdapter(
+        _favoriteTrackInsertionAdapter = InsertionAdapter(
             database,
-            'FavoriteSong',
-            (FavoriteSong item) => <String, Object?>{
+            'FavoriteTrack',
+            (FavoriteTrack item) => <String, Object?>{
                   'id': item.id,
                   'name': item.name,
                   'artist': item.artist
@@ -132,42 +132,43 @@ class _$FavoriteSongDao extends FavoriteSongDao {
 
   final QueryAdapter _queryAdapter;
 
-  final InsertionAdapter<FavoriteSong> _favoriteSongInsertionAdapter;
+  final InsertionAdapter<FavoriteTrack> _favoriteTrackInsertionAdapter;
 
   @override
-  Stream<List<FavoriteSong>> getAllFavoritesStream() {
-    return _queryAdapter.queryListStream('SELECT * FROM FavoriteSong',
-        mapper: (Map<String, Object?> row) => FavoriteSong(row['id'] as String,
+  Stream<List<FavoriteTrack>> getAllFavoritesStream() {
+    return _queryAdapter.queryListStream('SELECT * FROM FavoriteTrack',
+        mapper: (Map<String, Object?> row) => FavoriteTrack(row['id'] as String,
             row['name'] as String, row['artist'] as String),
-        queryableName: 'FavoriteSong',
+        queryableName: 'FavoriteTrack',
         isView: false);
   }
 
   @override
-  Future<List<FavoriteSong>> getFavorites() async {
-    return _queryAdapter.queryList('SELECT * FROM FavoriteSong',
-        mapper: (Map<String, Object?> row) => FavoriteSong(row['id'] as String,
+  Future<List<FavoriteTrack>> getFavorites() async {
+    return _queryAdapter.queryList('SELECT * FROM FavoriteTrack',
+        mapper: (Map<String, Object?> row) => FavoriteTrack(row['id'] as String,
             row['name'] as String, row['artist'] as String));
   }
 
   @override
-  Stream<FavoriteSong?> getSpecificFavorite(int id) {
-    return _queryAdapter.queryStream('SELECT * FROM FavoriteSong WHERE id = ?1',
-        mapper: (Map<String, Object?> row) => FavoriteSong(row['id'] as String,
+  Stream<FavoriteTrack?> getSpecificFavorite(int id) {
+    return _queryAdapter.queryStream(
+        'SELECT * FROM FavoriteTrack WHERE id = ?1',
+        mapper: (Map<String, Object?> row) => FavoriteTrack(row['id'] as String,
             row['name'] as String, row['artist'] as String),
         arguments: [id],
-        queryableName: 'FavoriteSong',
+        queryableName: 'FavoriteTrack',
         isView: false);
   }
 
   @override
   Future<void> deleteFavorite(String id) async {
-    await _queryAdapter.queryNoReturn('DELETE FROM FavoriteSong where id = ?1',
+    await _queryAdapter.queryNoReturn('DELETE FROM FavoriteTrack where id = ?1',
         arguments: [id]);
   }
 
   @override
-  Future<void> insertFavorite(FavoriteSong song) async {
-    await _favoriteSongInsertionAdapter.insert(song, OnConflictStrategy.abort);
+  Future<void> insertFavorite(FavoriteTrack song) async {
+    await _favoriteTrackInsertionAdapter.insert(song, OnConflictStrategy.abort);
   }
 }

@@ -1,15 +1,12 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_spotify_bootleg/infrastructure/local/dao/favorite_song_dao.dart';
-import 'package:flutter_spotify_bootleg/di/service_locator.dart';
-import 'package:flutter_spotify_bootleg/domain/models/song.dart';
+import 'package:flutter_spotify_bootleg/domain/models/track.dart';
 import 'package:flutter_spotify_bootleg/domain/repository/spotify_repository.dart';
 
 part 'favorite_event.dart';
 part 'favorite_state.dart';
 
 class FavoriteBloc extends Bloc<FavoriteEvent, FavoriteState> {
-  final FavoriteSongDao songDao = getIt.get<FavoriteSongDao>();
   
   FavoriteBloc({
     required SpotifyRepository homeRepository,
