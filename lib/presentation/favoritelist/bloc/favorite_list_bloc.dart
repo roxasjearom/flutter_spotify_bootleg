@@ -1,20 +1,22 @@
+import 'dart:async';
+
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_spotify_bootleg/infrastructure/local/dao/favorite_track_dao.dart';
-import 'package:flutter_spotify_bootleg/infrastructure/local/entity/favorite_track_entity.dart';
+import 'package:flutter_spotify_bootleg/domain/repository/favorites_repository.dart';
 import 'package:flutter_spotify_bootleg/domain/models/track.dart';
-import 'package:flutter_spotify_bootleg/domain/repository/spotify_repository.dart';
 
 part 'favorite_list_event.dart';
 part 'favorite_list_state.dart';
 
 class FavoriteListBloc extends Bloc<FavoriteListEvent, FavoriteListState> {
   FavoriteListBloc({
-    required SpotifyRepository homeRepository,
-    required FavoriteTrackDao favoriteSongDao,
-  })  : _homeRepository = homeRepository,
-        _favoriteSongDao = favoriteSongDao,
+    required FavoritesRepository favoritesRepository,
+  })  : _favoritesRepository = favoritesRepository,
         super(const FavoriteListState()) {
+    _favoritesSubscription =
+        favoritesRepository.getFavoritesStream().listen((favorites) {
+      add(FavoriteListFetched());
+    });
     on<FavoriteListFetched>(_onFetched);
 
     on<FavoriteTrackAdded>(_onFavoriteFavoriteAdded);
@@ -22,19 +24,20 @@ class FavoriteListBloc extends Bloc<FavoriteListEvent, FavoriteListState> {
     on<FavoriteTrackRemoved>(_onFavoriteFavoriteRemoved);
   }
 
-  final SpotifyRepository _homeRepository;
-  final FavoriteTrackDao _favoriteSongDao;
+  final FavoritesRepository _favoritesRepository;
+
+  late StreamSubscription<List<Track>> _favoritesSubscription;
 
   Future<void> _onFetched(
     FavoriteListFetched event,
     Emitter<FavoriteListState> emit,
   ) async {
     try {
-      final favorites = await _homeRepository.getFavorites();
+      final favorites = await _favoritesRepository.getFavoritesStream().first;
       emit(
         state.copyWith(
           status: FavoriteListStatus.success,
-          songs: [...state.songs, ...favorites],
+          songs: favorites,
         ),
       );
     } catch (_) {
@@ -45,9 +48,7 @@ class FavoriteListBloc extends Bloc<FavoriteListEvent, FavoriteListState> {
   Future<void> _onFavoriteFavoriteAdded(
       FavoriteTrackAdded event, Emitter<FavoriteListState> emit) async {
     try {
-      final favoriteFavorite =
-          FavoriteTrack(event.track.id, event.track.title, event.track.artist);
-      await _favoriteSongDao.insertFavorite(favoriteFavorite);
+      await _favoritesRepository.addToFavorites(event.track);
     } catch (_) {
       emit(state.copyWith(status: FavoriteListStatus.failure));
     }
@@ -56,9 +57,15 @@ class FavoriteListBloc extends Bloc<FavoriteListEvent, FavoriteListState> {
   Future<void> _onFavoriteFavoriteRemoved(
       FavoriteTrackRemoved event, Emitter<FavoriteListState> emit) async {
     try {
-      await _favoriteSongDao.deleteFavorite(event.track.id);
+      await _favoritesRepository.removeFromFavorites(event.track);
     } catch (_) {
       emit(state.copyWith(status: FavoriteListStatus.failure));
     }
+  }
+
+  @override
+  Future<void> close() {
+    _favoritesSubscription.cancel();
+    return super.close();
   }
 }

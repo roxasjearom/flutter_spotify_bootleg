@@ -1,7 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_spotify_bootleg/domain/models/api_failure.dart';
-import 'package:flutter_spotify_bootleg/infrastructure/local/dao/favorite_track_dao.dart';
 import 'package:flutter_spotify_bootleg/infrastructure/mapper/album_mapper.dart';
 import 'package:flutter_spotify_bootleg/infrastructure/mapper/artist_mapper.dart';
 import 'package:flutter_spotify_bootleg/infrastructure/mapper/category_mapper.dart';
@@ -10,13 +9,11 @@ import 'package:flutter_spotify_bootleg/infrastructure/remote/response/artist_tr
 import 'package:flutter_spotify_bootleg/infrastructure/remote/response/artists_response.dart';
 import 'package:flutter_spotify_bootleg/infrastructure/remote/service/spotify_service.dart';
 import 'package:flutter_spotify_bootleg/domain/models/models.dart';
-import 'package:flutter_spotify_bootleg/domain/models/track.dart';
 import '../../domain/repository/spotify_repository.dart';
 
 class SpotifyRepositoryImpl implements SpotifyRepository {
-  SpotifyRepositoryImpl(this._favoriteTrackDao, this.spotifyService);
+  SpotifyRepositoryImpl(this.spotifyService);
 
-  final FavoriteTrackDao _favoriteTrackDao;
   final SpotifyService spotifyService;
 
   @override
@@ -72,21 +69,6 @@ class SpotifyRepositoryImpl implements SpotifyRepository {
     } catch (e) {
       return Left(ApiFailure(e.toString()));
     }
-  }
-
-  @override
-  Stream<List<Track>> getFavoritesStream() {
-    final favoriteSongsStream = _favoriteTrackDao.getAllFavoritesStream();
-
-    return favoriteSongsStream.map((favoriteSongList) => favoriteSongList
-        .map((favoriteSong) => favoriteSong.toTrack(false))
-        .toList());
-  }
-
-  @override
-  Future<List<Track>> getFavorites() async {
-    final favorites = await _favoriteTrackDao.getFavorites();
-    return favorites.map((favorite) => favorite.toTrack(true)).toList();
   }
 
   @override

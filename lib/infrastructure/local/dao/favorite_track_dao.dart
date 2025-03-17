@@ -13,7 +13,7 @@ abstract class FavoriteTrackDao {
   Stream<FavoriteTrack?> getSpecificFavorite(int id);
 
   @insert
-  Future<void> insertFavorite(FavoriteTrack song);
+  Future<void> insertFavorite(FavoriteTrack track);
 
   @Query('DELETE FROM FavoriteTrack where id = :id')
   Future<void> deleteFavorite(String id);

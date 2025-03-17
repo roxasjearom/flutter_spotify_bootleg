@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_spotify_bootleg/domain/repository/favorites_repository.dart';
 import 'package:flutter_spotify_bootleg/domain/repository/spotify_repository.dart';
 import 'package:flutter_spotify_bootleg/presentation/home/category/view/category_section.dart';
 import 'package:flutter_spotify_bootleg/presentation/home/favorite/bloc/favorite_bloc.dart';
@@ -52,7 +53,7 @@ class HomeScreen extends StatelessWidget {
         SizedBox(height: 8),
         BlocProvider(
           create: (_) => FavoriteBloc(
-            homeRepository: getIt.get<SpotifyRepository>(),
+            favoritesRepository: getIt.get<FavoritesRepository>(),
           )..add(FavoriteFetched()),
           child: const FavoriteSection(),
         ),

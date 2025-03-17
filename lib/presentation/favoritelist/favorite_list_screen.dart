@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_spotify_bootleg/infrastructure/local/dao/favorite_track_dao.dart';
+import 'package:flutter_spotify_bootleg/domain/repository/favorites_repository.dart';
 import 'package:flutter_spotify_bootleg/di/service_locator.dart';
-import 'package:flutter_spotify_bootleg/domain/repository/spotify_repository.dart';
 import 'package:flutter_spotify_bootleg/presentation/favoritelist/bloc/favorite_list_bloc.dart';
 import 'package:flutter_spotify_bootleg/presentation/tracklist/view/track_list_section.dart';
 import 'package:flutter_spotify_bootleg/presentation/theme/colors.dart';
@@ -14,8 +13,7 @@ class FavoriteListScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
         create: (_) => FavoriteListBloc(
-              homeRepository: getIt.get<SpotifyRepository>(),
-              favoriteSongDao: getIt.get<FavoriteTrackDao>(),
+              favoritesRepository: getIt.get<FavoritesRepository>(),
             )..add(FavoriteListFetched()),
         child: _FavoriteListPage());
   }
