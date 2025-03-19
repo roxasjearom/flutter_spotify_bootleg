@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_spotify_bootleg/domain/repository/favorites_repository.dart';
 import 'package:flutter_spotify_bootleg/infrastructure/local/dao/favorite_track_dao.dart';
 import 'package:flutter_spotify_bootleg/di/service_locator.dart';
 import 'package:flutter_spotify_bootleg/domain/repository/spotify_repository.dart';
@@ -20,8 +21,9 @@ class TrackListScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
         create: (_) => TrackListBloc(
+              id: id,
               spotifyRepository: getIt.get<SpotifyRepository>(),
-              favoriteSongDao: getIt.get<FavoriteTrackDao>(),
+              favoritesRepository: getIt.get<FavoritesRepository>(),
             )..add(TrackListFetched(id, sourceType)),
         child: _TrackListPage());
   }
@@ -57,7 +59,7 @@ class _TrackListPageState extends State<_TrackListPage> {
         ? 80
         : (MediaQuery.of(context).size.width / 320) * 50;
     infoBoxHeight = 160;
-    return BlocBuilder<TrackListBloc, SongListState>(builder: (context, state) {
+    return BlocBuilder<TrackListBloc, TrackListState>(builder: (context, state) {
       switch (state.status) {
         case TrackListStatus.initial:
           return const Center(child: CircularProgressIndicator());
@@ -95,16 +97,16 @@ class _TrackListPageState extends State<_TrackListPage> {
                           artist: state.artist,
                           infoBoxHeight: infoBoxHeight),
                       TrackListSection(
-                        tracks: state.songs,
-                        onAddFavoriteClicked: (song) {
+                        tracks: state.tracks,
+                        onAddFavoriteClicked: (track) {
                           context
                               .read<TrackListBloc>()
-                              .add(FavoriteTrackAdded(song));
+                              .add(FavoriteTrackAdded(track));
                         },
-                        onRemoveFavoriteClicked: (song) {
+                        onRemoveFavoriteClicked: (track) {
                           context
                               .read<TrackListBloc>()
-                              .add(FavoriteTrackRemoved(song));
+                              .add(FavoriteTrackRemoved(track));
                         },
                       ),
                     ],

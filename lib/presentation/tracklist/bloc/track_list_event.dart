@@ -13,12 +13,17 @@ final class TrackListFetched extends TrackListEvent {
   const TrackListFetched(this.id, this.sourceType);
 }
 
+final class TrackListStreamFetched extends TrackListEvent {
+  final String id;
+  const TrackListStreamFetched(this.id);
+}
+
 class FavoriteTrackAdded extends TrackListEvent {
   final Track track;
   const FavoriteTrackAdded(this.track);
 }
 
 class FavoriteTrackRemoved extends TrackListEvent {
-  final Track song;
-  const FavoriteTrackRemoved(this.song);
+  final Track track;
+  const FavoriteTrackRemoved(this.track);
 }

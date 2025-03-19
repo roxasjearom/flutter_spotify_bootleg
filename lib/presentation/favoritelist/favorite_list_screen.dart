@@ -87,16 +87,16 @@ class _FavoriteListPageState extends State<_FavoriteListPage> {
                     ),
                   ),
                   TrackListSection(
-                    tracks: state.songs,
-                    onAddFavoriteClicked: (song) {
+                    tracks: state.favoriteTracks,
+                    onAddFavoriteClicked: (track) {
                       context
                           .read<FavoriteListBloc>()
-                          .add(FavoriteTrackAdded(song));
+                          .add(FavoriteTrackAdded(track));
                     },
-                    onRemoveFavoriteClicked: (song) {
+                    onRemoveFavoriteClicked: (track) {
                       context
                           .read<FavoriteListBloc>()
-                          .add(FavoriteTrackRemoved(song));
+                          .add(FavoriteTrackRemoved(track));
                     },
                   ),
                 ],

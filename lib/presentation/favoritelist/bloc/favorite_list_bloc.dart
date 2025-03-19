@@ -37,7 +37,7 @@ class FavoriteListBloc extends Bloc<FavoriteListEvent, FavoriteListState> {
       emit(
         state.copyWith(
           status: FavoriteListStatus.success,
-          songs: favorites,
+          favoriteTracks: favorites,
         ),
       );
     } catch (_) {

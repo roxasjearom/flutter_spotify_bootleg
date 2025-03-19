@@ -29,7 +29,7 @@ Future<void> initLocator() async {
   });
 
   getIt.registerSingletonWithDependencies<FavoriteTrackDao>(
-      () => getIt<AppDatabase>().favoriteSongDao,
+      () => getIt<AppDatabase>().favoriteTrackDao,
       dependsOn: [AppDatabase]);
 
   //Authentication Service
@@ -69,8 +69,9 @@ Future<void> initLocator() async {
   getIt.registerSingletonWithDependencies<SpotifyRepository>(
       () => SpotifyRepositoryImpl(
             getIt.get<SpotifyService>(),
+            getIt.get<FavoriteTrackDao>(),
           ),
-      dependsOn: [SpotifyService]);
+      dependsOn: [SpotifyService, FavoriteTrackDao]);
 
   getIt.registerSingletonWithDependencies<FavoritesRepository>(
       () => FavoritesRepositoryImpl(

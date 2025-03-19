@@ -1,6 +1,7 @@
 import 'package:flutter_spotify_bootleg/domain/models/api_failure.dart';
 import 'package:flutter_spotify_bootleg/domain/models/models.dart';
 import 'package:dartz/dartz.dart';
+import 'package:flutter_spotify_bootleg/domain/models/track.dart';
 
 abstract interface class SpotifyRepository {
   Future<Either<ApiFailure, List<Category>>> getSeveralCategories(int limit);
@@ -8,5 +9,6 @@ abstract interface class SpotifyRepository {
   Future<Either<ApiFailure,List<Artist>>> getSeveralArtists(String ids);
   Future<Either<ApiFailure,AlbumDetails>> getAlbumDetails(String id);
   Future<Either<ApiFailure, AlbumDetails>> getArtistTopTracks(String id);
+  Stream<List<Track>> getAlbumTracksStream(String id);
   List<Playlist> getPlaylists(String categoryId);
 }

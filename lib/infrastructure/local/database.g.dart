@@ -72,7 +72,7 @@ class _$AppDatabase extends AppDatabase {
     changeListener = listener ?? StreamController<String>.broadcast();
   }
 
-  FavoriteTrackDao? _favoriteSongDaoInstance;
+  FavoriteTrackDao? _favoriteTrackDaoInstance;
 
   Future<sqflite.Database> open(
     String path,
@@ -105,8 +105,8 @@ class _$AppDatabase extends AppDatabase {
   }
 
   @override
-  FavoriteTrackDao get favoriteSongDao {
-    return _favoriteSongDaoInstance ??=
+  FavoriteTrackDao get favoriteTrackDao {
+    return _favoriteTrackDaoInstance ??=
         _$FavoriteTrackDao(database, changeListener);
   }
 }
@@ -168,7 +168,7 @@ class _$FavoriteTrackDao extends FavoriteTrackDao {
   }
 
   @override
-  Future<void> insertFavorite(FavoriteTrack song) async {
-    await _favoriteTrackInsertionAdapter.insert(song, OnConflictStrategy.abort);
+  Future<void> insertFavorite(FavoriteTrack track) async {
+    await _favoriteTrackInsertionAdapter.insert(track, OnConflictStrategy.replace);
   }
 }

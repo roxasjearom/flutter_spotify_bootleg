@@ -1,20 +1,26 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_spotify_bootleg/domain/models/api_failure.dart';
+import 'package:flutter_spotify_bootleg/domain/models/track.dart';
+import 'package:flutter_spotify_bootleg/infrastructure/local/dao/favorite_track_dao.dart';
+import 'package:flutter_spotify_bootleg/infrastructure/local/entity/favorite_track_entity.dart';
 import 'package:flutter_spotify_bootleg/infrastructure/mapper/album_mapper.dart';
 import 'package:flutter_spotify_bootleg/infrastructure/mapper/artist_mapper.dart';
 import 'package:flutter_spotify_bootleg/infrastructure/mapper/category_mapper.dart';
 import 'package:flutter_spotify_bootleg/infrastructure/mapper/track_mapper.dart';
+import 'package:flutter_spotify_bootleg/infrastructure/remote/response/album_response.dart';
 import 'package:flutter_spotify_bootleg/infrastructure/remote/response/artist_tracks_response.dart';
 import 'package:flutter_spotify_bootleg/infrastructure/remote/response/artists_response.dart';
 import 'package:flutter_spotify_bootleg/infrastructure/remote/service/spotify_service.dart';
 import 'package:flutter_spotify_bootleg/domain/models/models.dart';
+import 'package:rxdart/rxdart.dart';
 import '../../domain/repository/spotify_repository.dart';
 
 class SpotifyRepositoryImpl implements SpotifyRepository {
-  SpotifyRepositoryImpl(this.spotifyService);
+  SpotifyRepositoryImpl(this.spotifyService, this.favoriteTrackDao);
 
   final SpotifyService spotifyService;
+  final FavoriteTrackDao favoriteTrackDao;
 
   @override
   Future<Either<ApiFailure, List<Category>>> getSeveralCategories(
@@ -128,7 +134,7 @@ class SpotifyRepositoryImpl implements SpotifyRepository {
       final artistDetails = results[0] as ArtistDto;
       final artistTopTracks = results[1] as ArtistTracksResponse;
 
-      final songs =
+      final tracks =
           artistTopTracks.tracks.map((track) => track.toTrack(false)).toList();
 
       return Right(AlbumDetails(
@@ -136,12 +142,38 @@ class SpotifyRepositoryImpl implements SpotifyRepository {
         name: artistDetails.name,
         artist: artistDetails.name,
         imageUrl: artistDetails.images?.firstOrNull?.url ?? "",
-        tracks: songs,
+        tracks: tracks,
       ));
     } on DioException catch (e) {
       return Left(ApiFailure(e.message ?? 'Unknown error'));
     } catch (e) {
       return Left(ApiFailure(e.toString()));
     }
+  }
+
+  @override
+  Stream<List<Track>> getAlbumTracksStream(String id) {
+    final albumTracksStream = _getAlbumTracks(id);
+    final favoritesStream = favoriteTrackDao.getAllFavoritesStream();
+
+    return Rx.combineLatest2<List<ItemDto>, List<FavoriteTrack>, List<Track>>(
+      albumTracksStream,
+      favoritesStream,
+      (itemDtos, favoriteTracks) {
+        final favoriteTrackIds = favoriteTracks.map((fav) => fav.id).toSet();
+        return itemDtos.map((trackDto) {
+          final isFavorite = favoriteTrackIds.contains(trackDto.id);
+          return trackDto.toTrack(isFavorite);
+        }).toList();
+      },
+    );
+  }
+
+  Stream<List<ItemDto>> _getAlbumTracks(String id) {
+    return Stream.fromFuture(
+    spotifyService.getAlbumDetails(id).then((albumDetailsResponse) {
+      return albumDetailsResponse.tracks.items;
+    }),
+  );
   }
 }

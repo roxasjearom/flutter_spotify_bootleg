@@ -9,5 +9,5 @@ part 'database.g.dart';
 
 @Database(version: 1, entities: [FavoriteTrack])
 abstract class AppDatabase extends FloorDatabase {
-  FavoriteTrackDao get favoriteSongDao;
+  FavoriteTrackDao get favoriteTrackDao;
 }
