@@ -153,15 +153,15 @@ class SpotifyRepositoryImpl implements SpotifyRepository {
 
   @override
   Stream<List<Track>> getAlbumTracksStream(String id) {
-    final albumTracksStream = _getAlbumTracks(id);
+    final albumTracksStream = _getAlbumTracksStream(id);
     final favoritesStream = favoriteTrackDao.getAllFavoritesStream();
 
     return Rx.combineLatest2<List<ItemDto>, List<FavoriteTrack>, List<Track>>(
       albumTracksStream,
       favoritesStream,
-      (itemDtos, favoriteTracks) {
+      (albumTracks, favoriteTracks) {
         final favoriteTrackIds = favoriteTracks.map((fav) => fav.id).toSet();
-        return itemDtos.map((trackDto) {
+        return albumTracks.map((trackDto) {
           final isFavorite = favoriteTrackIds.contains(trackDto.id);
           return trackDto.toTrack(isFavorite);
         }).toList();
@@ -169,11 +169,37 @@ class SpotifyRepositoryImpl implements SpotifyRepository {
     );
   }
 
-  Stream<List<ItemDto>> _getAlbumTracks(String id) {
+  @override
+  Stream<List<Track>> getArtistTopTracksStream(String id) {
+    final artistTopTracksStream = _getArtistTopTracksStream(id);
+    final favoritesStream = favoriteTrackDao.getAllFavoritesStream();
+
+    return Rx.combineLatest2<List<TrackDto>, List<FavoriteTrack>, List<Track>>(
+      artistTopTracksStream,
+      favoritesStream,
+      (topTracks, favoriteTracks) {
+        final favoriteTrackIds = favoriteTracks.map((fav) => fav.id).toSet();
+        return topTracks.map((trackDto) {
+          final isFavorite = favoriteTrackIds.contains(trackDto.id);
+          return trackDto.toTrack(isFavorite);
+        }).toList();
+      },
+    );
+  }
+
+  Stream<List<ItemDto>> _getAlbumTracksStream(String id) {
     return Stream.fromFuture(
-    spotifyService.getAlbumDetails(id).then((albumDetailsResponse) {
-      return albumDetailsResponse.tracks.items;
-    }),
-  );
+      spotifyService.getAlbumDetails(id).then((albumDetailsResponse) {
+        return albumDetailsResponse.tracks.items;
+      }),
+    );
+  }
+
+  Stream<List<TrackDto>> _getArtistTopTracksStream(String id) {
+    return Stream.fromFuture(
+      spotifyService.getArtistTopTracks(id).then((artistTopTracksResponse) {
+        return artistTopTracksResponse.tracks;
+      }),
+    );
   }
 }

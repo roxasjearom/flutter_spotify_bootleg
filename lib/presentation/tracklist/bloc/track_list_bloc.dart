@@ -6,7 +6,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spotify_bootleg/domain/models/album_details.dart';
 import 'package:flutter_spotify_bootleg/domain/models/api_failure.dart';
 import 'package:flutter_spotify_bootleg/domain/repository/favorites_repository.dart';
-import 'package:flutter_spotify_bootleg/infrastructure/local/entity/favorite_track_entity.dart';
 import 'package:flutter_spotify_bootleg/domain/models/track.dart';
 import 'package:flutter_spotify_bootleg/domain/repository/spotify_repository.dart';
 
@@ -16,19 +15,21 @@ part 'track_list_state.dart';
 class TrackListBloc extends Bloc<TrackListEvent, TrackListState> {
   TrackListBloc({
     required String id,
+    required SourceType sourceType,
     required SpotifyRepository spotifyRepository,
     required FavoritesRepository favoritesRepository,
   })  : _id = id,
+        _sourceType = sourceType,
         _spotifyRepository = spotifyRepository,
         _favoritesRepository = favoritesRepository,
         super(const TrackListState()) {
     _trackListSubscription =
-        spotifyRepository.getAlbumTracksStream(_id).listen((favorites) {
-      add(TrackListStreamFetched(_id));
+        _getTracksStream(_id, _sourceType).listen((tracks) {
+      add(TrackListStreamFetched(_id, _sourceType));
     });
     on<TrackListFetched>(_onFetched);
 
-    on<TrackListStreamFetched>(_onStreamFetched);
+    on<TrackListStreamFetched>(_onTrackListStreamFetched);
 
     on<FavoriteTrackAdded>(_onFavoriteTrackAdded);
 
@@ -36,18 +37,18 @@ class TrackListBloc extends Bloc<TrackListEvent, TrackListState> {
   }
 
   final String _id;
+  final SourceType _sourceType;
   final SpotifyRepository _spotifyRepository;
   final FavoritesRepository _favoritesRepository;
 
   late StreamSubscription<List<Track>> _trackListSubscription;
 
-  Future<void> _onStreamFetched(
+  Future<void> _onTrackListStreamFetched(
     TrackListStreamFetched event,
     Emitter<TrackListState> emit,
   ) async {
     try {
-      final tracks =
-          await _spotifyRepository.getAlbumTracksStream(event.id).first;
+      List<Track> tracks = await _getTracksStream(event.id, event.sourceType).first;
       emit(
         state.copyWith(
           status: TrackListStatus.success,
@@ -59,16 +60,23 @@ class TrackListBloc extends Bloc<TrackListEvent, TrackListState> {
     }
   }
 
+  Stream<List<Track>> _getTracksStream(String id, SourceType sourceType) {
+    Stream<List<Track>> tracks;
+    switch (sourceType) {
+      case SourceType.artist:
+        tracks = _spotifyRepository.getArtistTopTracksStream(id);
+      case SourceType.album:
+        tracks = _spotifyRepository.getAlbumTracksStream(id);
+    }
+    return tracks;
+  }
+
   Future<void> _onFetched(
     TrackListFetched event,
     Emitter<TrackListState> emit,
   ) async {
     Either<ApiFailure, AlbumDetails> albumDetailsResponse;
     switch (event.sourceType) {
-      case SourceType.category:
-        // TODO: Update this case.
-        albumDetailsResponse =
-            await _spotifyRepository.getAlbumDetails(event.id);
       case SourceType.artist:
         albumDetailsResponse =
             await _spotifyRepository.getArtistTopTracks(event.id);
@@ -86,7 +94,6 @@ class TrackListBloc extends Bloc<TrackListEvent, TrackListState> {
                 name: albumDetails.name,
                 artist: albumDetails.artist,
                 imageUrl: albumDetails.imageUrl,
-                //tracks: [...state.tracks, ...albumDetails.tracks],
               ),
             ));
   }
@@ -94,8 +101,6 @@ class TrackListBloc extends Bloc<TrackListEvent, TrackListState> {
   Future<void> _onFavoriteTrackAdded(
       FavoriteTrackAdded event, Emitter<TrackListState> emit) async {
     try {
-      final favoriteTrack =
-          FavoriteTrack(event.track.id, event.track.title, event.track.artist);
       await _favoritesRepository.addToFavorites(event.track);
     } catch (_) {
       emit(state.copyWith(status: TrackListStatus.failure));

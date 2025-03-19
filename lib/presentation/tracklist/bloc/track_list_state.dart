@@ -2,7 +2,7 @@ part of 'track_list_bloc.dart';
 
 enum TrackListStatus { initial, success, failure }
 
-enum SourceType { category, artist, album }
+enum SourceType { artist, album }
 
 final class TrackListState extends Equatable {
   const TrackListState({

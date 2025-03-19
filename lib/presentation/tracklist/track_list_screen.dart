@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spotify_bootleg/domain/repository/favorites_repository.dart';
-import 'package:flutter_spotify_bootleg/infrastructure/local/dao/favorite_track_dao.dart';
 import 'package:flutter_spotify_bootleg/di/service_locator.dart';
 import 'package:flutter_spotify_bootleg/domain/repository/spotify_repository.dart';
 import 'package:flutter_spotify_bootleg/presentation/tracklist/view/album_info_section.dart';
@@ -22,6 +21,7 @@ class TrackListScreen extends StatelessWidget {
     return BlocProvider(
         create: (_) => TrackListBloc(
               id: id,
+              sourceType: sourceType,
               spotifyRepository: getIt.get<SpotifyRepository>(),
               favoritesRepository: getIt.get<FavoritesRepository>(),
             )..add(TrackListFetched(id, sourceType)),

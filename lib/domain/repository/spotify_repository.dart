@@ -10,5 +10,6 @@ abstract interface class SpotifyRepository {
   Future<Either<ApiFailure,AlbumDetails>> getAlbumDetails(String id);
   Future<Either<ApiFailure, AlbumDetails>> getArtistTopTracks(String id);
   Stream<List<Track>> getAlbumTracksStream(String id);
+  Stream<List<Track>> getArtistTopTracksStream(String id);
   List<Playlist> getPlaylists(String categoryId);
 }

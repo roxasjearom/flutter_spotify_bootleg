@@ -15,7 +15,8 @@ final class TrackListFetched extends TrackListEvent {
 
 final class TrackListStreamFetched extends TrackListEvent {
   final String id;
-  const TrackListStreamFetched(this.id);
+  final SourceType sourceType;
+  const TrackListStreamFetched(this.id, this.sourceType);
 }
 
 class FavoriteTrackAdded extends TrackListEvent {
