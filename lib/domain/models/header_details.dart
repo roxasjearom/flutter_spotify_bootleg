@@ -1,23 +1,20 @@
 import 'package:equatable/equatable.dart';
 
-import 'track.dart';
-
 final class HeaderDetails extends Equatable {
-  const HeaderDetails(
-      {required this.id,
-      required this.name,
-      required this.artist,
-      required this.imageUrl,
-      required this.subHeaderValue,
-      required this.tracks});
+  const HeaderDetails({
+    required this.id,
+    required this.name,
+    required this.artist,
+    required this.imageUrl,
+    required this.subHeaderValue,
+  });
 
   final String id;
   final String name;
   final String artist;
   final String imageUrl;
   final String? subHeaderValue;
-  final List<Track> tracks;
 
   @override
-  List<Object> get props => [id, name, imageUrl, tracks];
+  List<Object> get props => [id, name, artist, imageUrl];
 }

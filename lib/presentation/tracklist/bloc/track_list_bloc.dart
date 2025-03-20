@@ -80,7 +80,7 @@ class TrackListBloc extends Bloc<TrackListEvent, TrackListState> {
     switch (event.sourceType) {
       case SourceType.artist:
         albumDetailsResponse =
-            await _spotifyRepository.getArtistTopTracks(event.id);
+            await _spotifyRepository.getArtistDetails(event.id);
       case SourceType.album:
         albumDetailsResponse =
             await _spotifyRepository.getAlbumDetails(event.id);
