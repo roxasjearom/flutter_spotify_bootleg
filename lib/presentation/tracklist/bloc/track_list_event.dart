@@ -7,10 +7,10 @@ sealed class TrackListEvent extends Equatable {
   List<Object> get props => [];
 }
 
-final class TrackListFetched extends TrackListEvent {
+final class HeaderDetailsFetched extends TrackListEvent {
   final String id;
   final SourceType sourceType;
-  const TrackListFetched(this.id, this.sourceType);
+  const HeaderDetailsFetched(this.id, this.sourceType);
 }
 
 final class TrackListStreamFetched extends TrackListEvent {

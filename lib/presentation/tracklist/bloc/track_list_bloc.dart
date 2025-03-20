@@ -3,7 +3,8 @@ import 'dart:async';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_spotify_bootleg/domain/models/album_details.dart';
+import 'package:flutter_spotify_bootleg/domain/enumerations/source_type.dart';
+import 'package:flutter_spotify_bootleg/domain/models/header_details.dart';
 import 'package:flutter_spotify_bootleg/domain/models/api_failure.dart';
 import 'package:flutter_spotify_bootleg/domain/repository/favorites_repository.dart';
 import 'package:flutter_spotify_bootleg/domain/models/track.dart';
@@ -27,7 +28,7 @@ class TrackListBloc extends Bloc<TrackListEvent, TrackListState> {
         _getTracksStream(_id, _sourceType).listen((tracks) {
       add(TrackListStreamFetched(_id, _sourceType));
     });
-    on<TrackListFetched>(_onFetched);
+    on<HeaderDetailsFetched>(_onHeaderDetailsFetched);
 
     on<TrackListStreamFetched>(_onTrackListStreamFetched);
 
@@ -71,11 +72,11 @@ class TrackListBloc extends Bloc<TrackListEvent, TrackListState> {
     return tracks;
   }
 
-  Future<void> _onFetched(
-    TrackListFetched event,
+  Future<void> _onHeaderDetailsFetched(
+    HeaderDetailsFetched event,
     Emitter<TrackListState> emit,
   ) async {
-    Either<ApiFailure, AlbumDetails> albumDetailsResponse;
+    Either<ApiFailure, HeaderDetails> albumDetailsResponse;
     switch (event.sourceType) {
       case SourceType.artist:
         albumDetailsResponse =
@@ -94,6 +95,8 @@ class TrackListBloc extends Bloc<TrackListEvent, TrackListState> {
                 name: albumDetails.name,
                 artist: albumDetails.artist,
                 imageUrl: albumDetails.imageUrl,
+                sourceType: event.sourceType,
+                subHeaderValue: albumDetails.subHeaderValue,
               ),
             ));
   }

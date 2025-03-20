@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_spotify_bootleg/domain/enumerations/source_type.dart';
 import 'package:flutter_spotify_bootleg/domain/repository/favorites_repository.dart';
 import 'package:flutter_spotify_bootleg/di/service_locator.dart';
 import 'package:flutter_spotify_bootleg/domain/repository/spotify_repository.dart';
-import 'package:flutter_spotify_bootleg/presentation/tracklist/album_info_section.dart';
+import 'package:flutter_spotify_bootleg/presentation/tracklist/header_details_section.dart';
 import 'package:flutter_spotify_bootleg/presentation/widgets/custom_appbar/sliver_custom_appbar.dart';
 import 'package:flutter_spotify_bootleg/presentation/tracklist/play_pause_button.dart';
 import 'package:flutter_spotify_bootleg/presentation/tracklist/track_list_section.dart';
@@ -24,7 +25,7 @@ class TrackListScreen extends StatelessWidget {
               sourceType: sourceType,
               spotifyRepository: getIt.get<SpotifyRepository>(),
               favoritesRepository: getIt.get<FavoritesRepository>(),
-            )..add(TrackListFetched(id, sourceType)),
+            )..add(HeaderDetailsFetched(id, sourceType)),
         child: _TrackListPage());
   }
 }
@@ -91,11 +92,14 @@ class _TrackListPageState extends State<_TrackListPage> {
                         maxAppBarHeight: maxAppBarHeight,
                         minAppBarHeight: minAppBarHeight,
                       ),
-                      AlbumInfoSection(
+                      HeaderDetailsSection(
                           title: state.name,
                           imageUrl: state.imageUrl,
                           artist: state.artist,
-                          infoBoxHeight: infoBoxHeight),
+                          subHeaderValue: state.subHeaderValue,
+                          infoBoxHeight: infoBoxHeight,
+                          sourceType: state.sourceType,
+                          ),
                       TrackListSection(
                         tracks: state.tracks,
                         onAddFavoriteClicked: (track) {

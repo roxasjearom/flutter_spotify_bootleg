@@ -1,18 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spotify_bootleg/domain/enumerations/source_type.dart';
 
-class AlbumInfoSection extends StatelessWidget {
-  const AlbumInfoSection({
+class HeaderDetailsSection extends StatelessWidget {
+  const HeaderDetailsSection({
     super.key,
     required this.title,
     required this.imageUrl,
     required this.artist,
     required this.infoBoxHeight,
+    required this.subHeaderValue,
+    required this.sourceType,
   });
 
   final String title;
   final String imageUrl;
   final String artist;
+  final String subHeaderValue;
   final double infoBoxHeight;
+  final SourceType sourceType;
 
   @override
   Widget build(BuildContext context) {
@@ -64,8 +69,8 @@ class AlbumInfoSection extends StatelessWidget {
                 const SizedBox(
                   height: 4,
                 ),
-                const Text(
-                  "Album . 2021", //TODO add actual date
+                Text(
+                  formatSubHeaderValue(sourceType, subHeaderValue),
                   style: TextStyle(
                     color: Colors.white70,
                   ),
@@ -101,5 +106,12 @@ class AlbumInfoSection extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  String formatSubHeaderValue(SourceType sourceType, String subHeader) {
+    return switch (sourceType) {
+      SourceType.artist => 'Artist . $subHeader followers',
+      SourceType.album => 'Album . $subHeader',
+  };
   }
 }

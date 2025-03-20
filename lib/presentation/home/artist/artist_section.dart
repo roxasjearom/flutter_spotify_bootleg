@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_spotify_bootleg/domain/enumerations/source_type.dart';
 import 'package:flutter_spotify_bootleg/domain/models/artist.dart';
-import 'package:flutter_spotify_bootleg/presentation/tracklist/bloc/track_list_bloc.dart';
 import 'package:flutter_spotify_bootleg/presentation/tracklist/track_list_screen.dart';
 
 import 'bloc/artist_bloc.dart';

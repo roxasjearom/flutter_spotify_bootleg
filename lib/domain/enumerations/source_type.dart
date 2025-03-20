@@ -1,0 +1,1 @@
+enum SourceType { artist, album }

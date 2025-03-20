@@ -13,6 +13,7 @@ import 'package:flutter_spotify_bootleg/infrastructure/remote/response/artist_tr
 import 'package:flutter_spotify_bootleg/infrastructure/remote/response/artists_response.dart';
 import 'package:flutter_spotify_bootleg/infrastructure/remote/service/spotify_service.dart';
 import 'package:flutter_spotify_bootleg/domain/models/models.dart';
+import 'package:flutter_spotify_bootleg/utils/utils.dart';
 import 'package:rxdart/rxdart.dart';
 import '../../domain/repository/spotify_repository.dart';
 
@@ -66,10 +67,10 @@ class SpotifyRepositoryImpl implements SpotifyRepository {
   }
 
   @override
-  Future<Either<ApiFailure, AlbumDetails>> getAlbumDetails(String id) async {
+  Future<Either<ApiFailure, HeaderDetails>> getAlbumDetails(String id) async {
     try {
       final albumDetailsResponse = await spotifyService.getAlbumDetails(id);
-      return Right(albumDetailsResponse.toAlbumDetails());
+      return Right(albumDetailsResponse.toHeaderDetails());
     } on DioException catch (e) {
       return Left(ApiFailure(e.message ?? 'Unknown error'));
     } catch (e) {
@@ -78,7 +79,7 @@ class SpotifyRepositoryImpl implements SpotifyRepository {
   }
 
   @override
-  Future<Either<ApiFailure, AlbumDetails>> getArtistTopTracks(String id) async {
+  Future<Either<ApiFailure, HeaderDetails>> getArtistTopTracks(String id) async {
     try {
       final results = await Future.wait([
         spotifyService.getArtistDetails(id),
@@ -91,11 +92,12 @@ class SpotifyRepositoryImpl implements SpotifyRepository {
       final tracks =
           artistTopTracks.tracks.map((track) => track.toTrack(false)).toList();
 
-      return Right(AlbumDetails(
+      return Right(HeaderDetails(
         id: id,
         name: artistDetails.name,
         artist: artistDetails.name,
         imageUrl: artistDetails.images?.firstOrNull?.url ?? "",
+        subHeaderValue: formatNumberToShortString(artistDetails.followers?.total ?? 0),
         tracks: tracks,
       ));
     } on DioException catch (e) {

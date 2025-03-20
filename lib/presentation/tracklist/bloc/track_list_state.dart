@@ -2,14 +2,13 @@ part of 'track_list_bloc.dart';
 
 enum TrackListStatus { initial, success, failure }
 
-enum SourceType { artist, album }
-
 final class TrackListState extends Equatable {
   const TrackListState({
     this.id = "",
     this.name = "",
     this.artist = "",
     this.imageUrl = "",
+    this.subHeaderValue = "",
     this.status = TrackListStatus.initial,
     this.sourceType = SourceType.album,
     this.tracks = const <Track>[],
@@ -19,6 +18,7 @@ final class TrackListState extends Equatable {
   final String name;
   final String artist;
   final String imageUrl;
+  final String subHeaderValue;
   final TrackListStatus status;
   final SourceType sourceType;
   final List<Track> tracks;
@@ -28,6 +28,7 @@ final class TrackListState extends Equatable {
     String? name,
     String? artist,
     String? imageUrl,
+    String? subHeaderValue,
     TrackListStatus? status,
     SourceType? sourceType,
     List<Track>? tracks,
@@ -37,6 +38,7 @@ final class TrackListState extends Equatable {
       name: name ?? this.name,
       artist: artist ?? this.artist,
       imageUrl: imageUrl ?? this.imageUrl,
+      subHeaderValue: subHeaderValue ?? this.subHeaderValue,
       status: status ?? this.status,
       sourceType: sourceType ?? this.sourceType,
       tracks: tracks ?? this.tracks,
