@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_spotify_bootleg/presentation/categorylist/category_list_screen.dart';
 import 'package:flutter_spotify_bootleg/presentation/home/category/bloc/category_bloc.dart';
 import 'package:flutter_spotify_bootleg/presentation/home/category/category_item.dart';
 import 'package:flutter_spotify_bootleg/presentation/playlist/playlist_screen.dart';
@@ -88,7 +89,12 @@ class HeaderSection extends StatelessWidget {
             )),
         TextButton(
             onPressed: () {
-              //TODO show all categories
+              Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              CategoryListScreen()),
+                    );
             },
             child: Text("Show all"))
       ],
