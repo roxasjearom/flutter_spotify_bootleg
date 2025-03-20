@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spotify_bootleg/domain/repository/favorites_repository.dart';
 import 'package:flutter_spotify_bootleg/di/service_locator.dart';
 import 'package:flutter_spotify_bootleg/presentation/favoritelist/bloc/favorite_list_bloc.dart';
-import 'package:flutter_spotify_bootleg/presentation/tracklist/view/track_list_section.dart';
+import 'package:flutter_spotify_bootleg/presentation/tracklist/track_list_section.dart';
 import 'package:flutter_spotify_bootleg/presentation/theme/colors.dart';
 
 class FavoriteListScreen extends StatelessWidget {

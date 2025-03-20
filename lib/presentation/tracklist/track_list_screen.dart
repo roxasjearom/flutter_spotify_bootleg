@@ -3,10 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spotify_bootleg/domain/repository/favorites_repository.dart';
 import 'package:flutter_spotify_bootleg/di/service_locator.dart';
 import 'package:flutter_spotify_bootleg/domain/repository/spotify_repository.dart';
-import 'package:flutter_spotify_bootleg/presentation/tracklist/view/album_info_section.dart';
-import 'package:flutter_spotify_bootleg/presentation/tracklist/view/custom_appbar/sliver_custom_appbar.dart';
-import 'package:flutter_spotify_bootleg/presentation/tracklist/view/play_pause_button.dart';
-import 'package:flutter_spotify_bootleg/presentation/tracklist/view/track_list_section.dart';
+import 'package:flutter_spotify_bootleg/presentation/tracklist/album_info_section.dart';
+import 'package:flutter_spotify_bootleg/presentation/widgets/custom_appbar/sliver_custom_appbar.dart';
+import 'package:flutter_spotify_bootleg/presentation/tracklist/play_pause_button.dart';
+import 'package:flutter_spotify_bootleg/presentation/tracklist/track_list_section.dart';
 
 import 'bloc/track_list_bloc.dart';
 

@@ -4,7 +4,7 @@ import 'package:flutter_spotify_bootleg/di/service_locator.dart';
 import 'package:flutter_spotify_bootleg/domain/models/playlist.dart';
 import 'package:flutter_spotify_bootleg/domain/repository/spotify_repository.dart';
 import 'package:flutter_spotify_bootleg/presentation/playlist/bloc/playlist_bloc.dart';
-import 'package:flutter_spotify_bootleg/presentation/playlist/view/playlist_item.dart';
+import 'package:flutter_spotify_bootleg/presentation/playlist/playlist_item.dart';
 
 class PlaylistScreen extends StatelessWidget {
   const PlaylistScreen({super.key});

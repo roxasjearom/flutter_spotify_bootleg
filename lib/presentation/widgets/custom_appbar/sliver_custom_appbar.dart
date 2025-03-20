@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_spotify_bootleg/presentation/tracklist/view/custom_appbar/album_image.dart';
-import 'package:flutter_spotify_bootleg/presentation/tracklist/view/custom_appbar/fixed_appbar.dart';
-import 'package:flutter_spotify_bootleg/presentation/tracklist/view/custom_appbar/sliver_appbar_delegate.dart';
+import 'package:flutter_spotify_bootleg/presentation/widgets/custom_appbar/album_image.dart';
+import 'package:flutter_spotify_bootleg/presentation/widgets/custom_appbar/fixed_appbar.dart';
+import 'package:flutter_spotify_bootleg/presentation/widgets/custom_appbar/sliver_appbar_delegate.dart';
 
 class SliverCustomeAppBar extends StatelessWidget {
   const SliverCustomeAppBar({

@@ -1,60 +1,60 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_spotify_bootleg/domain/models/album.dart';
+import 'package:flutter_spotify_bootleg/domain/models/artist.dart';
 import 'package:flutter_spotify_bootleg/presentation/tracklist/bloc/track_list_bloc.dart';
 import 'package:flutter_spotify_bootleg/presentation/tracklist/track_list_screen.dart';
 
-import '../bloc/album_bloc.dart';
-import 'album_item.dart';
+import 'bloc/artist_bloc.dart';
+import 'artist_item.dart';
 
-class AlbumSection extends StatefulWidget {
-  const AlbumSection({super.key});
+class ArtistSection extends StatefulWidget {
+  const ArtistSection({super.key});
 
   @override
-  State<StatefulWidget> createState() => _AlbumSectionState();
+  State<StatefulWidget> createState() => _ArtistSectionState();
 }
 
-class _AlbumSectionState extends State<AlbumSection> {
+class _ArtistSectionState extends State<ArtistSection> {
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<AlbumBloc, AlbumState>(builder: (context, state) {
+    return BlocBuilder<ArtistBloc, ArtistState>(builder: (context, state) {
       switch (state.status) {
-        case AlbumStatus.initial:
+        case ArtistStatus.initial:
           return const Center(child: CircularProgressIndicator());
 
-        case AlbumStatus.success:
-          if (state.albums.isEmpty) {
-            return const Center(child: Text('No album to show'));
+        case ArtistStatus.success:
+          if (state.artists.isEmpty) {
+            return const Center(child: Text('No artist to show'));
           }
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Albums",
+                "Artists",
                 style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
                 ),
               ),
               SizedBox(height: 8),
-              AlbumList(albums: state.albums),
+              ArtistList(artists: state.artists),
             ],
           );
 
-        case AlbumStatus.failure:
-          return const Center(child: Text('Failed to fetch albums'));
+        case ArtistStatus.failure:
+          return const Center(child: Text('Failed to fetch artists'));
       }
     });
   }
 }
 
-class AlbumList extends StatelessWidget {
-  const AlbumList({
+class ArtistList extends StatelessWidget {
+  const ArtistList({
     super.key,
-    required this.albums,
+    required this.artists,
   });
 
-  final List<Album> albums;
+  final List<Artist> artists;
 
   @override
   Widget build(BuildContext context) {
@@ -69,14 +69,14 @@ class AlbumList extends StatelessWidget {
                       context,
                       MaterialPageRoute(
                           builder: (context) => TrackListScreen(
-                                id: albums[index].id,
-                                sourceType: SourceType.album,
+                                id: artists[index].id,
+                                sourceType: SourceType.artist,
                               )),
                     )
                   },
-              child: AlbumItem(album: albums[index]));
+              child: ArtistItem(artist: artists[index]));
         },
-        itemCount: albums.length,
+        itemCount: artists.length,
       ),
     );
   }

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spotify_bootleg/presentation/home/category/bloc/category_bloc.dart';
-import 'package:flutter_spotify_bootleg/presentation/home/category/view/category_item.dart';
+import 'package:flutter_spotify_bootleg/presentation/home/category/category_item.dart';
 import 'package:flutter_spotify_bootleg/presentation/playlist/playlist_screen.dart';
 
-import '../../../../domain/models/models.dart';
+import '../../../domain/models/models.dart';
 
 class CategorySection extends StatefulWidget {
   const CategorySection({super.key});

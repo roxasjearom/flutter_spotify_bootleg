@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spotify_bootleg/domain/repository/favorites_repository.dart';
 import 'package:flutter_spotify_bootleg/domain/repository/spotify_repository.dart';
-import 'package:flutter_spotify_bootleg/presentation/home/category/view/category_section.dart';
+import 'package:flutter_spotify_bootleg/presentation/home/category/category_section.dart';
 import 'package:flutter_spotify_bootleg/presentation/home/favorite/bloc/favorite_bloc.dart';
-import 'package:flutter_spotify_bootleg/presentation/home/favorite/view/favorite_section.dart';
+import 'package:flutter_spotify_bootleg/presentation/home/favorite/favorite_section.dart';
 
 import '../../di/service_locator.dart';
 import 'album/bloc/album_bloc.dart';
-import 'album/view/album_section.dart';
+import 'album/album_section.dart';
 import 'artist/bloc/artist_bloc.dart';
-import 'artist/view/artist_section.dart';
+import 'artist/artist_section.dart';
 import 'category/bloc/category_bloc.dart';
 
 class HomeScreen extends StatelessWidget {
