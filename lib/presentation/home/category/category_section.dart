@@ -56,7 +56,16 @@ class CategoryList extends StatelessWidget {
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemBuilder: (BuildContext context, int index) {
-          return CategoryItem(category: categories[index]);
+          return GestureDetector(
+              onTap: () => {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              PlaylistScreen(categoryId: categories[index].id)),
+                    )
+                  },
+              child: CategoryItem(category: categories[index]));
         },
         itemCount: categories.length,
       ),
@@ -79,10 +88,7 @@ class HeaderSection extends StatelessWidget {
             )),
         TextButton(
             onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => PlaylistScreen()),
-              );
+              //TODO show all categories
             },
             child: Text("Show all"))
       ],

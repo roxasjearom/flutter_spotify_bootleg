@@ -7,12 +7,13 @@ import 'package:flutter_spotify_bootleg/presentation/playlist/bloc/playlist_bloc
 import 'package:flutter_spotify_bootleg/presentation/playlist/playlist_item.dart';
 
 class PlaylistScreen extends StatelessWidget {
-  const PlaylistScreen({super.key});
+  const PlaylistScreen({super.key, required this.categoryId,});
+  final String categoryId;
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => PlaylistBloc(homeRepository: getIt.get<SpotifyRepository>())..add(PlaylistFetched()),
+      create: (context) => PlaylistBloc(homeRepository: getIt.get<SpotifyRepository>())..add(PlaylistFetched(categoryId)),
       child: Scaffold(
         appBar: AppBar(
           title: Text('Playlists'),

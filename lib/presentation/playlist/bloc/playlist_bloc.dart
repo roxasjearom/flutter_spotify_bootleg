@@ -22,7 +22,7 @@ class PlaylistBloc extends Bloc<PlaylistEvent, PlaylistState> {
     Emitter<PlaylistState> emit,
   ) async {
     try {
-      final playlists = _homeRepository.getPlaylists("id");
+      final playlists = _homeRepository.getPlaylists(event.categoryId);
       emit(
         state.copyWith(
           status: PlaylistStatus.success,
