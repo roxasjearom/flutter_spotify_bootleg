@@ -39,7 +39,7 @@ Future<void> initLocator() async {
         final credentials = "$clientId:$clientSecret";
         final base64Credentials = base64.encode(utf8.encode(credentials));
 
-        options.headers["Content-Type"] = "application/x-www-form-urlencoded";
+        options.headers["Content-Type"] = Env.contentType;
         options.headers["Authorization"] = "Basic $base64Credentials";
 
         return handler.next(options);

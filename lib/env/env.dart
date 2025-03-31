@@ -10,6 +10,12 @@ abstract class Env {
   @EnviedField(varName: 'ACCOUNTS_URL')
   static const String accountsUrl = _Env.accountsUrl;
 
+  @EnviedField(varName: 'CONTENT_TYPE')
+  static const String contentType = _Env.contentType;
+
+  @EnviedField(varName: 'GRANT_TYPE')
+  static const String grantType = _Env.grantType;
+
   @EnviedField(varName: 'CLIENT_ID')
   static const String clientId = _Env.clientId;
 

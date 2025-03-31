@@ -14,5 +14,5 @@ abstract class AuthenticationService {
   @FormUrlEncoded()
   @POST(Apis.token)
   Future<AccessTokenResponse> getAccessToken(
-      {@Field("grant_type") String grantType = "client_credentials"});
+      {@Field("grant_type") String grantType = Env.grantType});
 }

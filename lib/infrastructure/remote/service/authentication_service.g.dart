@@ -23,7 +23,7 @@ class _AuthenticationService implements AuthenticationService {
 
   @override
   Future<AccessTokenResponse> getAccessToken(
-      {String grantType = "client_credentials"}) async {
+      {String grantType = Env.grantType}) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
