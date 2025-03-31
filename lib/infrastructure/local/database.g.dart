@@ -169,6 +169,7 @@ class _$FavoriteTrackDao extends FavoriteTrackDao {
 
   @override
   Future<void> insertFavorite(FavoriteTrack track) async {
-    await _favoriteTrackInsertionAdapter.insert(track, OnConflictStrategy.replace);
+    await _favoriteTrackInsertionAdapter.insert(
+        track, OnConflictStrategy.abort);
   }
 }

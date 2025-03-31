@@ -17,8 +17,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 GetIt getIt = GetIt.instance;
 
-const spotifyUrl = "https://api.spotify.com/";
-const accountsUrl = "https://accounts.spotify.com/";
 const clientId = Env.clientId;
 const clientSecret = Env.clientSecret;
 
@@ -47,7 +45,7 @@ Future<void> initLocator() async {
         return handler.next(options);
       },
     ));
-    return AuthenticationService(dio, baseUrl: accountsUrl);
+    return AuthenticationService(dio, baseUrl: Env.accountsUrl);
   });
 
   getIt.registerSingletonAsync<SharedPreferences>(() async {
@@ -63,7 +61,7 @@ Future<void> initLocator() async {
         TokenInterceptor(tokenManager, getIt.get<AuthenticationService>());
 
     dio.interceptors.add(tokenInterceptor);
-    return SpotifyService(dio, baseUrl: spotifyUrl);
+    return SpotifyService(dio, baseUrl: Env.spotifyUrl);
   }, dependsOn: [SharedPreferences, AuthenticationService]);
 
   getIt.registerSingletonWithDependencies<SpotifyRepository>(

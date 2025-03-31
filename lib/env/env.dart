@@ -4,6 +4,12 @@ part 'env.g.dart';
 
 @Envied(path: '.env')
 abstract class Env {
+  @EnviedField(varName: 'SPOTIFY_URL')
+  static const String spotifyUrl = _Env.spotifyUrl;
+
+  @EnviedField(varName: 'ACCOUNTS_URL')
+  static const String accountsUrl = _Env.accountsUrl;
+
   @EnviedField(varName: 'CLIENT_ID')
   static const String clientId = _Env.clientId;
 

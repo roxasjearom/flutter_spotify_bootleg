@@ -13,9 +13,7 @@ class _AuthenticationService implements AuthenticationService {
     this._dio, {
     this.baseUrl,
     this.errorLogger,
-  }) {
-    baseUrl ??= 'https://accounts.spotify.com/';
-  }
+  });
 
   final Dio _dio;
 

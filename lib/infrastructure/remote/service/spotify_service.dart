@@ -1,45 +1,44 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_spotify_bootleg/core/config/apis.dart';
+import 'package:flutter_spotify_bootleg/env/env.dart';
 import 'package:flutter_spotify_bootleg/infrastructure/remote/response/album_response.dart';
 import 'package:flutter_spotify_bootleg/infrastructure/remote/response/artists_response.dart';
 import 'package:flutter_spotify_bootleg/infrastructure/remote/response/categories_response.dart';
-import 'package:flutter_spotify_bootleg/di/service_locator.dart';
 import 'package:flutter_spotify_bootleg/infrastructure/remote/response/artist_tracks_response.dart';
 import 'package:retrofit/retrofit.dart';
 
 part 'spotify_service.g.dart';
 
-const apiVersion = "v1";
-
-@RestApi(baseUrl: spotifyUrl)
+@RestApi(baseUrl: Env.spotifyUrl)
 abstract class SpotifyService {
   factory SpotifyService(Dio dio, {String baseUrl}) = _SpotifyService;
 
-  @GET("$apiVersion/browse/categories")
+  @GET(Apis.categories)
   Future<CategoriesResponse> getSeveralCategories(
     @Query("limit") int limit,
   );
 
-  @GET("$apiVersion/albums")
+  @GET(Apis.albums)
   Future<AlbumResponse> getSeveralAlbums(
     @Query("ids") String ids,
   );
 
-  @GET("$apiVersion/albums/{id}")
+  @GET(Apis.albumDetails)
   Future<AlbumDto> getAlbumDetails(
     @Path("id") String id,
   );
 
-  @GET("$apiVersion/artists")
+  @GET(Apis.artists)
   Future<ArtistsResponse> getSeveralArtists(
     @Query("ids") String ids,
   );
 
-  @GET("$apiVersion/artists/{id}/top-tracks")
+  @GET(Apis.artistTopTracks)
   Future<ArtistTracksResponse> getArtistTopTracks(
     @Path("id") String id,
   );
 
-  @GET("$apiVersion/artists/{id}")
+  @GET(Apis.artistDetails)
   Future<ArtistDto> getArtistDetails(
     @Path("id") String id,
   );

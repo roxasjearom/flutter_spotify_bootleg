@@ -13,9 +13,7 @@ class _SpotifyService implements SpotifyService {
     this._dio, {
     this.baseUrl,
     this.errorLogger,
-  }) {
-    baseUrl ??= 'https://api.spotify.com/';
-  }
+  });
 
   final Dio _dio;
 
