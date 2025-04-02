@@ -8,21 +8,21 @@ part 'playlist_state.dart';
 
 class PlaylistBloc extends Bloc<PlaylistEvent, PlaylistState> {
   PlaylistBloc({
-    required SpotifyRepository homeRepository,
-  })  : _homeRepository = homeRepository,
+    required SpotifyRepository spotifyRepository,
+  })  : _spotifyRepository = spotifyRepository,
         super(const PlaylistState()) {
     on<PlaylistFetched>(_onFetched);
     on<ToggleViewMode>(_onToggleViewMode);
   }
 
-  final SpotifyRepository _homeRepository;
+  final SpotifyRepository _spotifyRepository;
 
   Future<void> _onFetched(
     PlaylistFetched event,
     Emitter<PlaylistState> emit,
   ) async {
     try {
-      final playlists = _homeRepository.getPlaylists(event.categoryId);
+      final playlists = _spotifyRepository.getPlaylists(event.categoryId);
       emit(
         state.copyWith(
           status: PlaylistStatus.success,

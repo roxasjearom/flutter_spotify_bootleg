@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_spotify_bootleg/domain/repository/favorites_repository.dart';
-import 'package:flutter_spotify_bootleg/domain/repository/spotify_repository.dart';
 import 'package:flutter_spotify_bootleg/presentation/home/category/category_section.dart';
 import 'package:flutter_spotify_bootleg/presentation/home/favorite/bloc/favorite_bloc.dart';
 import 'package:flutter_spotify_bootleg/presentation/home/favorite/favorite_section.dart';
@@ -31,30 +29,22 @@ class HomeScreen extends StatelessWidget {
       children: [
         SizedBox(height: 32),
         BlocProvider(
-          create: (_) => CategoryBloc(
-            homeRepository: getIt.get<SpotifyRepository>(),
-          )..add(CategoryFetched()),
+          create: (_) => serviceLocator<CategoryBloc>()..add(CategoryFetched()),
           child: const CategorySection(),
         ),
         SizedBox(height: 8),
         BlocProvider(
-          create: (_) => AlbumBloc(
-            homeRepository: getIt.get<SpotifyRepository>(),
-          )..add(AlbumFetched()),
+          create: (_) => serviceLocator<AlbumBloc>()..add(AlbumFetched()),
           child: const AlbumSection(),
         ),
         SizedBox(height: 8),
         BlocProvider(
-          create: (_) => ArtistBloc(
-            homeRepository: getIt.get<SpotifyRepository>(),
-          )..add(ArtistFetched()),
+          create: (_) => serviceLocator<ArtistBloc>()..add(ArtistFetched()),
           child: const ArtistSection(),
         ),
         SizedBox(height: 8),
         BlocProvider(
-          create: (_) => FavoriteBloc(
-            favoritesRepository: getIt.get<FavoritesRepository>(),
-          )..add(FavoriteFetched()),
+          create: (_) => serviceLocator<FavoriteBloc>()..add(FavoriteFetched()),
           child: const FavoriteSection(),
         ),
       ],

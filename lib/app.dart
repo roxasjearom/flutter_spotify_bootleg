@@ -12,7 +12,7 @@ class App extends StatelessWidget {
       title: 'Spotify-Bootleg',
       theme: spotifyTheme,
       home: FutureBuilder(
-            future: getIt.allReady(),
+            future: serviceLocator.allReady(),
             builder: (BuildContext context, AsyncSnapshot snapshot) {
               if (snapshot.hasData) {
                 return HomeScreen();

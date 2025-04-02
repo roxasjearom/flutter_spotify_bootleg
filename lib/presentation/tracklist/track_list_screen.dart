@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spotify_bootleg/domain/enumerations/source_type.dart';
-import 'package:flutter_spotify_bootleg/domain/repository/favorites_repository.dart';
 import 'package:flutter_spotify_bootleg/di/service_locator.dart';
-import 'package:flutter_spotify_bootleg/domain/repository/spotify_repository.dart';
 import 'package:flutter_spotify_bootleg/presentation/tracklist/header_details_section.dart';
 import 'package:flutter_spotify_bootleg/presentation/widgets/custom_appbar/sliver_custom_appbar.dart';
 import 'package:flutter_spotify_bootleg/presentation/tracklist/play_pause_button.dart';
@@ -12,7 +10,8 @@ import 'package:flutter_spotify_bootleg/presentation/tracklist/track_list_sectio
 import 'bloc/track_list_bloc.dart';
 
 class TrackListScreen extends StatelessWidget {
-  const TrackListScreen({super.key, required this.id, required this.sourceType});
+  const TrackListScreen(
+      {super.key, required this.id, required this.sourceType});
 
   final String id;
   final SourceType sourceType;
@@ -20,12 +19,9 @@ class TrackListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-        create: (_) => TrackListBloc(
-              id: id,
-              sourceType: sourceType,
-              spotifyRepository: getIt.get<SpotifyRepository>(),
-              favoritesRepository: getIt.get<FavoritesRepository>(),
-            )..add(HeaderDetailsFetched(id, sourceType)),
+        create: (_) =>
+            serviceLocator<TrackListBloc>(param1: id, param2: sourceType)
+              ..add(HeaderDetailsFetched(id, sourceType)),
         child: _TrackListPage());
   }
 }
@@ -60,7 +56,8 @@ class _TrackListPageState extends State<_TrackListPage> {
         ? 80
         : (MediaQuery.of(context).size.width / 320) * 50;
     infoBoxHeight = 160;
-    return BlocBuilder<TrackListBloc, TrackListState>(builder: (context, state) {
+    return BlocBuilder<TrackListBloc, TrackListState>(
+        builder: (context, state) {
       switch (state.status) {
         case TrackListStatus.initial:
           return const Center(child: CircularProgressIndicator());
@@ -93,13 +90,13 @@ class _TrackListPageState extends State<_TrackListPage> {
                         minAppBarHeight: minAppBarHeight,
                       ),
                       HeaderDetailsSection(
-                          title: state.name,
-                          imageUrl: state.imageUrl,
-                          artist: state.artist,
-                          subHeaderValue: state.subHeaderValue,
-                          infoBoxHeight: infoBoxHeight,
-                          sourceType: state.sourceType,
-                          ),
+                        title: state.name,
+                        imageUrl: state.imageUrl,
+                        artist: state.artist,
+                        subHeaderValue: state.subHeaderValue,
+                        infoBoxHeight: infoBoxHeight,
+                        sourceType: state.sourceType,
+                      ),
                       TrackListSection(
                         tracks: state.tracks,
                         onAddFavoriteClicked: (track) {

@@ -8,8 +8,8 @@ part 'category_list_state.dart';
 
 class CategoryListBloc extends Bloc<CategoryListEvent, CategoryListState> {
   CategoryListBloc({
-    required SpotifyRepository homeRepository,
-  })  : _homeRepository = homeRepository,
+    required SpotifyRepository spotifyRepository,
+  })  : _homeRepository = spotifyRepository,
         super(const CategoryListState()) {
     on<CategoryListFetched>(_onFetched);
   }

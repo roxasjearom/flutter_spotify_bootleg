@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spotify_bootleg/di/service_locator.dart';
 import 'package:flutter_spotify_bootleg/domain/models/category.dart';
-import 'package:flutter_spotify_bootleg/domain/repository/spotify_repository.dart';
 import 'package:flutter_spotify_bootleg/presentation/categorylist/bloc/category_list_bloc.dart';
 import 'package:flutter_spotify_bootleg/presentation/categorylist/category_list_item.dart';
 import 'package:flutter_spotify_bootleg/presentation/playlist/playlist_screen.dart';
@@ -14,7 +13,7 @@ class CategoryListScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) =>
-          CategoryListBloc(homeRepository: getIt.get<SpotifyRepository>())
+          serviceLocator<CategoryListBloc>()
             ..add(CategoryListFetched()),
       child: Scaffold(
         appBar: AppBar(

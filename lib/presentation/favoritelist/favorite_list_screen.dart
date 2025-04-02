@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_spotify_bootleg/domain/repository/favorites_repository.dart';
 import 'package:flutter_spotify_bootleg/di/service_locator.dart';
 import 'package:flutter_spotify_bootleg/presentation/favoritelist/bloc/favorite_list_bloc.dart';
 import 'package:flutter_spotify_bootleg/presentation/tracklist/track_list_section.dart';
@@ -12,9 +11,8 @@ class FavoriteListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-        create: (_) => FavoriteListBloc(
-              favoritesRepository: getIt.get<FavoritesRepository>(),
-            )..add(FavoriteListFetched()),
+        create: (_) =>
+            serviceLocator<FavoriteListBloc>()..add(FavoriteListFetched()),
         child: _FavoriteListPage());
   }
 }
