@@ -5,14 +5,9 @@ import 'package:flutter_spotify_bootleg/presentation/favoritelist/favorite_list_
 import 'package:flutter_spotify_bootleg/presentation/home/favorite/bloc/favorite_bloc.dart';
 import 'package:flutter_spotify_bootleg/presentation/home/favorite/favorite_item.dart';
 
-class FavoriteSection extends StatefulWidget {
+class FavoriteSection extends StatelessWidget {
   const FavoriteSection({super.key});
 
-  @override
-  State<StatefulWidget> createState() => _FavoriteSectionState();
-}
-
-class _FavoriteSectionState extends State<FavoriteSection> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<FavoriteBloc, FavoriteState>(builder: (context, state) {

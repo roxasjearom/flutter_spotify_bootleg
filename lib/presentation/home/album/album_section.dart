@@ -7,14 +7,9 @@ import 'package:flutter_spotify_bootleg/presentation/tracklist/track_list_screen
 import 'bloc/album_bloc.dart';
 import 'album_item.dart';
 
-class AlbumSection extends StatefulWidget {
+class AlbumSection extends StatelessWidget {
   const AlbumSection({super.key});
 
-  @override
-  State<StatefulWidget> createState() => _AlbumSectionState();
-}
-
-class _AlbumSectionState extends State<AlbumSection> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<AlbumBloc, AlbumState>(builder: (context, state) {

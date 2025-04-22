@@ -7,14 +7,9 @@ import 'package:flutter_spotify_bootleg/presentation/playlist/playlist_screen.da
 
 import '../../../domain/models/models.dart';
 
-class CategorySection extends StatefulWidget {
+class CategorySection extends StatelessWidget {
   const CategorySection({super.key});
 
-  @override
-  State<StatefulWidget> createState() => _CategorySectionState();
-}
-
-class _CategorySectionState extends State<CategorySection> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<CategoryBloc, CategoryState>(builder: (context, state) {
@@ -90,11 +85,9 @@ class HeaderSection extends StatelessWidget {
         TextButton(
             onPressed: () {
               Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) =>
-                              CategoryListScreen()),
-                    );
+                context,
+                MaterialPageRoute(builder: (context) => CategoryListScreen()),
+              );
             },
             child: Text("Show all"))
       ],
